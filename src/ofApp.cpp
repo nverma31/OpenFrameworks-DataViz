@@ -2,13 +2,29 @@
 
 void ofApp::setup(){
     
-    frame = 2;
+    frame = 1;
     screenNumber = 0;
-    
+    ofPoint pos;
+    pos.x = 600;
+    pos.y = 400;
+    demoelement = DemoElement(pos, 0, 20, 200);
+
+    demoelement2 = DemoElement(pos, 30, 50, 200);
+    demoelement3 = DemoElement(pos, 60, 80, 200);
+    demoelement4 = DemoElement(pos, 90, 110, 200);
+    demoelement5 = DemoElement(pos, 120, 140, 200);
+    demoelement6 = DemoElement(pos, 150, 170, 200);
+    demoelement7 = DemoElement(pos, 180, 200, 200);
+    demoelement8 = DemoElement(pos, 210, 230, 200);
+    demoelement9 = DemoElement(pos, 240, 260, 200);
+    demoelement10 = DemoElement(pos, 270, 290, 200);
+    demoelement11 = DemoElement(pos, 300, 320, 200);
+    demoelement12 = DemoElement(pos, 330, 350, 200);
+
     bg.load("/Users/Neeraj/Desktop/assets/bg.png");
     nav.load("/Users/Neeraj/Desktop/assets/nav_bg.png");
 //    ofBackgroundHex(0xffffff);
-ofBackground(0, 0, 0);
+    ofBackground(0, 0, 0);
     chart =1;
     /*
      The "panel" is a frame. This frame contains the displayed images, and the scroll bar.
@@ -374,6 +390,17 @@ void ofApp::draw(){
         home->draw(1, 200, 200);
         back->draw(1, 200, 200);
         demoelement.display();
+        demoelement2.display();
+        demoelement3.display();
+        demoelement4.display();
+        demoelement5.display();
+        demoelement6.display();
+        demoelement7.display();
+        demoelement8.display();
+        demoelement9.display();
+        demoelement10.display();
+        demoelement11.display();
+        demoelement12.display();
 
 
         
