@@ -32,6 +32,7 @@ void LineChart::draw(string _chartType, ofPoint position, int test[]){
     pos.x = position.x;
     pos.y = position.y;
     chartPos =pos;
+    ofPushStyle();
     ofNoFill();
     ofSetLineWidth(2);
     
@@ -54,7 +55,9 @@ void LineChart::draw(string _chartType, ofPoint position, int test[]){
     }
     ofSetColor(ofColor::red);
     ofEndShape();
-    ofSetColor(ofColor::grey);
+    ofPopStyle();
+
+//    ofSetColor(ofColor::grey);
 
 }
 

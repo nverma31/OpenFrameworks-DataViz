@@ -107,7 +107,7 @@ public:
     int screenNumber;
     
     ofPoint points[20];
-    ofxDatGuiButton* hdemo;
+    Button* hdemo;
     ofxDatGuiButton* hclimate;
     ofxDatGuiButton* henergy;
     ofxDatGuiButton* hinfo;

@@ -31,7 +31,6 @@ void EnergyElement::display() {
         ofDrawCircle(xpos, high,1);
     }
     
-    cout << "xpos "<<xpos <<"base " <<base << "low "<< low;
     if (base + 10*speed < low) {
     ofDrawLine(xpos, base, xpos, base +10*speed);
 //    ofDrawCircle(xpos, base+4*speed, 1);

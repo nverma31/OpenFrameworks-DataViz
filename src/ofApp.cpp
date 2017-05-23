@@ -1,6 +1,7 @@
 #include "ofApp.h"
 
 void ofApp::setup(){
+    ofSetBackgroundAuto(true);
     
     frame = 0;
     screenNumber = 0;
@@ -169,7 +170,7 @@ void ofApp::setup(){
     ic_back.load("/Users/Neeraj/Desktop/assets/back.png");
     
     theme =  new ofxDatGuiThemeWireframe();
-    themesmoke =  new ofxDatGuiThemeSmoke();
+    themesmoke =  new ofxDatGuiThemeIcons();
 
     // instantiate a basic button and a toggle button
     
@@ -179,8 +180,9 @@ void ofApp::setup(){
 
     back = new ofxDatGuiButton("",ic_back);
 
-    hdemo = new ofxDatGuiButton("",ic_demo );
+    hdemo = new Button("",ic_demo );
     hdemo->setHeight(500);
+    cout <<"hdemo Height" <<hdemo->getHeight();
     hclimate = new ofxDatGuiButton("",ic_climate );
     hinfo = new ofxDatGuiButton("",ic_info );
     henergy = new ofxDatGuiButton("",ic_energy );
@@ -220,10 +222,10 @@ void ofApp::setup(){
 
     label4 = new ofxDatGuiButton("Energy");
    
-    label1->setTheme(themesmoke);
-    label2->setTheme(themesmoke);
-    label3->setTheme(themesmoke);
-    label4->setTheme(themesmoke);
+    label1->setTheme(theme);
+    label2->setTheme(theme);
+    label3->setTheme(theme);
+    label4->setTheme(theme);
 
     
     cl_over->setTheme(theme);
@@ -270,14 +272,14 @@ void ofApp::setup(){
     en_hct->onButtonEvent(this, &ofApp::onButtonEvent);
     en_pcb->onButtonEvent(this, &ofApp::onButtonEvent);
     
-    button->setTheme(theme);
-    hdemo->setTheme(theme);
-    hclimate->setTheme(theme);
-    hinfo->setTheme(theme);
-    henergy->setTheme(theme);
+    button->setTheme(themesmoke);
+    hdemo->setTheme(themesmoke);
+    hclimate->setTheme(themesmoke);
+    hinfo->setTheme(themesmoke);
+    henergy->setTheme(themesmoke);
     
-    home->setTheme(theme);
-    back->setTheme(theme);
+    home->setTheme(themesmoke);
+    back->setTheme(themesmoke);
 
     
     //toggle = new ofxDatGuiToggle("TOGGLE FULLSCREEN", false);
@@ -331,12 +333,11 @@ void ofApp::update(){
     henergy->update();
     hinfo->update();
     }
-    
+    if (frame ==2) {
     cl_over->update();
     cl_real->update();
     
-    en_over->update();
-    en_real->update();
+    
     cl_main->update();
     cl_daily->update();
     cl_hourly->update();
@@ -345,7 +346,11 @@ void ofApp::update(){
     cl_wind->update();
     cl_press->update();
         
-    
+    }
+    if (frame == 4) {
+        en_over->update();
+        en_real->update();
+    }
     
 }
 
@@ -359,7 +364,12 @@ void ofApp::draw(){
 
     if (frame == 0) {
 //        ofClear(255,255,255);
-        bg.draw(0,0);
+        ofImage img;
+        img.load("/Users/Neeraj/Desktop/assets/bg5.png");
+
+//        bg.resize(100,1000);
+
+        img.draw(0,0);
         
         ofPoint pos1;
         pos1.x = 400;
@@ -391,8 +401,9 @@ void ofApp::draw(){
         
 //        ofClear(255,255,255);
         ofImage img;
-        img.load("/Users/Neeraj/Desktop/assets/bg1.png");
-        img.draw(0,0);
+        img.load("/Users/Neeraj/Desktop/assets/bg5.png");
+        img.resize(100,1000);
+        img.draw(300,0);
         home->draw(1, 200, 200);
 
         
@@ -424,8 +435,11 @@ void ofApp::draw(){
         
 //        ofClear(255,255,255);
         ofImage img;
-        img.load("/Users/Neeraj/Desktop/assets/bg1.png");
+        img.load("/Users/Neeraj/Desktop/assets/bg5.png");
+//         img.resize(100,1000);
+
         img.draw(0,0);
+
          label2->draw();
         home->draw(1, 200, 200);
 //        back->draw(1, 200, 200);
@@ -551,9 +565,11 @@ void ofApp::draw(){
     
      if (frame ==1) {
 //        ofClear(255,255,255);
-        ofImage bg;
-        bg.load("/Users/Neeraj/Desktop/assets/bg5.png");
-        bg.draw(0,0);
+        ofImage img;
+        img.load("/Users/Neeraj/Desktop/assets/bg5.png");
+//         bg.resize(100,1000);
+
+        img.draw(0,0);
 
         home->draw(1, 200, 200);
         label1->draw();
@@ -581,9 +597,12 @@ void ofApp::draw(){
      if (frame ==4) {
 
         
-        ofImage bg;
-        bg.load("/Users/Neeraj/Desktop/assets/bg5.png");
-        bg.draw(0,0);
+        ofImage img;
+        img.load("/Users/Neeraj/Desktop/assets/bg5.png");
+//         bg.resize(100,1000);
+
+        img.draw(0,0);
+
           if (screenNumber == 400) {
         energyDisplay.display();
 
@@ -1004,7 +1023,7 @@ void ofApp::onMouseInCustomButton1(ofVec2f & e) {
 }
 
 void ofApp::onMouseInCustomButton2(ofVec2f & e) {
-    ofBackground(ofColor::red);
+//    ofBackground(ofColor::red);
     baseImages.pop_back();
     ofImage img;
     cout<<"cliecked";

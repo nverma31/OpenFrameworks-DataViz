@@ -138,7 +138,7 @@ void Scroll::update(){
 
 }
 void Scroll::display() {
-    
+    ofPushStyle();
     ofPushMatrix();
     ofTranslate(margin, margin, 0);
     
@@ -184,6 +184,7 @@ void Scroll::display() {
     
     // Remove the translation added at the begining
     ofPopMatrix();
+    ofPopStyle();
 
     
 }

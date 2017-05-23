@@ -36,7 +36,14 @@ public:
         mType = ofxDatGuiType::TOGGLE;
         setTheme(ofxDatGuiComponent::getTheme());
     }
-    
+    Button(string label, ofImage img) : ofxDatGuiButton(label)
+    {
+        this->img = img;
+        mType = ofxDatGuiType::BUTTON;
+        setTheme(ofxDatGuiComponent::getTheme());
+//        ofxDatGuiComponent::setHeight(100);
+
+    }
     void setTheme(const ofxDatGuiTheme* theme)
     {
         setComponentStyle(theme);
@@ -55,8 +62,10 @@ public:
     }
     
     void setHeight(int height) {
+        
+        cout <<"in Button Height" <<height;
        
-        ofxDatGuiComponent::setHeight(height);
+//        ofxDatGuiComponent::setHeight(height);
     }
     
     void toggle()
@@ -74,6 +83,30 @@ public:
         return mChecked;
     }
     
+    void draw(int type, float w, float h)
+    {
+        if (mVisible) {
+            // anything that extends ofxDatGuiButton has the same rollover effect //
+            ofPushStyle();
+            if (mStyle.border.visible) drawBorder();
+            ofFill();
+            if (mFocused && mMouseDown){
+                ofSetColor(mStyle.color.onMouseDown, mStyle.opacity);
+            }   else if (mMouseOver){
+                ofSetColor(mStyle.color.onMouseOver, mStyle.opacity);
+            }   else{
+                ofSetColor(mStyle.color.background, mStyle.opacity);
+            }
+            //ofDrawRectangle(x, y, mStyle.width, mStyle.height);
+            
+            //cout << "\tx" <<x << "\ty " <<y;
+            img.draw(x,y);
+            drawLabel();
+            if (mStyle.stripe.visible) drawStripe();
+            ofPopStyle();
+        }
+    }
+
     void draw()
     {
         if (mVisible) {

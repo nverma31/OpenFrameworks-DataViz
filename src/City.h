@@ -16,6 +16,7 @@ public:
     void draw(string _chartType);
     
     void parseData(string _url);
+    
     void setLayout(ofPoint _chartPos, ofPoint _chartSize, float _highestTemp, float _lowestTemp);
     void drawLineChart();
     
@@ -31,7 +32,10 @@ public:
     vector<float> highs;        // high temperature
     vector<float> lows;         // low temperature
     
-    //Visuals:
+    vector<float> realtime_temp;
+    vector<float> realtime_seasurface;
+
+    
     ofColor highColor;
     ofColor lowColor;
 };
