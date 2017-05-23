@@ -31,7 +31,20 @@ class DemoElement {
     void display();
     void update();
     void showData();
+    bool isInside();
     
+    ofEvent<ofVec2f> clickedInside;
+
+    void mouseReleased(ofMouseEventArgs & args);
+
+    float getAngle(float _x, float _y);
+    bool inside;
+
+    float normalizeAngle(float angle);
     DemoElement();
     DemoElement(ofPoint pt, float angBeg, float angEnd, float rad);
+    
+    
+protected:
+    bool bRegisteredEvents;
 };

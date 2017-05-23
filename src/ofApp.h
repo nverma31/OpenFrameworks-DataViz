@@ -5,7 +5,11 @@
 #include "ofxSmartFont.h"
 #include "Button.h"
 #include "DemoElement.h"
-
+//#include "EnergyElement.h"
+#include "Scroll.h"
+#include "LineChart.h"
+#include "EnergyDisplay.h"
+#include "CustomButton.h"
 class ofApp : public ofBaseApp{
     
 public:
@@ -44,7 +48,7 @@ public:
     int mousePreviousY;
     vector<ofRectangle> rectangles;
     
-    
+    int ill;
     
     //Buttons
     int numClicks;
@@ -163,6 +167,28 @@ public:
     DemoElement demoelement10;
     DemoElement demoelement11;
     DemoElement demoelement12;
+
+    
+    EnergyElement energyElement;
+    vector<ofImage> baseImages;
+
+    vector<float> xpos;
+    vector<float> bases;
+    vector<float> highs;
+    vector<float> lows;
+
+    Scroll scroll;
+    LineChart lineChart;
+    EnergyDisplay energyDisplay;
+    
+    CustomButton butt1;
+
+    CustomButton butt2;
+    CustomButton butt3;
+    CustomButton butt4;
+    
+    void onMouseInCustomButton(ofVec2f & e);
+
 
 
 

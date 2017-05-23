@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		070B25C91ED3497E003D3622 /* Scroll.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 070B25C71ED3497E003D3622 /* Scroll.cpp */; };
+		0721EF8B1ED3AF990051DE6D /* EnergyDisplay.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0721EF891ED3AF990051DE6D /* EnergyDisplay.cpp */; };
+		0721EF8E1ED431240051DE6D /* CustomButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0721EF8C1ED431240051DE6D /* CustomButton.cpp */; };
+		0764B9261ED36E6800EE2F14 /* LineChart.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0764B9241ED36E6800EE2F14 /* LineChart.cpp */; };
+		077C34AA1ED3080D0083EE08 /* EnergyElement.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 077C34A81ED3080D0083EE08 /* EnergyElement.cpp */; };
 		07A0DF941ED2DEBC00C5855B /* DemoDisplay.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 07A0DF921ED2DEBC00C5855B /* DemoDisplay.cpp */; };
 		1981A5C6A9907849A11593F1 /* ofxSmartFont.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F34DBF5A21E63C5EAAE9B89 /* ofxSmartFont.cpp */; };
 		1DDCCF38AB3EA880E1D3E577 /* ofxDatGui.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3A2565BD8F16ED72C19C6C17 /* ofxDatGui.cpp */; };
@@ -48,6 +53,16 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		070B25C71ED3497E003D3622 /* Scroll.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Scroll.cpp; sourceTree = "<group>"; };
+		070B25C81ED3497E003D3622 /* Scroll.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Scroll.h; sourceTree = "<group>"; };
+		0721EF891ED3AF990051DE6D /* EnergyDisplay.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EnergyDisplay.cpp; sourceTree = "<group>"; };
+		0721EF8A1ED3AF990051DE6D /* EnergyDisplay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnergyDisplay.h; sourceTree = "<group>"; };
+		0721EF8C1ED431240051DE6D /* CustomButton.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = CustomButton.cpp; sourceTree = "<group>"; };
+		0721EF8D1ED431240051DE6D /* CustomButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = CustomButton.h; sourceTree = "<group>"; };
+		0764B9241ED36E6800EE2F14 /* LineChart.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = LineChart.cpp; sourceTree = "<group>"; };
+		0764B9251ED36E6800EE2F14 /* LineChart.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LineChart.h; sourceTree = "<group>"; };
+		077C34A81ED3080D0083EE08 /* EnergyElement.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EnergyElement.cpp; sourceTree = "<group>"; };
+		077C34A91ED3080D0083EE08 /* EnergyElement.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EnergyElement.h; sourceTree = "<group>"; };
 		07A0DF921ED2DEBC00C5855B /* DemoDisplay.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DemoDisplay.cpp; sourceTree = "<group>"; };
 		07A0DF931ED2DEBC00C5855B /* DemoDisplay.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DemoDisplay.h; sourceTree = "<group>"; };
 		142504A57071CB9C3D200DB7 /* ofxDatGuiGroups.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxDatGuiGroups.h; path = ../../Desktop/of_v0.9.8_osx_release/addons/ofxDatGui/src/components/ofxDatGuiGroups.h; sourceTree = SOURCE_ROOT; };
@@ -214,6 +229,16 @@
 				C9CAAD5ACB72F84783F9F004 /* DemoElement.h */,
 				07A0DF921ED2DEBC00C5855B /* DemoDisplay.cpp */,
 				07A0DF931ED2DEBC00C5855B /* DemoDisplay.h */,
+				077C34A81ED3080D0083EE08 /* EnergyElement.cpp */,
+				077C34A91ED3080D0083EE08 /* EnergyElement.h */,
+				070B25C71ED3497E003D3622 /* Scroll.cpp */,
+				070B25C81ED3497E003D3622 /* Scroll.h */,
+				0764B9241ED36E6800EE2F14 /* LineChart.cpp */,
+				0764B9251ED36E6800EE2F14 /* LineChart.h */,
+				0721EF891ED3AF990051DE6D /* EnergyDisplay.cpp */,
+				0721EF8A1ED3AF990051DE6D /* EnergyDisplay.h */,
+				0721EF8C1ED431240051DE6D /* CustomButton.cpp */,
+				0721EF8D1ED431240051DE6D /* CustomButton.h */,
 			);
 			path = src;
 			sourceTree = SOURCE_ROOT;
@@ -327,10 +352,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				070B25C91ED3497E003D3622 /* Scroll.cpp in Sources */,
+				0764B9261ED36E6800EE2F14 /* LineChart.cpp in Sources */,
 				E4B69E200A3A1BDC003C02F2 /* main.cpp in Sources */,
 				E4B69E210A3A1BDC003C02F2 /* ofApp.cpp in Sources */,
 				F7DD82C416BE189FC6777E5A /* Button.cpp in Sources */,
+				077C34AA1ED3080D0083EE08 /* EnergyElement.cpp in Sources */,
+				0721EF8B1ED3AF990051DE6D /* EnergyDisplay.cpp in Sources */,
 				07A0DF941ED2DEBC00C5855B /* DemoDisplay.cpp in Sources */,
+				0721EF8E1ED431240051DE6D /* CustomButton.cpp in Sources */,
 				5DEC02A6E0BA2E6F5C0C6996 /* DemoElement.cpp in Sources */,
 				7C0242854BC9CA7C6F9F38A5 /* ofxDatGuiComponent.cpp in Sources */,
 				1981A5C6A9907849A11593F1 /* ofxSmartFont.cpp in Sources */,

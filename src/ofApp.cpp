@@ -2,13 +2,55 @@
 
 void ofApp::setup(){
     
-    frame = 1;
+    frame = 0;
     screenNumber = 0;
     ofPoint pos;
     pos.x = 600;
     pos.y = 400;
+    
+    ofAddListener(butt1.clickedInside, //the ofEvent that we want to listen to. In this case exclusively to the circleEvent of redCircle (red circle) object.
+                  this, //pointer to the class that is going to be listening. it can be a pointer to any object. There's no need to declare the listeners within the class that's going to listen.
+                  &ofApp::onMouseInCustomButton);//pointer to the method that's going to be called when a new event is broadcasted (cal
     demoelement = DemoElement(pos, 0, 20, 200);
+    
+    
+   
+    for (int i = 0; i < 14; ++i){
+        xpos.push_back(i*20.0 +300);
+        highs.push_back(200.0);
+        lows.push_back(500.0);
+        bases.push_back(300.0);
+        
+    }
 
+   
+
+    energyDisplay = EnergyDisplay(14);
+    
+    energyDisplay.setup(bases, highs, lows, xpos);
+//    baseImages = images;
+    baseImages.resize(1);
+    for (int i = 0; i < 1; i++){
+        baseImages[i].loadImage("/Users/Neeraj/Desktop/assets/bg" + ofToString(i + 1) + ".png");
+        baseImages[i].resize(300, 1000);
+ }
+//    imagesWidth = baseImages[0].getWidth();
+//    imagesHeight = baseImages[0].getHeight();
+    scroll.setup(700, 400, baseImages);
+    
+    
+    ofPoint chartSize = ofPoint(ofGetWidth() * 0.7, ofGetHeight() * 0.7);
+    ofPoint chartPos = ofPoint(ofGetWidth() * 0.15, ofGetHeight() * 0.15);
+     vector<float> values;
+    
+    for (int i =0; i< 10; i++) {
+        values.push_back(100+i*20);
+    }
+    lineChart.setup("", "Char", 0, 5, values);
+    lineChart.setLayout(chartPos, chartSize, 500 , 100);
+    
+
+//    scroll = Scroll();
     demoelement2 = DemoElement(pos, 30, 50, 200);
     demoelement3 = DemoElement(pos, 60, 80, 200);
     demoelement4 = DemoElement(pos, 90, 110, 200);
@@ -21,7 +63,8 @@ void ofApp::setup(){
     demoelement11 = DemoElement(pos, 300, 320, 200);
     demoelement12 = DemoElement(pos, 330, 350, 200);
 
-    bg.load("/Users/Neeraj/Desktop/assets/bg.png");
+   ill =0;
+    bg.load("/Users/Neeraj/Desktop/assets/bg5.png");
     nav.load("/Users/Neeraj/Desktop/assets/nav_bg.png");
 //    ofBackgroundHex(0xffffff);
     ofBackground(0, 0, 0);
@@ -50,26 +93,26 @@ void ofApp::setup(){
      */
     
     // Load 10 images
-    vector<ofImage> baseImages;
-    baseImages.resize(10);
-    for (int i = 0; i < 10; ++i) {
-        baseImages[i].loadImage("/Users/Neeraj/Desktop/of_v0.9.8_osx_release/addons/ofxUI/Scrolling/" + ofToString(i + 1) + ".jpeg");
-    
-    }
-    imagesWidth = baseImages[0].getWidth();
-    imagesHeight = baseImages[0].getHeight();
-    
-    // And create 33 images to display
-    for (int i = 0; i < 15; ++i) {
-        images.push_back(baseImages[i % 10]);
-        rectangles.push_back(ofRectangle(0, 0, imagesWidth, imagesHeight));
-    }
+//    vector<ofImage> baseImages;
+//    baseImages.resize(10);
+//    for (int i = 0; i < 10; ++i) {
+//        baseImages[i].loadImage("/Users/Neeraj/Desktop/of_v0.9.8_osx_release/addons/ofxUI/Scrolling/" + ofToString(i + 1) + ".jpeg");
+//    
+//    }
+//    imagesWidth = baseImages[0].getWidth();
+//    imagesHeight = baseImages[0].getHeight();
+//    
+//    // And create 33 images to display
+//    for (int i = 0; i < 15; ++i) {
+//        images.push_back(baseImages[i % 10]);
+//        rectangles.push_back(ofRectangle(0, 0, imagesWidth, imagesHeight));
+//    }
     
 //    ofBackground(127);
     
     
     
-    frame = 4;
+//    frame = 4;
     screenNumber = 0;
     numClicks = 0;
     startTime = ofGetElapsedTimeMillis();
@@ -138,17 +181,6 @@ void ofApp::setup(){
     henergy = new ofxDatGuiButton("",ic_energy );
     
     testing =  new Button("Hello");
-    
-    //    ofxDatGuiButton* en_over;
-    //    ofxDatGuiButton* en_real;
-    //
-    //    ofxDatGuiButton* en_main;
-    //    ofxDatGuiButton* en_daily;
-    //    ofxDatGuiButton* en_monthly;
-    //    ofxDatGuiButton* en_bio;
-    //    ofxDatGuiButton* en_hyd;
-    //    ofxDatGuiButton* en_wind;
-    //    ofxDatGuiButton* en_thermal;
     
     
     
@@ -268,7 +300,23 @@ void ofApp::setup(){
 
 //--------------------------------------------------------------
 void ofApp::update(){
-    
+    scroll.update();
+
+
+    demoelement.update();
+    demoelement2.update();
+    demoelement3.update();
+    demoelement4.update();
+    demoelement5.update();
+    demoelement6.update();
+    demoelement7.update();
+    demoelement8.update();
+    demoelement9.update();
+    demoelement10.update();
+    demoelement11.update();
+    demoelement12.update();
+
+
     button->update();
     home->update();
     back->update();
@@ -290,92 +338,12 @@ void ofApp::update(){
     cl_press->update();
         
     
-    if (frame == 1) {
-    // The size of the panel. All the screen except margins
-      
-    panelWidth = ofGetWidth() - margin * 2 -200;
-    panelHeight = ofGetHeight() - margin * 2-200;
-    
-    // Space available for displayed rectangles
-    int availableWidth = panelWidth - scrollBarWidth - gap;
-    
-    // Coordinates for first rectangle
-    int x = 0;
-    int y = 0;
-    
-    ofRectangle * r;
-    
-    // Place the rectangles in rows and columns. A row must be smaller than availableWidth
-    // After this loop, we know that the rectangles fits the panel width. But the available panel height can be to small to display them all.
-    for (int i = 0; i < images.size(); ++i) {
-        
-        r = &rectangles[i];
-        r->x = x;
-        r->y = y;
-        
-        // Now compute the next rectangle position
-        x += imagesWidth + gap;
-        if (x + imagesWidth > availableWidth) {
-            scrollBarRectangle.x = r->getRight() + gap; // Adjust the scroll bar position to draw it just at the right
-            x = 0;
-            y += imagesHeight + gap;
-        }
-        
-    }
-    
-    gripRectangle.x = scrollBarRectangle.x; // Also adjust the grip x coordinate
-    
-    int contentHeight = r->getBottom(); // Total height for all the rectangles
-    // TODO: take care if colors.size() == 0
-    
-    if (contentHeight > panelHeight) {
-        /* In the case where there's not enough room to display all the rectangles */
-        
-        /* First, the scroll bar */
-        
-        // Show the scroll bar
-        isScrollBarVisible = true;
-        // Set the scroll bar height to fit the panel height
-        scrollBarRectangle.height = panelHeight;
-        
-        
-        /* Now, the grip */
-        
-        // This ratio is between 0 and 1. The smaller it is, the smaller the grip must be.
-        // If its value is 0.5, for example, it means that there's only half of the room in the panel to display all the rectangles.
-        float gripSizeRatio = (float)panelHeight / (float)contentHeight;
-        
-        // Compute the height of the grip, according to this ratio
-        gripRectangle.height = panelHeight * gripSizeRatio;
-        
-        /* Now, the vertical scrolling to add to the rectangles position */
-        
-        // this ratio, between 0 and 1, tell us the amount of scrolling to add if the grip is at the bottom of the scroll bar
-        float scrollMaxRatio = 1 - gripSizeRatio;
-        
-        // this ration tell us how much the grip is down. If 0, the grip is at the top of the scroll bar.
-        // if 1, the grip is at the bottom of the scroll bar
-        float gripYRatio = gripRectangle.y / (scrollBarRectangle.height - gripRectangle.height);
-        
-        // Now, the amount of scrolling to do, according to the twos previous ratios
-        float contentScrollRatio = gripYRatio * scrollMaxRatio;
-        
-        // And now the scrolling value to add to each rectangle y coordinate
-        contentScrollY = contentHeight * contentScrollRatio;
-        
-    } else {
-        /* In the case where there's enough room to display all the rectangles */
-        
-        isScrollBarVisible = false;
-        contentScrollY = 0;
-        
-    }
-    }
     
 }
 
 //--------------------------------------------------------------
 void ofApp::draw(){
+//    scroll = Scroll();
 
     
     ofClear(255,255,255); // clears the background
@@ -384,32 +352,16 @@ void ofApp::draw(){
     if (frame == 0) {
         ofClear(255,255,255);
         bg.draw(0,0);
-    
-//        bg.draw(0,0);
-//        nav.draw(0,0);
-        home->draw(1, 200, 200);
-        back->draw(1, 200, 200);
-        demoelement.display();
-        demoelement2.display();
-        demoelement3.display();
-        demoelement4.display();
-        demoelement5.display();
-        demoelement6.display();
-        demoelement7.display();
-        demoelement8.display();
-        demoelement9.display();
-        demoelement10.display();
-        demoelement11.display();
-        demoelement12.display();
+        
+        ofPoint pos1;
+        pos1.x = 400;
+        pos1.y = 100;
 
+        home->draw(1, 200, 200);
+//        back->draw(1, 200, 200);
+        
 
         
-        //        imageTexture.bind();
-        // imageTexture.draw(points[0], points[1], points[2], points[3]);
-        ////        imageTexture.unbind();
-        //        ofImage img;
-        //        img.load("/Users/Neeraj/Desktop/assets/title.png");
-        //        img.draw(100,10);
         
         hdemo->draw(1, 200,200);
         hclimate->draw(1, 200, 110);
@@ -428,62 +380,12 @@ void ofApp::draw(){
     }
     
     if (frame == 3) {
-        
-        ofClear(255,255,255);/* First draw the rectangles */
-            // Add a translation to bring the panel to the good position
-        ofImage bg;
-        bg.load("/Users/Neeraj/Desktop/assets/bg3.png");
-        bg.draw(0,0);
-        label3->draw();
-    ofPushMatrix();
-    ofTranslate(margin, margin, 0);
-    
-    ofRectangle r;
-    ofImage img;
-    ofSetColor(255);
-    
-    for (int i = 0; i < images.size()-10; ++i) {
-        
-        r = rectangles[i];        // the rectangle position in the panel
-        r.y -= contentScrollY;    // adjust this position according to the scrolling
-        img = images[i];          // image to display. OF don't copy big objects like ofImage, so no need to use a pointor.
-        
-        if (r.y < 0) {
-            if (r.getBottom() > 0) {
-                // Exception 1: If a rectangle is cut at the top of the panel
-                img.getTextureReference().drawSubsection(r.x, 0, r.width, imagesHeight + r.y, 0, - r.y, r.width, imagesHeight + r.y);
-            }
-        } else if (r.getBottom() > panelHeight) {
-            if (r.y < panelHeight) {
-                // Exception 2: If a rectangle is cut at the bottom of the panel.
-                img.getTextureReference().drawSubsection(r.x, r.y, r.width, panelHeight - r.y, 0, 0, r.width, panelHeight - r.y);
-            }
-        } else {
-            // Draw a rectangle in the panel
-            images[i].draw(r.x, r.y);
-        }
-        
-    }
-    
-    /* Draw the scroll bar, is needed */
-    
-    if (isScrollBarVisible) {
-        ofSetColor(110);
-        ofRect(scrollBarRectangle);
-        if (isDraggingGrip || isMouseOverGrip) {
-            ofSetColor(230);
-        } else {
-            ofSetColor(180);
-        }
-        ofRect(gripRectangle);
-    }
-    
-    // Remove the translation added at the begining
-    ofPopMatrix();
-        home->draw(1, 200, 200);
-        back->draw(1, 200, 200);
+        scroll.display();
 
+        
     }
+    
+    //Climate
     if (frame == 2) {
         
         ofClear(255,255,255);
@@ -509,7 +411,7 @@ void ofApp::draw(){
         ofPoint pos;
         pos.x = 400;
         pos.y = 100;
-        drawChart(1, test, pos);
+        lineChart.draw("line", pos);
         
         pos.x = 400;
         pos.y = 200;
@@ -523,6 +425,8 @@ void ofApp::draw(){
         }
         
     }
+    //Demographics
+    
     if (frame ==1) {
         ofClear(255,255,255);
         ofImage bg;
@@ -530,197 +434,44 @@ void ofApp::draw(){
         bg.draw(0,0);
 
         home->draw(1, 200, 200);
-        back->draw(1, 200, 200);
         label1->draw();
 
 
         
-        ofPath circle;
-        home->draw(1, 200, 200);
-        back->draw(1, 200, 200);
-        
-        circle.setArcResolution(1000);
-        //circle.setCurveResolution(60);
-        circle.setFillColor(0x34495e);
-        ofColor d;
-        d.set(0, 0, 0);
-        ofPoint pos;
-        pos.x = ofGetWidth()/2-50;
-        pos.y = ofGetHeight()/2-50;
-        
-        circle.moveTo(pos);
-        circle.arc(pos, 200, 200, 0, 30);
+        demoelement.display();
+        demoelement2.display();
 
-        //        circle.lineTo(pos);
-        //        circle.moveTo(pos);
-        circle.draw();
-        
-        
-        ofPath circle1;
-        
-        circle1.setArcResolution(1000);
-        //circle.setCurveResolution(60);
-        circle1.setFillColor(0x34495e);
-      
-        ofPoint pos1;
-        pos1.x = ofGetWidth()/2-50+10;
-        pos1.y = ofGetHeight()/2-50;
-        circle1.moveTo(pos);
-        circle1.arc(pos, 200, 200, 40, 80);
-        
-        //        circle.lineTo(pos);
-        //        circle.moveTo(pos);
-        circle1.draw();
-        
-  
-        
-        ofPath circle2;
-        
-        circle1.setArcResolution(1000);
-        //circle.setCurveResolution(60);
-        circle1.setFillColor(0x34495e);
-        
-        ofPoint pos2;
-        pos2.x = ofGetWidth()/2-50+20;
-        pos2.y = ofGetHeight()/2-50;
-        circle2.moveTo(pos);
-        circle2.arc(pos, 200, 200, 80, 100);
-        
-        //        circle.lineTo(pos);
-        //        circle.moveTo(pos);
-        circle2.draw();
-        
-
-        
-        ofPath circle3;
-        
-        circle3.setArcResolution(1000);
-        //circle.setCurveResolution(60);
-        circle3.setFillColor(0x34495e);
-        
-        ofPoint pos3;
-        pos3.x = ofGetWidth()/2-50+30;
-        pos3.y = ofGetHeight()/2-50;
-        circle3.moveTo(pos);
-        circle3.arc(pos, 200, 200, 100, 130);
-        
-        //        circle.lineTo(pos);
-        //        circle.moveTo(pos);
-        circle3.draw();
-        
-
-        
-        ofPath circle4;
-        
-        circle4.setArcResolution(1000);
-        //circle.setCurveResolution(60);
-        circle4.setFillColor(0x34495e);
-        
-        ofPoint pos4;
-        pos4.x = ofGetWidth()/2-50+10+40;
-        pos4.y = ofGetHeight()/2-50;
-        circle4.moveTo(pos);
-        circle4.arc(pos, 200, 200, 130, 180);
-        
-        //        circle.lineTo(pos);
-        //        circle.moveTo(pos);
-        circle4.draw();
-        
-
-        
-        ofPath circle5;
-        
-        circle5.setArcResolution(1000);
-        //circle.setCurveResolution(60);
-        circle5.setFillColor(0x34495e);
-        
-        ofPoint pos5;
-        pos5.x = ofGetWidth()/2-50+10;
-        pos5.y = ofGetHeight()/2-50;
-        circle5.moveTo(pos);
-        circle5.arc(pos, 200, 200, 40, 80);
-        
-        //        circle.lineTo(pos);
-        //        circle.moveTo(pos);
-        circle5.draw();
-        
-
-        
-        ofPath circle6;
-        
-        circle6.setArcResolution(1000);
-        //circle.setCurveResolution(60);
-        circle6.setFillColor(0x34495e);
-        
-        ofPoint pos6;
-        pos6.x = ofGetWidth()/2-50+10;
-        pos6.y = ofGetHeight()/2-50;
-        circle6.moveTo(pos);
-        circle6.arc(pos, 200, 200, 40, 80);
-        
-        //        circle.lineTo(pos);
-        //        circle.moveTo(pos);
-        circle6.draw();
-        
-
-        
-        ofPath circle7;
-       circle7.setArcResolution(1000);
-        //circle.setCurveResolution(60);
-        circle7.setFillColor(0x34495e);
-        
-        ofPoint pos7;
-        pos7.x = ofGetWidth()/2-50+10;
-        pos7.y = ofGetHeight()/2-50;
-        circle7.moveTo(pos);
-        circle7.arc(pos, 200, 200, 40, 80);
-        
-        //        circle.lineTo(pos);
-        //        circle.moveTo(pos);
-        circle7.draw();
-        
-
-        
-        ofPath circle8;
-        
-        circle8.setArcResolution(1000);
-        //circle.setCurveResolution(60);
-        circle8.setFillColor(0x34495e);
-        
-        ofPoint pos8;
-        pos8.x = ofGetWidth()/2-50+10;
-        pos8.y = ofGetHeight()/2-50;
-        circle8.moveTo(pos);
-        circle8.arc(pos, 200, 200, 40, 80);
-        
-        //        circle.lineTo(pos);
-        //        circle.moveTo(pos);
-        circle8.draw();
-        
-
-
-        //draw
+        demoelement3.display();
+        demoelement4.display();
+        demoelement5.display();
+        demoelement6.display();
+        demoelement7.display();
+        demoelement8.display();
+        demoelement9.display();
+        demoelement10.display();
+        demoelement11.display();
+        demoelement12.display();
 
        
     }
+    
+    //Energy
     if (frame ==4) {
+
+        
         ofImage bg;
         bg.load("/Users/Neeraj/Desktop/assets/bg5.png");
         bg.draw(0,0);
-        testing->draw();
+        energyDisplay.display();
+
+        
         label4->draw();
         home->draw(1, 200, 200);
-        back->draw(1, 200, 200);
+//        back->draw(1, 200, 200);
         cl_over->draw();
         cl_real->draw();
        
-            cl_main->draw();
-            cl_daily->draw();
-            cl_hourly->draw();
-            cl_pre->draw();
-            cl_sea->draw();
-            cl_wind->draw();
-            cl_press->draw();
+        
      
 
     }
@@ -739,14 +490,13 @@ void ofApp::keyReleased(int key){
 
 //--------------------------------------------------------------
 void ofApp::mouseMoved(int x, int y ){
-    if (frame ==1) {
-    if (isScrollBarVisible) {
-        ofRectangle r = gripRectangle;
+    
+    if (scroll.isScrollBarVisible) {
+        ofRectangle r = scroll.gripRectangle;
         r.translate(margin, margin); // This translation because the coordinates of the grip are relative to the panel, but the mouse position is relative to the screen
-        isMouseOverGrip = r.inside(x, y);
+        scroll.isMouseOverGrip = r.inside(x, y);
     } else {
-        isMouseOverGrip = false;
-    }
+        scroll.isMouseOverGrip = false;
     }
     
 }
@@ -754,60 +504,56 @@ void ofApp::mouseMoved(int x, int y ){
 //--------------------------------------------------------------
 void ofApp::mouseDragged(int x, int y, int button){
     
-    if (frame ==1) {
-    if (isScrollBarVisible && isDraggingGrip) {
+    if (scroll.isScrollBarVisible && scroll.isDraggingGrip) {
         
         // Move the grip according to the mouse displacement
-        int dy = y - mousePreviousY;
-        mousePreviousY = y;
-        gripRectangle.y += dy;
+        int dy = y - scroll.mousePreviousY;
+        scroll.mousePreviousY = y;
+        scroll.gripRectangle.y += dy;
         
         // Check if the grip is still in the scroll bar
-        if (gripRectangle.y < 0) {
-            gripRectangle.y = 0;
+        if (scroll.gripRectangle.y < 0) {
+            scroll.gripRectangle.y = 0;
         }
-        if (gripRectangle.getBottom() > scrollBarRectangle.getBottom()) {
-            gripRectangle.y = scrollBarRectangle.getBottom() - gripRectangle.height;
+        if (scroll.gripRectangle.getBottom() > scroll.scrollBarRectangle.getBottom()) {
+            scroll.gripRectangle.y = scroll.scrollBarRectangle.getBottom() - scroll.gripRectangle.height;
         }
         
     }
-    }
+    
 }
 
 //--------------------------------------------------------------
 void ofApp::mousePressed(int x, int y, int button){
     
     // Check if the click occur on the grip
-    if (frame == 1) {
-    if (isScrollBarVisible) {
-        ofRectangle r = gripRectangle;
-        r.translate(margin, margin); // This translation because the coordinates of the grip are relative to the panel, but the mouse position is relative to the screen
+    
+    if (scroll.isScrollBarVisible) {
+        ofRectangle r = scroll.gripRectangle;
+        r.translate(scroll.margin, scroll.margin); // This translation because the coordinates of the grip are relative to the panel, but the mouse position is relative to the screen
         if (r.inside(x, y)) {
-            isDraggingGrip = true;
-            mousePreviousY = y;
+            scroll.isDraggingGrip = true;
+            scroll.mousePreviousY = y;
         }
-    }
     }
     
 }
 
 //--------------------------------------------------------------
 void ofApp::mouseReleased(int x, int y, int button){
-    if (frame ==1) {
-    isDraggingGrip = false;
-    }
+    
+    scroll.isDraggingGrip = false;
     
 }
 
 //--------------------------------------------------------------
 void ofApp::windowResized(int w, int h){
-    if (frame ==1) {
     
     // Place the grip at the top of the scroll bar if the size of the panel change
-    gripRectangle.y = 0;
+    scroll.gripRectangle.y = 0;
     
-    }
 }
+
 
 //--------------------------------------------------------------
 void ofApp::gotMessage(ofMessage msg){
@@ -826,6 +572,8 @@ void ofApp::onButtonEvent(ofxDatGuiButtonEvent e)
     // we can compare our button pointer to the target of the event //
     if (e.target == hdemo){
         frame =1;
+        
+        
     }
     
     if (e.target == hclimate){
@@ -841,7 +589,22 @@ void ofApp::onButtonEvent(ofxDatGuiButtonEvent e)
     if (e.target == hinfo){
         frame =3;
     }
+    if (e.target == en_over){
+        frame =4;
+    }
+    if (e.target == en_real){
+        frame =41;
+    }
     if (e.target == button){
+        ofClear(ofColor::lightGray);
+
+        baseImages.resize(5);
+        for (int i = 0; i < 10; ++i){
+            baseImages[i].loadImage("/Users/Neeraj/Desktop/of_v0.9.8_osx_release/addons/ofxUI/Scrolling/" + ofToString(i + 1) + ".jpg");
+            baseImages[i].resize(300, 300);
+        }
+        scroll.updateContent(baseImages);
+
         frame =0;
     }
     if (e.target == cl_real) {
@@ -978,4 +741,8 @@ void ofApp::drawPieChart() {
         glVertex2f(r*sin(f+step), r*cos(f+step));
     }
     glEnd();
+}
+
+void ofApp::onMouseInCustomButton(ofVec2f & e) {
+    
 }
