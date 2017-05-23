@@ -4,11 +4,13 @@
 
   },
   "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "5DB7C332A3A89035E93556A2A38BF414005BA671" : 9223372036854775807,
     "9233F0F4A2BE011BD468E5177A5AD6623263B23D" : 9223372036854775807,
     "1D54A5F8703119E153915433D662805E20E95785" : 9223372036854775807
   },
   "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "BFD2B35E-183E-4782-81BB-33A197DB7817",
   "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "5DB7C332A3A89035E93556A2A38BF414005BA671" : "..\/Desktop\/of_v0.9.8_osx_release\/addons\/ofxJSON",
     "9233F0F4A2BE011BD468E5177A5AD6623263B23D" : "..\/Desktop\/of_v0.9.8_osx_release\/addons\/ofxDatGui",
     "1D54A5F8703119E153915433D662805E20E95785" : "OpenFrameworks-DataViz\/"
   },
@@ -20,6 +22,11 @@
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/nverma31\/OpenFrameworks-DataViz.git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "1D54A5F8703119E153915433D662805E20E95785"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/jeffcrouse\/ofxJSON.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "5DB7C332A3A89035E93556A2A38BF414005BA671"
     },
     {
       "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/braitsch\/ofxDatGui.git",

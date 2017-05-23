@@ -27,10 +27,10 @@ void CustomButton::setup(int radius, int x, int y, ofColor color){
         bRegisteredEvents = true;
     }
 }
-void CustomButton::draw(){
+void CustomButton::draw(ofImage img){
     ofPushStyle();
-    ofSetColor(color);
-    ofDrawCircle(x,y, radius);
+    img.resize(500, 200);
+    img.draw(x-radius, y-radius, 200, 100);
     ofPopStyle();
 }
 

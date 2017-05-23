@@ -24,14 +24,13 @@ void LineChart::update(){
     
 }
 
-void LineChart::draw(string _chartType, ofPoint position){
+void LineChart::draw(string _chartType, ofPoint position, int test[]){
     
-    int test [12] = { 16, 22, 15, 19, 21, 24, 27,21,18,16, 14, 11 };
-    int test1 [12] = { 0, 22, 15, 0, 21, 0, 27,21,0,16, 14, 0 };
-    ofPoint chartSize = ofPoint(ofGetWidth() * 0.4, ofGetHeight() * 0.4);
+    
+    ofPoint chartSize = ofPoint(ofGetWidth() * 0.3, ofGetHeight() * 0.3);
     ofPoint pos;
-    pos.x = 400;
-    pos.y = 100;
+    pos.x = position.x;
+    pos.y = position.y;
     chartPos =pos;
     ofNoFill();
     ofSetLineWidth(2);
@@ -40,7 +39,7 @@ void LineChart::draw(string _chartType, ofPoint position){
     
     // HIGH
     ofBeginShape();
-    for(int i = 0; i < 7; i++){
+    for(int i = 0; i < 12; i++){
         ofPoint pos;
         
         pos.x = ofMap(i,

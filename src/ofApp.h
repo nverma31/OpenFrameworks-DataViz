@@ -116,6 +116,25 @@ public:
     void drawPieChart();
     int test [12] = { 16, 22, 15, 19, 21, 24, 27,21,18,16, 14, 11 };
     int test1 [12] = { 0, 22, 15, 0, 21, 0, 27,21,0,16, 14, 0 };
+
+    int test3 [12] = { 14, 23, 10, 19, 21, 24, 27,22,18,16, 14, 18 };
+    int test4 [12] = { 5, 22, 15, 8, 21, 4, 8,21,3,5, 12, 2 };
+
+    int test5[12] = { 8, 15, 15, 19, 21, 24, 7,21,11,16, 10, 11 };
+    int test6 [12] = { 5, 10, 15, 15, 21, 4, 8,11,2,5, 9, 2 };
+
+    int tes7 [12] = { 16, 22, 15, 19, 21, 24, 27,21,18,16, 14, 11 };
+    int test8 [12] = { 5, 22, 15, 8, 21, 4, 8,21,3,5, 12, 2 };
+
+    int test9 [12] = { 16, 22, 15, 19, 21, 24, 27,21,18,16, 14, 11 };
+    int test10 [12] = { 5, 22, 15, 8, 21, 4, 8,21,3,5, 12, 2 };
+
+    int test11 [12] = { 16, 22, 15, 19, 21, 24, 27,21,18,16, 14, 11 };
+    int test12 [12] = { 0, 22, 15, 0, 21, 0, 27,21,0,16, 14, 0 };
+
+    int test13 [12] = { 16, 22, 15, 19, 21, 24, 27,21,18,16, 14, 11 };
+    int test14 [12] = { 0, 22, 15, 0, 21, 0, 27,21,0,16, 14, 0 };
+
     
     int frame;
     int chart;
@@ -178,7 +197,22 @@ public:
     vector<float> lows;
 
     Scroll scroll;
-    LineChart lineChart;
+    LineChart avgTemp;
+    LineChart avgPrec;
+    LineChart avgSeaSurface;
+    LineChart temp;
+    LineChart precReal;
+    LineChart seaReal;
+    LineChart windReal;
+    LineChart pressReal;
+
+    LineChart avgBiomass;
+    LineChart avgHydro;
+    LineChart avgThermal;
+    LineChart avgWind;
+    LineChart avgEnergy;
+
+
     EnergyDisplay energyDisplay;
     
     CustomButton butt1;
@@ -187,7 +221,11 @@ public:
     CustomButton butt3;
     CustomButton butt4;
     
-    void onMouseInCustomButton(ofVec2f & e);
+    void onMouseInCustomButton1(ofVec2f & e);
+    void onMouseInCustomButton2(ofVec2f & e);
+    void onMouseInCustomButton3(ofVec2f & e);
+    void onMouseInCustomButton4(ofVec2f & e);
+
 
 
 

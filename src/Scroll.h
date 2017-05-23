@@ -32,7 +32,7 @@ public:
     void display();
     void update();
     void setup(int, int,vector<ofImage> & baseImages);
-    void updateContent(vector<ofImage> & baseImages);
+    void updateContent(ofImage img);
     
 };
 

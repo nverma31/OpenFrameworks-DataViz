@@ -27,7 +27,7 @@ public:
     static ofEvent<ofVec2f> clickedInsideGlobal;
     
     void setup(int radius, int x, int y, ofColor color);
-    void draw();
+    void draw(ofImage img);
     void clear();
     
     //We need to declare all this mouse events methods to be able to listen to mouse events.

@@ -19,7 +19,7 @@ Scroll::Scroll() {
 void Scroll::setup(int height, int width, vector<ofImage> & baseImages) {
     gap = 10;               // Distance between rectangles, and between rectangles and scroll bar
     margin = 20;            // Distance between the edge of the screen and the panel frame
-    scrollBarWidth = 20;
+    scrollBarWidth = 10;
     
     panelWidth = width;
     panelHeight=height;
@@ -46,9 +46,10 @@ void Scroll::setup(int height, int width, vector<ofImage> & baseImages) {
     imagesWidth = baseImages[0].getWidth();
     imagesHeight = baseImages[0].getHeight();
     
+    images = baseImages;
     // And create 33 images to display
     for (int i = 0; i < baseImages.size(); ++i) {
-        images.push_back(baseImages[i % 10]);
+//        images.push_back(baseImages[i % 10]);
         rectangles.push_back(ofRectangle(0, 0, imagesWidth, imagesHeight));
     }
 
@@ -64,7 +65,7 @@ void Scroll::update(){
     int availableWidth = panelWidth - scrollBarWidth - gap;
     
     // Coordinates for first rectangle
-    int x = 0;
+    int x = 500;
     int y = 0;
     
     ofRectangle * r;
@@ -187,17 +188,20 @@ void Scroll::display() {
     
 }
 
-void Scroll::updateContent(vector<ofImage> & baseImages){
-    baseImages.resize(10);
+void Scroll::updateContent(ofImage img){
+    
+    images.pop_back();
+    images.push_back(img);
+//    baseImages.resize(1);
     //    for (int i = 0; i < 10; ++i)
     //        baseImages[i].loadImage("/Users/Neeraj/Desktop/of_v0.9.8_osx_release/addons/ofxUI/Scrolling/" + ofToString(i + 1) + ".jpg");
-    imagesWidth = baseImages[0].getWidth();
-    imagesHeight = baseImages[0].getHeight();
-    
-    // And create 33 images to display
-    for (int i = 0; i < 33; ++i) {
-        images.push_back(baseImages[i % 10]);
-        rectangles.push_back(ofRectangle(0, 0, imagesWidth, imagesHeight));
-    }
+//    imagesWidth = baseImages[0].getWidth();
+//    imagesHeight = baseImages[0].getHeight();
+//    images = baseImages;
+//    // And create 33 images to display
+//    for (int i = 0; i < images.size(); ++i) {
+////        images.push_back(baseImages[i % 10]);
+//        //rectangles.push_back(ofRectangle(0, 0, imagesWidth, imagesHeight));
+//    }
 
 }

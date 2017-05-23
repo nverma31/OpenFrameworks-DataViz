@@ -16,7 +16,13 @@ class DemoElement {
 
     ofPoint pos;
     float radius;
+    float arcrad1;
+    float arcrad2;
+    float arcrad3;
+
     ofColor color;
+    ofColor arccolor;
+
     float beginAngle;
     float endAngle;
     ofPath circle;
@@ -32,7 +38,12 @@ class DemoElement {
     void update();
     void showData();
     bool isInside();
-    
+
+    bool isInsideArc1();
+
+    bool isInsideArc2();
+    bool isInsideArc3();
+
     ofEvent<ofVec2f> clickedInside;
 
     void mouseReleased(ofMouseEventArgs & args);
@@ -42,7 +53,7 @@ class DemoElement {
 
     float normalizeAngle(float angle);
     DemoElement();
-    DemoElement(ofPoint pt, float angBeg, float angEnd, float rad);
+    DemoElement(ofPoint pt, float angBeg, float angEnd, float rad, float val1, float val2, float val3);
     
     
 protected:

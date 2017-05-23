@@ -8,15 +8,22 @@ void ofApp::setup(){
     pos.x = 600;
     pos.y = 400;
     
-    ofAddListener(butt1.clickedInside, //the ofEvent that we want to listen to. In this case exclusively to the circleEvent of redCircle (red circle) object.
-                  this, //pointer to the class that is going to be listening. it can be a pointer to any object. There's no need to declare the listeners within the class that's going to listen.
-                  &ofApp::onMouseInCustomButton);//pointer to the method that's going to be called when a new event is broadcasted (cal
-    demoelement = DemoElement(pos, 0, 20, 200);
+    butt1.setup(200, 400, 100, ofColor::grey);
+    butt2.setup(200, 400, 300, ofColor::grey);
+    butt3.setup(200, 400, 500, ofColor::grey);
+    butt4.setup(200, 400, 700, ofColor::grey);
+
+    ofAddListener(butt1.clickedInside,  this, &ofApp::onMouseInCustomButton1);
+    ofAddListener(butt2.clickedInside,  this, &ofApp::onMouseInCustomButton2);
+    ofAddListener(butt3.clickedInside,  this, &ofApp::onMouseInCustomButton3);
+    ofAddListener(butt4.clickedInside,  this, &ofApp::onMouseInCustomButton4);
+
+    demoelement = DemoElement(pos, 0, 20, 200, 60, 90, 110);
     
     
    
-    for (int i = 0; i < 14; ++i){
-        xpos.push_back(i*20.0 +300);
+    for (int i = 5; i < 20; ++i){
+        xpos.push_back(i*30.0 +300);
         highs.push_back(200.0);
         lows.push_back(500.0);
         bases.push_back(300.0);
@@ -31,12 +38,11 @@ void ofApp::setup(){
 //    baseImages = images;
     baseImages.resize(1);
     for (int i = 0; i < 1; i++){
-        baseImages[i].loadImage("/Users/Neeraj/Desktop/assets/bg" + ofToString(i + 1) + ".png");
-        baseImages[i].resize(300, 1000);
+        baseImages[i].loadImage("/Users/Neeraj/Desktop/assets/text.png");
  }
 //    imagesWidth = baseImages[0].getWidth();
 //    imagesHeight = baseImages[0].getHeight();
-    scroll.setup(700, 400, baseImages);
+    scroll.setup(1000, 400, baseImages);
     
     
     ofPoint chartSize = ofPoint(ofGetWidth() * 0.7, ofGetHeight() * 0.7);
@@ -46,26 +52,25 @@ void ofApp::setup(){
     for (int i =0; i< 10; i++) {
         values.push_back(100+i*20);
     }
-    lineChart.setup("", "Char", 0, 5, values);
-    lineChart.setLayout(chartPos, chartSize, 500 , 100);
     
 
 //    scroll = Scroll();
-    demoelement2 = DemoElement(pos, 30, 50, 200);
-    demoelement3 = DemoElement(pos, 60, 80, 200);
-    demoelement4 = DemoElement(pos, 90, 110, 200);
-    demoelement5 = DemoElement(pos, 120, 140, 200);
-    demoelement6 = DemoElement(pos, 150, 170, 200);
-    demoelement7 = DemoElement(pos, 180, 200, 200);
-    demoelement8 = DemoElement(pos, 210, 230, 200);
-    demoelement9 = DemoElement(pos, 240, 260, 200);
-    demoelement10 = DemoElement(pos, 270, 290, 200);
-    demoelement11 = DemoElement(pos, 300, 320, 200);
-    demoelement12 = DemoElement(pos, 330, 350, 200);
+    demoelement2 = DemoElement(pos, 30, 50, 280, 80, 100, 140);
+    demoelement3 = DemoElement(pos, 60, 80, 200, 50, 120, 140);
+    demoelement4 = DemoElement(pos, 90, 110, 300, 100, 115, 130);
+   
+    demoelement5 = DemoElement(pos, 120, 140, 200, 70, 90, 100);
+    demoelement6 = DemoElement(pos, 150, 170, 200, 100, 80 , 120);
+    demoelement7 = DemoElement(pos, 180, 200, 340,50, 120, 140);
+    demoelement8 = DemoElement(pos, 210, 230, 200, 50, 120, 140);
+    demoelement9 = DemoElement(pos, 240, 260, 200, 50, 120, 140);
+    demoelement10 = DemoElement(pos, 270, 290, 200, 50, 120, 140);
+    demoelement11 = DemoElement(pos, 300, 320, 200, 80, 100, 140);
+    demoelement12 = DemoElement(pos, 330, 350, 200, 80, 100, 140);
 
    ill =0;
     bg.load("/Users/Neeraj/Desktop/assets/bg5.png");
-    nav.load("/Users/Neeraj/Desktop/assets/nav_bg.png");
+//    nav.load("/Users/Neeraj/Desktop/assets/nav_bg.png");
 //    ofBackgroundHex(0xffffff);
     ofBackground(0, 0, 0);
     chart =1;
@@ -143,9 +148,9 @@ void ofApp::setup(){
     points[11].x = 900; points[11].y = 300;
     
     ofImage img;
-    img.load("/Users/Neeraj/Desktop/assets/home.png");
+    img.load("/Users/Neeraj/Desktop/assets/nav-hom.png");
     ofImage h;
-    h.load("/Users/Neeraj/Desktop/assets/home.png");
+    h.load("/Users/Neeraj/Desktop/assets/nav-hom.png");
     
     ofImage ic_demo;
     ic_demo.load("/Users/Neeraj/Desktop/assets/demo.png");
@@ -329,6 +334,9 @@ void ofApp::update(){
     
     cl_over->update();
     cl_real->update();
+    
+    en_over->update();
+    en_real->update();
     cl_main->update();
     cl_daily->update();
     cl_hourly->update();
@@ -346,11 +354,11 @@ void ofApp::draw(){
 //    scroll = Scroll();
 
     
-    ofClear(255,255,255); // clears the background
+//    ofClear(255,255,255); // clears the background
 
 
     if (frame == 0) {
-        ofClear(255,255,255);
+//        ofClear(255,255,255);
         bg.draw(0,0);
         
         ofPoint pos1;
@@ -379,56 +387,170 @@ void ofApp::draw(){
 //        cam.end();
     }
     
-    if (frame == 3) {
-        scroll.display();
+    else if (frame == 3) {
+        
+//        ofClear(255,255,255);
+        ofImage img;
+        img.load("/Users/Neeraj/Desktop/assets/bg1.png");
+        img.draw(0,0);
+        home->draw(1, 200, 200);
 
+        
+        ofImage img1;
+        img1.load("/Users/Neeraj/Desktop/assets/button1.png");
+        
+        ofImage img2;
+        img2.load("/Users/Neeraj/Desktop/assets/button2.png");
+        
+        ofImage img3;
+        img3.load("/Users/Neeraj/Desktop/assets/button3.png");
+        
+        ofImage img4;
+        img4.load("/Users/Neeraj/Desktop/assets/button4.png");
+        
+        butt1.draw(img1);
+        butt2.draw(img2);
+        butt3.draw(img3);
+        butt4.draw(img4);
+
+
+        scroll.display();
+        
         
     }
     
     //Climate
-    if (frame == 2) {
+     if (frame == 2) {
         
-        ofClear(255,255,255);
+//        ofClear(255,255,255);
         ofImage img;
         img.load("/Users/Neeraj/Desktop/assets/bg1.png");
         img.draw(0,0);
          label2->draw();
         home->draw(1, 200, 200);
-        back->draw(1, 200, 200);
+//        back->draw(1, 200, 200);
         cl_over->draw();
         cl_real->draw();
-        if (screenNumber == 22) {
-        cl_main->draw();
-        cl_daily->draw();
-        cl_hourly->draw();
-        cl_pre->draw();
-        cl_sea->draw();
-        cl_wind->draw();
-        cl_press->draw();
         
-        }
+       
         if (screenNumber == 21) {
         ofPoint pos;
         pos.x = 400;
-        pos.y = 100;
-        lineChart.draw("line", pos);
-        
-        pos.x = 400;
-        pos.y = 200;
-        drawChart(1, test1, pos);
-        pos.x = 400;
-        pos.y = 0;
-        drawChart(1, test1, pos);
-        pos.x = 400;
-        pos.y = 200;
-        drawChart(1, test1, pos);
+        pos.y = 10;
+        avgTemp.draw("line", pos, test1);
+            
+            ofPoint pos1;
+            pos1.x = 400;
+            pos1.y = 200;
+            avgPrec.draw("line", pos1, test);
+            
+            ofPoint pos2;
+            pos2.x = 400;
+            pos2.y = 400;
+           
+            avgSeaSurface.draw("line", pos2, test3);
         }
-        
+        if (screenNumber == 22) {
+            cl_main->draw();
+            cl_daily->draw();
+            cl_hourly->draw();
+            cl_pre->draw();
+            cl_sea->draw();
+            cl_wind->draw();
+            cl_press->draw();
+            ofPoint pos2;
+            pos2.x = 400;
+            pos2.y = 100;
+            temp.draw("line", pos2, test);
+
+        }
+        if (screenNumber == 222) {
+            
+            cl_main->draw();
+            cl_daily->draw();
+            cl_hourly->draw();
+            cl_pre->draw();
+            cl_sea->draw();
+            cl_wind->draw();
+            cl_press->draw();
+            ofPoint pos2;
+            pos2.x = 400;
+            pos2.y = 100;
+            seaReal.draw("line", pos2, test1);
+            
+        }
+        if (screenNumber == 223) {
+            cl_main->draw();
+            cl_daily->draw();
+            cl_hourly->draw();
+            cl_pre->draw();
+            cl_sea->draw();
+            cl_wind->draw();
+            cl_press->draw();
+            
+            ofPoint pos2;
+            pos2.x = 400;
+            pos2.y = 100;
+            pressReal.draw("line", pos2, test3);
+            
+        }
+        if (screenNumber == 224) {
+            
+            cl_main->draw();
+            cl_daily->draw();
+            cl_hourly->draw();
+            cl_pre->draw();
+            cl_sea->draw();
+            cl_wind->draw();
+            cl_press->draw();
+            
+            ofPoint pos2;
+            pos2.x = 400;
+            pos2.y = 100;
+            windReal.draw("line", pos2, test4);
+            
+        }
+        if (screenNumber == 225) {
+            
+            cl_main->draw();
+            cl_daily->draw();
+            cl_hourly->draw();
+            cl_pre->draw();
+            cl_sea->draw();
+            cl_wind->draw();
+            cl_press->draw();
+            
+            ofPoint pos2;
+            pos2.x = 400;
+            pos2.y = 100;
+            avgSeaSurface.draw("line", pos2, test1);
+            
+        }
     }
+//            LineChart ;
+//            LineChart avgSeaSurface;
+//            LineChart temp;
+//            LineChart precReal;
+//            LineChart seaReal;
+//            LineChart windReal;
+//            LineChart pressReal;
+        
+//        pos.x = 400;
+//        pos.y = 200;
+//        drawChart(1, test1, pos);
+//        pos.x = 400;
+//        pos.y = 0;
+//        drawChart(1, test1, pos);
+//        pos.x = 400;
+//        pos.y = 200;
+//        drawChart(1, test1, pos);
+        
+        
+
     //Demographics
     
-    if (frame ==1) {
-        ofClear(255,255,255);
+     if (frame ==1) {
+//        ofClear(255,255,255);
         ofImage bg;
         bg.load("/Users/Neeraj/Desktop/assets/bg5.png");
         bg.draw(0,0);
@@ -456,20 +578,75 @@ void ofApp::draw(){
     }
     
     //Energy
-    if (frame ==4) {
+     if (frame ==4) {
 
         
         ofImage bg;
         bg.load("/Users/Neeraj/Desktop/assets/bg5.png");
         bg.draw(0,0);
+          if (screenNumber == 400) {
         energyDisplay.display();
 
-        
+          }
         label4->draw();
         home->draw(1, 200, 200);
 //        back->draw(1, 200, 200);
-        cl_over->draw();
-        cl_real->draw();
+        en_over->draw();
+        en_real->draw();
+        if (screenNumber == 413) {
+            
+//            cl_main->draw();
+//            cl_daily->draw();
+//            cl_hourly->draw();
+            en_hyd->draw();
+            en_thermal->draw();
+            en_wind->draw();
+            en_bio ->draw();
+            
+            ofPoint pos2;
+            pos2.x = 400;
+            pos2.y = 0;
+            avgSeaSurface.draw("line", pos2, test);
+            
+        }
+        if (screenNumber == 411) {
+            
+            en_hyd->draw();
+            en_thermal->draw();
+            en_wind->draw();
+            en_bio ->draw();
+            
+            ofPoint pos2;
+            pos2.x = 400;
+            pos2.y = 0;
+            avgSeaSurface.draw("line", pos2, test1);
+            
+        }
+        if (screenNumber == 412) {
+            
+            en_hyd->draw();
+            en_thermal->draw();
+            en_wind->draw();
+            en_bio ->draw();
+            
+            ofPoint pos2;
+            pos2.x = 400;
+            pos2.y = 0;
+            avgSeaSurface.draw("line", pos2, test);
+            
+        }
+        if (screenNumber == 415) {
+            en_hyd->draw();
+            en_thermal->draw();
+            en_wind->draw();
+            en_bio ->draw();
+            
+            ofPoint pos2;
+            pos2.x = 400;
+            pos2.y = 0;
+            avgSeaSurface.draw("line", pos2, test1);
+            
+        }
        
         
      
@@ -571,43 +748,84 @@ void ofApp::onButtonEvent(ofxDatGuiButtonEvent e)
     
     // we can compare our button pointer to the target of the event //
     if (e.target == hdemo){
+        ofClear(ofColor::lightGray);
+
         frame =1;
         
         
     }
     
     if (e.target == hclimate){
+        ofClear(ofColor::lightGray);
+
         frame =2;
         screenNumber = 21;
 
     }
     
     if (e.target == henergy){
+        ofClear(ofColor::lightGray);
+        screenNumber = 400;
+
         frame =4;
     }
     
     if (e.target == hinfo){
+        ofClear(ofColor::lightGray);
+
         frame =3;
     }
     if (e.target == en_over){
+        ofClear(ofColor::lightGray);
+        screenNumber = 400;
+
+
+        cout <<"Energy Overview CLicked" <<"   Frame   "<< 4;
         frame =4;
     }
-    if (e.target == en_real){
-        frame =41;
+    if (e.target == en_hcc){
+        frame =4;
+        screenNumber = 41;
+    }if (e.target == en_hct){
+        frame =4;
+        screenNumber = 42;
+
+    }if (e.target == en_pcb){
+        frame =4;
+        screenNumber = 43;
+
     }
+    
+    if (e.target == en_real){
+        frame =4;
+        screenNumber = 411;
+
+    }
+    if (e.target == en_hyd){
+        frame =4;
+        screenNumber = 412;
+
+    } if (e.target == en_wind){
+        frame =4;
+        screenNumber = 413;
+
+    } if (e.target == en_bio){
+        frame =4;
+        screenNumber = 414;
+
+    } if (e.target == en_thermal){
+        frame =4;
+        screenNumber = 415;
+
+    }
+    
     if (e.target == button){
         ofClear(ofColor::lightGray);
-
-        baseImages.resize(5);
-        for (int i = 0; i < 10; ++i){
-            baseImages[i].loadImage("/Users/Neeraj/Desktop/of_v0.9.8_osx_release/addons/ofxUI/Scrolling/" + ofToString(i + 1) + ".jpg");
-            baseImages[i].resize(300, 300);
-        }
-        scroll.updateContent(baseImages);
 
         frame =0;
     }
     if (e.target == cl_real) {
+        
         cout<<"button" << e.target;
         screenNumber = 22;
         frame =2;
@@ -622,20 +840,28 @@ void ofApp::onButtonEvent(ofxDatGuiButtonEvent e)
     if (e.target == cl_press) {
         cout<<"button" << e.target;
         screenNumber = 222;
+        frame =2;
+
         cout<<"Frame"<<frame;
     }
     
     if (e.target == cl_sea) {
         cout<<"button" << e.target;
         screenNumber = 223;
+        frame =2;
+
         cout<<"Frame"<<frame;
     }if (e.target == cl_pre) {
         cout<<"button" << e.target;
         screenNumber = 224;
+        frame =2;
+
         cout<<"Frame"<<frame;
     }if (e.target == cl_wind) {
         cout<<"button" << e.target;
         screenNumber = 225;
+        frame =2;
+
         cout<<"Frame"<<frame;
     }
 }
@@ -649,9 +875,34 @@ void ofApp::positionButtons()
     hclimate->setPosition(400,350);
     hinfo->setPosition(650,350);
     henergy->setPosition(900,350);
-    cl_over->setPosition(400, 100);
-    cl_real->setPosition(650, 100);
+    cl_over->setPosition(400, 50);
+    cl_real->setPosition(650, 50);
+
     
+    en_over->setPosition(400, 50);
+    en_real->setPosition(650, 50);
+    
+//    en_bio = new ofxDatGuiButton("Biomass");
+//    en_bio = new ofxDatGuiButton("Hydro");
+//    en_bio = new ofxDatGuiButton("Wind");
+//    en_bio = new ofxDatGuiButton("Thermal");
+//    en_pcb = new ofxDatGuiButton("Primary vs Bought");
+//    en_hct = new ofxDatGuiButton("Hydro VS Thermal");
+//    en_hcc = new ofxDatGuiButton("House Vs Commercial");
+    
+    en_bio->setPosition(100, 450);
+    
+    en_hyd->setPosition(400,450);
+    
+    en_thermal->setPosition(1000, 450);
+    en_wind->setPosition(700, 450);
+    
+    
+    en_pcb->setPosition(400,450);
+    
+    en_hcc->setPosition(1000, 450);
+    en_hct->setPosition(700, 450);
+
     cl_pre->setPosition(100, 450);
     
     cl_press->setPosition(400,450);
@@ -743,6 +994,39 @@ void ofApp::drawPieChart() {
     glEnd();
 }
 
-void ofApp::onMouseInCustomButton(ofVec2f & e) {
+void ofApp::onMouseInCustomButton1(ofVec2f & e) {
+    ofImage img;
+    cout<<"cliecked";
     
+    img.load("/Users/Neeraj/Desktop/assets/text.png");
+    //    baseImages.push_back(img);
+    scroll.updateContent(img);
+}
+
+void ofApp::onMouseInCustomButton2(ofVec2f & e) {
+    ofBackground(ofColor::red);
+    baseImages.pop_back();
+    ofImage img;
+    cout<<"cliecked";
+
+    img.load("/Users/Neeraj/Desktop/assets/text2.png");
+    baseImages.push_back(img);
+    scroll.updateContent(img);
+}
+
+void ofApp::onMouseInCustomButton3(ofVec2f & e) {
+    ofImage img;
+    cout<<"cliecked";
+    
+    img.load("/Users/Neeraj/Desktop/assets/text3.png");
+//    baseImages.push_back(img);
+    scroll.updateContent(img);
+}
+
+void ofApp::onMouseInCustomButton4(ofVec2f & e) {
+    ofImage img;
+
+    img.load("/Users/Neeraj/Desktop/assets/text4.png");
+    //    baseImages.push_back(img);
+    scroll.updateContent(img);
 }
