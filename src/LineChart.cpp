@@ -53,7 +53,7 @@ void LineChart::draw(string _chartType, ofPoint position, int test[]){
         ofVertex(pos);
         ofDrawBitmapString(ofToString(test[i]), pos);
     }
-    ofSetColor(ofColor::red);
+//    ofSetColor(ofColor::red);
     ofEndShape();
     ofPopStyle();
 
@@ -88,11 +88,11 @@ void LineChart::drawLineChart(){
         ofVertex(pos);
         ofDrawBitmapString(ofToString(highs[i]), pos);
     }
-    ofSetColor(highColor);
+//    ofSetColor(highColor);
     ofEndShape();
     
     // LOW
-    ofSetColor(lowColor);
+//    ofSetColor(lowColor);
     ofBeginShape();
     for(int i = 0; i < lows.size(); i++){
         ofPoint pos;

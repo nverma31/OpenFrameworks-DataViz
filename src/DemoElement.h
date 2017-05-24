@@ -32,9 +32,29 @@ class DemoElement {
     ofPath arc2;
     ofPath arc3;
 
+    
+    string entity;
+    string category;
+    string text;
+    string rank;
+    string percent;
+    
+    ofTrueTypeFont	verdana32;
+    ofTrueTypeFont	verdana14;
+    ofTrueTypeFont	verdana12;
+    ofTrueTypeFont	verdana18;
+    ofTrueTypeFont	verdana22;
+    ofTrueTypeFont	verdana26;
+
+    ofTrueTypeFont testFont;
+    ofTrueTypeFont testFont2;
+
 
     public:
     void display();
+
+    void displayTextData();
+
     void update();
     void showData();
     bool isInside();
@@ -47,7 +67,6 @@ class DemoElement {
     ofEvent<ofVec2f> clickedInside;
 
     void mouseReleased(ofMouseEventArgs & args);
-
     float getAngle(float _x, float _y);
     bool inside;
 

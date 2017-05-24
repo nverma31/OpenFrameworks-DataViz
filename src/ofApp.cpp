@@ -9,7 +9,7 @@ void ofApp::setup(){
     screenNumber = 0;
     ofPoint pos;
     pos.x = 600;
-    pos.y = 400;
+    pos.y = 350;
     
     butt1.setup(200, 400, 100, ofColor::grey);
     butt2.setup(200, 400, 300, ofColor::grey);
@@ -569,7 +569,7 @@ void ofApp::draw(){
      if (frame ==1) {
 //        ofClear(255,255,255);
         ofImage img;
-        img.load("/Users/Neeraj/Desktop/assets/bg5.png");
+        img.load("/Users/Neeraj/Desktop/assets/dbg.png");
 //         bg.resize(100,1000);
 
         img.draw(0,0);
@@ -972,9 +972,9 @@ void ofApp::drawChart(int type, int test[], ofPoint pos) {
         ofVertex(pos);
         ofDrawBitmapString(ofToString(test[i]), pos);
     }
-    ofSetColor(ofColor::red);
+//    ofSetColor(ofColor::red);
     ofEndShape();
-    ofSetColor(ofColor::grey);
+//    ofSetColor(ofColor::grey);
     
     //ofDrawBitmapStringHighlight(ofToString("Average Precipitation"), ofGetWidth()/2, 50);
     
@@ -1002,7 +1002,7 @@ void ofApp::drawPieChart() {
     
     glBegin(GL_TRIANGLE_FAN);
     ofNoFill();
-    ofSetColor(ofColor::red);
+//    ofSetColor(ofColor::red);
     
     
     for (float f=0; f<TWO_PI; f+=step) {
@@ -1018,7 +1018,7 @@ void ofApp::drawPieChart() {
 
 void ofApp::onMouseInCustomButton1(ofVec2f & e) {
     ofImage img;
-    cout<<"cliecked";
+//    cout<<"cliecked";
     
     img.load("/Users/Neeraj/Desktop/assets/text.png");
     //    baseImages.push_back(img);
@@ -1029,7 +1029,7 @@ void ofApp::onMouseInCustomButton2(ofVec2f & e) {
 //    ofBackground(ofColor::red);
     baseImages.pop_back();
     ofImage img;
-    cout<<"cliecked";
+//    cout<<"cliecked";
 
     img.load("/Users/Neeraj/Desktop/assets/text2.png");
     baseImages.push_back(img);
@@ -1038,7 +1038,7 @@ void ofApp::onMouseInCustomButton2(ofVec2f & e) {
 
 void ofApp::onMouseInCustomButton3(ofVec2f & e) {
     ofImage img;
-    cout<<"cliecked";
+//    cout<<"cliecked";
     
     img.load("/Users/Neeraj/Desktop/assets/text3.png");
 //    baseImages.push_back(img);

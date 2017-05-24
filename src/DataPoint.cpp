@@ -28,3 +28,4 @@ void DataPoint::display(){
 bool DataPoint::isinside(){
     return (ofVec2f(ofGetMouseX(), ofGetMouseY()).distance(ofVec2f(x, y)) < radius);
 }
+

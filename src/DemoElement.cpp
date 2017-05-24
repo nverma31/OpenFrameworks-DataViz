@@ -13,6 +13,28 @@ DemoElement::DemoElement(){
     
 }
 DemoElement::DemoElement(ofPoint pt, float angBeg, float angEnd, float rad, float value1, float value2, float value3) {
+    ofTrueTypeFont::setGlobalDpi(96);
+
+    verdana14.load("avenir-light.ttf", 14, true, true,true);
+    verdana32.load("avenir-light.ttf", 32, true, true,true);
+    verdana12.load("avenir-light.ttf", 10, true, true,true);
+    verdana18.load("avenir-light.ttf", 18, true, true,true);
+    verdana22.load("avenir-light.ttf", 22, true, true,true);
+    verdana26.load("avenir-light.ttf", 24, true, true,true);
+
+//    verdana14.setLineHeight(18.0f);
+//    verdana14.setLetterSpacing(1.037);
+//    ofFill();
+
+    testFont.load("Avenir.ttc", 10, true, true, true);
+    testFont2.load("cooperBlack.ttf", 12, true, true, false);
+    
+     entity = "Madeira";
+     category= "Education";
+     text = "Madeira has 31% of students doing some shit in some other shit";
+     rank = "3rd";
+     percent = "61%";
+    
     pos = pt;
     radius = rad;
     beginAngle =  angBeg;
@@ -33,34 +55,34 @@ DemoElement::DemoElement(ofPoint pt, float angBeg, float angEnd, float rad, floa
     color = ofColor(0, 0,0);
     color.setHex(0x2c3e50);
 
-    curve.setFillColor(color);
+    curve.setFillColor(ofColor::aquamarine);
     curve.setFilled(true);
 
-    arc1.arc(pt, value1+2, value1+2, angBeg+2, angEnd-2);
+    arc1.arc(pt, value1+5, value1+5, angBeg+2, angEnd-2);
     arc1.arcNegative(pt, value1, value1, angEnd-2, angBeg+2);
     arc1.close();
     arc1.setArcResolution(60);
-    arccolor = ofColor(0, 0,0);
+    arccolor = ofColor(113, 113,113);
     arccolor.setHex(0xbdc3c7);
     arc1.setFillColor(arccolor);
     arc1.setFilled(true);
     
-    arc3.arc(pt, value3+2, value3+2, angBeg+2, angEnd-2);
+    arc3.arc(pt, value3+5, value3+5, angBeg+2, angEnd-2);
     arc3.arcNegative(pt, value3, value3, angEnd-2, angBeg+2);
     arc3.close();
     arc3.setArcResolution(60);
     color = ofColor(0, 0,0);
     color.setHex(0xbdc3c7);
-    arc3.setFillColor(color);
+    arc3.setFillColor(arccolor);
     arc3.setFilled(true);
     
-    arc2.arc(pt, value2+2, value2+2, angBeg+2, angEnd-2);
+    arc2.arc(pt, value2+5, value2+5, angBeg+2, angEnd-2);
     arc2.arcNegative(pt, value2, value2, angEnd-2, angBeg+2);
     arc2.close();
     arc2.setArcResolution(60);
     color = ofColor(0, 0,0);
     color.setHex(0x2ecc71);
-    arc2.setFillColor(color);
+    arc2.setFillColor(arccolor);
     arc2.setFilled(true);
 
     
@@ -68,18 +90,68 @@ DemoElement::DemoElement(ofPoint pt, float angBeg, float angEnd, float rad, floa
     
 }
 
-void DemoElement::display() {
- 
-   
-    //        circle.lineTo(pos);
-    //        circle.moveTo(pos);
-   // circle.draw();
-//    cout<<"  isinside " <<inside<< endl;
+void DemoElement::displayTextData() {
+    ofPushStyle();
+    ofSetColor(0, 0, 0);
+    ofNoFill();
+    ofSetLineWidth(0.5);
+    ofPolyline closedShapePolyline;
+    ofDrawRectangle(900, 175, 300, 400);
 
+    ofFill();
+
+    ofSetColor(0, 0, 0,2);
+    ofDrawRectangle(900, 120, 300, 40);
+   
+    ofSetColor(0, 0, 0);
+    ofDrawRectangle(900, 175, 300, 40);
+
+    ofSetColor(231, 128, 70);
+    ofDrawCircle(1050, 280, 20);
+    
+    ofSetColor(255, 255, 255);
+
+    verdana26.drawStringAsShapes("Madeira", 980, 150);//entity
+    verdana26.drawStringAsShapes("Madeira", 980, 205);//category
+
+    verdana14.drawStringAsShapes("Life Expectancy", 980, 240);//category
+
+    verdana14.drawStringAsShapes("81", 1040, 287);//percent
+
+    verdana12.drawStringAsShapes("A bunch of random\n text about bullshit", 1040, 330);//text
+
+
+    
+
+    ofPopStyle();
+}
+
+void DemoElement::display() {
+    
+//    
+//    //Drawing Text
+//    ofFill();
+//    verdana32.drawStringAsShapes("Measure of Madeira", 50, 50);
+//    testFont.drawString("Comparing Madeira Across 12 key areas:\neducation, health, democracy, safety, \n equality", 50, 70);
+//    
+//    verdana22.drawStringAsShapes(entity, 900, 200);
+//    ofPushStyle();
+//    ofSetColor(0, 240, 0);
+//    ofDrawRectangle(900, 205, 250, 5);
+//    ofPopStyle();
+//    
+//    verdana26.drawStringAsShapes(category, 900, 250);
+//    verdana26.drawStringAsShapes(rank, 900, 300);
+//
+//    verdana12.drawStringAsShapes(text, 900, 330);
+//
+//    verdana14.drawStringAsShapes("comparision", 920, 370);
+    
+    displayTextData();
     curve.setFillColor(color);
     
     if (isInside()) {
-        color.setHex(0x95a5a6);
+        arccolor = ofColor(113, 113,113,200);
         
         //        ofDrawRectangle(200, 300, 500, 500);
     }
@@ -95,14 +167,14 @@ void DemoElement::display() {
     if (isInsideArc2()) {
         arc2.arc(pos, arcrad2+3, arcrad2+3, beginAngle+2, endAngle-2);
         arc2.arcNegative(pos, arcrad2, arcrad2, endAngle-2, beginAngle+2);
-        arccolor.set(0 ,0,0);
+        arccolor = ofColor(113, 113,113,200);
         cout <<"arc inside";
         
         //        ofDrawRectangle(200, 300, 500, 500);
-    }if (isInsideArc3()) {
-        arc3.arc(pos, arcrad3+3, arcrad3+3, beginAngle+2, endAngle-2);
-        arc3.arcNegative(pos, arcrad3, arcrad3, endAngle-2, beginAngle+2);
-        arccolor.set(0 ,0,0);
+//    }if (isInsideArc3()) {
+//        arc3.arc(pos, arcrad3+3, arcrad3+3, beginAngle+2, endAngle-2);
+//        arc3.arcNegative(pos, arcrad3, arcrad3, endAngle-2, beginAngle+2);
+        arccolor = ofColor(113, 113,113,200);
         cout <<"arc inside";
         
         //        ofDrawRectangle(200, 300, 500, 500);
@@ -374,21 +446,25 @@ bool DemoElement::isInsideArc3() {
 void DemoElement::update() {
     
     if (isInside()) {
-        color = ofColor(255, 255,0);
+        color = ofColor(17, 203,189, 200);
         ofDrawRectangle(500, 500, 200, 200);
     }
     else {
-        color = ofColor(255, 0,0);
+        color = ofColor(17, 203,189);
 
     }
 }
 
 void DemoElement::mouseReleased(ofMouseEventArgs & args){
+    cout<<"clicked inside";
+    cout<<"Mouse  " <<args.x;
     if (isInside()) {
         // if the mouse is pressed over the circle an event will be notified (broadcasted)
         // the circleEvent object will contain the mouse position, so this values are accesible to any class that is listening.
         ofVec2f mousePos = ofVec2f(args.x, args.y);
         ofNotifyEvent(clickedInside, mousePos, this);
+        color = ofColor(0,0,0);
+
     }
 }
 

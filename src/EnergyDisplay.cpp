@@ -13,6 +13,7 @@ EnergyDisplay::EnergyDisplay(int initCount)
 {
     boidCount =  initCount;
     
+    
 }
 
 void EnergyDisplay::setup(std::vector<float> &x, std::vector<float> &b ,std::vector<float> &h, std::vector<float> &l) {

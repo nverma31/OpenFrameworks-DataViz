@@ -1,6 +1,6 @@
 
 
-//  Created by Neeraj Verma on 22/05/17.
+//  Created by Neeraj Verma on 44/05/17.
 //
 //
 
@@ -16,28 +16,40 @@ EnergyElement::EnergyElement(float b, float h, float l, float x) {
     high = h;
     low = l;
     xpos = x;
+
+
+//    ofAddListener(ofEvents().mousePressed, this, &EnergyElement::mousePressed);
+
     
 }
 
 void EnergyElement::display() {
     int i =0;
     speed++;
+    base = (high + low)/2;
     if (base - 10*speed > high) {
-    ofDrawLine(xpos, base,xpos, base -10*speed);
+    ofDrawLine(xpos, base,xpos, base -15*speed);
+        dataPointHigh =  DataPoint(xpos, base-15*speed, 4);
+        dataPointHigh.display();
 //    ofDrawCircle(xpos, base-4*speed, 1);
     }
     else {
         ofDrawLine(xpos, base,xpos, high);
-        ofDrawCircle(xpos, high,1);
+        dataPointHigh =  DataPoint(xpos, high, 4);
+        dataPointHigh.display();
+
+    
     }
     
     if (base + 10*speed < low) {
-    ofDrawLine(xpos, base, xpos, base +10*speed);
-//    ofDrawCircle(xpos, base+4*speed, 1);
+    ofDrawLine(xpos, base, xpos, base +15*speed);
+    dataPointLow =  DataPoint(xpos, base-15*speed, 4);
+        dataPointLow.display();
     }
     else {
         ofDrawLine(xpos, base,xpos, low);
-        ofDrawCircle(xpos, high,1);
+        dataPointLow =  DataPoint(xpos, low, 4);
+        dataPointLow.display();
 
     }
 

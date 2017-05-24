@@ -28,6 +28,9 @@ public:
     
     void setup(int radius, int x, int y, ofColor color);
     void draw(ofImage img);
+    void draw(float x, float y);
+    void update(float x, float y);
+
     void clear();
     
     //We need to declare all this mouse events methods to be able to listen to mouse events.

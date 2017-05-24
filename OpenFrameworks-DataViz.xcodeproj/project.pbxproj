@@ -15,7 +15,6 @@
 		3872557BD0FB0426331528AA /* CustomButton.cpp in Sources */ = {isa = PBXBuildFile; fileRef = B4237548C7B87D2416E262C4 /* CustomButton.cpp */; };
 		52A1E2A1017A23178A3ECC33 /* jsoncpp.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 75280477B9ABA95351A427A5 /* jsoncpp.cpp */; };
 		5DEC02A6E0BA2E6F5C0C6996 /* DemoElement.cpp in Sources */ = {isa = PBXBuildFile; fileRef = CD3DF66BA48DBFC8D039230D /* DemoElement.cpp */; };
-		74F83F283A17AB2783F2E9F7 /* City.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 00E6CDE14F41CC58EF8604CA /* City.cpp */; };
 		7C0242854BC9CA7C6F9F38A5 /* ofxDatGuiComponent.cpp in Sources */ = {isa = PBXBuildFile; fileRef = C5EBDFF8D1E167E27E07EF30 /* ofxDatGuiComponent.cpp */; };
 		80984709CB853E3F1846D57C /* LineChart.cpp in Sources */ = {isa = PBXBuildFile; fileRef = F1298C57DB06F29FFFA13C95 /* LineChart.cpp */; };
 		A17A1433DA92069FF0763B10 /* ofxJSONElement.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3427499648A43696FD07CBF1 /* ofxJSONElement.cpp */; };
@@ -58,7 +57,6 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
-		00E6CDE14F41CC58EF8604CA /* City.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = City.cpp; path = src/City.cpp; sourceTree = SOURCE_ROOT; };
 		041018DAEA54F2753BB6F6E9 /* EnergyDisplay.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = EnergyDisplay.cpp; path = src/EnergyDisplay.cpp; sourceTree = SOURCE_ROOT; };
 		0721EF9A1ED4C35C0051DE6D /* WeatherRealTime.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = WeatherRealTime.cpp; sourceTree = "<group>"; };
 		0721EF9B1ED4C35C0051DE6D /* WeatherRealTime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeatherRealTime.h; sourceTree = "<group>"; };
@@ -68,7 +66,6 @@
 		142504A57071CB9C3D200DB7 /* ofxDatGuiGroups.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxDatGuiGroups.h; path = ../../Desktop/of_v0.9.8_osx_release/addons/ofxDatGui/src/components/ofxDatGuiGroups.h; sourceTree = SOURCE_ROOT; };
 		25C94759250DF1986182CD29 /* DemoDisplay.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = DemoDisplay.h; path = src/DemoDisplay.h; sourceTree = SOURCE_ROOT; };
 		3427499648A43696FD07CBF1 /* ofxJSONElement.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxJSONElement.cpp; path = ../../Desktop/of_v0.9.8_osx_release/addons/ofxJSON/src/ofxJSONElement.cpp; sourceTree = SOURCE_ROOT; };
-		37DF446B05E98C515472C9F1 /* City.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = City.h; path = src/City.h; sourceTree = SOURCE_ROOT; };
 		3918F732F3D22B43D20BE1A8 /* Scroll.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = Scroll.h; path = src/Scroll.h; sourceTree = SOURCE_ROOT; };
 		3A2565BD8F16ED72C19C6C17 /* ofxDatGui.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = ofxDatGui.cpp; path = ../../Desktop/of_v0.9.8_osx_release/addons/ofxDatGui/src/ofxDatGui.cpp; sourceTree = SOURCE_ROOT; };
 		43B1C88C484930A6416437E8 /* ofxDatGuiIntObject.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxDatGuiIntObject.h; path = ../../Desktop/of_v0.9.8_osx_release/addons/ofxDatGui/src/core/ofxDatGuiIntObject.h; sourceTree = SOURCE_ROOT; };
@@ -296,8 +293,6 @@
 				E4B69E1F0A3A1BDC003C02F2 /* ofApp.h */,
 				AC339E5A0FFE897BF12146DD /* Button.cpp */,
 				8A7335D8BF4A40E1D18AA126 /* Button.h */,
-				00E6CDE14F41CC58EF8604CA /* City.cpp */,
-				37DF446B05E98C515472C9F1 /* City.h */,
 				B4237548C7B87D2416E262C4 /* CustomButton.cpp */,
 				9779E9D7E5919E58FC71B176 /* CustomButton.h */,
 				46E5554EB39CABCE904E88D7 /* DemoDisplay.cpp */,
@@ -440,7 +435,6 @@
 				E4B69E200A3A1BDC003C02F2 /* main.cpp in Sources */,
 				E4B69E210A3A1BDC003C02F2 /* ofApp.cpp in Sources */,
 				F7DD82C416BE189FC6777E5A /* Button.cpp in Sources */,
-				74F83F283A17AB2783F2E9F7 /* City.cpp in Sources */,
 				3872557BD0FB0426331528AA /* CustomButton.cpp in Sources */,
 				2F81E2FEE3866F412BB66F71 /* DemoDisplay.cpp in Sources */,
 				5DEC02A6E0BA2E6F5C0C6996 /* DemoElement.cpp in Sources */,

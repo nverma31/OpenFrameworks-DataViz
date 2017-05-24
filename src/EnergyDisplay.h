@@ -34,6 +34,10 @@ private:
     std::vector<float> xpos;
     std::vector<float> highs;
     std::vector<float> lows;
+    
+    void drawButtons();
+    void updateButtons();
+
 };
 
 #endif // FLOCK_H_INCLUDED
