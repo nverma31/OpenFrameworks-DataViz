@@ -10,6 +10,8 @@
 #include "LineChart.h"
 #include "EnergyDisplay.h"
 #include "CustomButton.h"
+//#include "DataPoint.h"
+#include "WeatherRealTime.h"
 class ofApp : public ofBaseApp{
     
 public:
@@ -226,6 +228,8 @@ public:
     void onMouseInCustomButton3(ofVec2f & e);
     void onMouseInCustomButton4(ofVec2f & e);
 
+    WeatherRealTime weatherRealTime;
+//    DataPoint dataPoint;
 
 
 

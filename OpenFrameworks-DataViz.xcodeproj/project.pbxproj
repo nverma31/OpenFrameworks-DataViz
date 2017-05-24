@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		0721EF9C1ED4C35C0051DE6D /* WeatherRealTime.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0721EF9A1ED4C35C0051DE6D /* WeatherRealTime.cpp */; };
+		0748EC271ED567E000632815 /* DataPoint.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0748EC251ED567E000632815 /* DataPoint.cpp */; };
 		1981A5C6A9907849A11593F1 /* ofxSmartFont.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 9F34DBF5A21E63C5EAAE9B89 /* ofxSmartFont.cpp */; };
 		1DDCCF38AB3EA880E1D3E577 /* ofxDatGui.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 3A2565BD8F16ED72C19C6C17 /* ofxDatGui.cpp */; };
 		2F81E2FEE3866F412BB66F71 /* DemoDisplay.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 46E5554EB39CABCE904E88D7 /* DemoDisplay.cpp */; };
@@ -61,6 +62,8 @@
 		041018DAEA54F2753BB6F6E9 /* EnergyDisplay.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = EnergyDisplay.cpp; path = src/EnergyDisplay.cpp; sourceTree = SOURCE_ROOT; };
 		0721EF9A1ED4C35C0051DE6D /* WeatherRealTime.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = WeatherRealTime.cpp; sourceTree = "<group>"; };
 		0721EF9B1ED4C35C0051DE6D /* WeatherRealTime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeatherRealTime.h; sourceTree = "<group>"; };
+		0748EC251ED567E000632815 /* DataPoint.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = DataPoint.cpp; sourceTree = "<group>"; };
+		0748EC261ED567E000632815 /* DataPoint.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DataPoint.h; sourceTree = "<group>"; };
 		11BDB060784B26E919A53689 /* ofxJSON.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxJSON.h; path = ../../Desktop/of_v0.9.8_osx_release/addons/ofxJSON/src/ofxJSON.h; sourceTree = SOURCE_ROOT; };
 		142504A57071CB9C3D200DB7 /* ofxDatGuiGroups.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = ofxDatGuiGroups.h; path = ../../Desktop/of_v0.9.8_osx_release/addons/ofxDatGui/src/components/ofxDatGuiGroups.h; sourceTree = SOURCE_ROOT; };
 		25C94759250DF1986182CD29 /* DemoDisplay.h */ = {isa = PBXFileReference; explicitFileType = sourcecode.c.h; fileEncoding = 30; name = DemoDisplay.h; path = src/DemoDisplay.h; sourceTree = SOURCE_ROOT; };
@@ -311,6 +314,8 @@
 				3918F732F3D22B43D20BE1A8 /* Scroll.h */,
 				0721EF9A1ED4C35C0051DE6D /* WeatherRealTime.cpp */,
 				0721EF9B1ED4C35C0051DE6D /* WeatherRealTime.h */,
+				0748EC251ED567E000632815 /* DataPoint.cpp */,
+				0748EC261ED567E000632815 /* DataPoint.h */,
 			);
 			path = src;
 			sourceTree = SOURCE_ROOT;
@@ -442,6 +447,7 @@
 				B49776CB7F4EE29890220DB9 /* EnergyDisplay.cpp in Sources */,
 				C428FD6B10FD9F7581304334 /* EnergyElement.cpp in Sources */,
 				80984709CB853E3F1846D57C /* LineChart.cpp in Sources */,
+				0748EC271ED567E000632815 /* DataPoint.cpp in Sources */,
 				EB5490EE8461F6E54E385C6E /* Scroll.cpp in Sources */,
 				7C0242854BC9CA7C6F9F38A5 /* ofxDatGuiComponent.cpp in Sources */,
 				1981A5C6A9907849A11593F1 /* ofxSmartFont.cpp in Sources */,

@@ -8,6 +8,8 @@
 
 #include "ofMain.h"
 #include <vector>
+#include "ofxJSON.h"
+#include "DataPoint.h"
 
 class WeatherRealTime {
     
@@ -18,7 +20,10 @@ public:
     vector<float> wind;
     vector<float> press;
     vector<float> days;
+    vector<DataPoint> points;
+    vector<float> xaxis;
     
+    string url;
     float maxTemp;
     float maxPrec;
     float maxPress;
@@ -27,12 +32,19 @@ public:
     float minPrec;
     float mindWind;
     float minPress;
+    int i = 0;
+    int increment;
+    
+    ofPolyline tempPolyline;
 
-    void loaddata(string _url);
+    void loaddata();
     void displayTemp();
+    void updateTemp();
+
     void displayPress();
     void displayPrec();
     void displaydays();
+    WeatherRealTime();
 
 
 };

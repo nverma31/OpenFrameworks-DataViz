@@ -1,6 +1,8 @@
 #include "ofApp.h"
 
 void ofApp::setup(){
+//    dataPoint = DataPoint(200,200,5);
+    weatherRealTime.loaddata();
     ofSetBackgroundAuto(true);
     
     frame = 0;
@@ -309,7 +311,7 @@ void ofApp::setup(){
 void ofApp::update(){
     scroll.update();
 
-
+    weatherRealTime.updateTemp();
     demoelement.update();
     demoelement2.update();
     demoelement3.update();
@@ -360,8 +362,6 @@ void ofApp::draw(){
 
     
 //    ofClear(255,255,255); // clears the background
-
-
     if (frame == 0) {
 //        ofClear(255,255,255);
         ofImage img;
@@ -370,6 +370,9 @@ void ofApp::draw(){
 //        bg.resize(100,1000);
 
         img.draw(0,0);
+//        dataPoint.display();
+
+        weatherRealTime.displayTemp();
         
         ofPoint pos1;
         pos1.x = 400;
