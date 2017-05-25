@@ -228,15 +228,34 @@ void ofApp::setup(){
     
     
     
-    cl_over = new ofxDatGuiButton("Overview");
-    cl_real = new ofxDatGuiButton("Real Time");
+    ofImage real_temp;
+    real_temp.load("/Users/Neeraj/Desktop/assets/tempbutt.png");
+    
+    ofImage real_press;
+    real_press.load("/Users/Neeraj/Desktop/assets/pressbut.png");
+    
+    ofImage real_wind;
+    real_wind.load("/Users/Neeraj/Desktop/assets/windbutt.png");
+    
+    ofImage cl_re;
+    cl_re.load("/Users/Neeraj/Desktop/assets/clreal.png");
+    ofImage cl_ov;
+    cl_ov.load("/Users/Neeraj/Desktop/assets/clover.png");
+   
+    cl_over_temp = new ofxDatGuiButton("",real_temp);
+    cl_over_press = new ofxDatGuiButton("",real_press);
+    cl_over_wind = new ofxDatGuiButton("",real_wind);
+    
+    
+    cl_over = new ofxDatGuiButton("",cl_ov);
+    cl_real = new ofxDatGuiButton("",cl_re);
     cl_main = new ofxDatGuiButton("Main");
     cl_daily = new ofxDatGuiButton("daily");
     cl_hourly = new ofxDatGuiButton("Hourly");
     cl_pre = new ofxDatGuiButton("Precipitatio");
-    cl_sea = new ofxDatGuiButton("Sea Surface temp");
-    cl_wind = new ofxDatGuiButton("Wind");
-    cl_press = new ofxDatGuiButton("Pressure");
+    cl_sea = new ofxDatGuiButton("", real_temp);
+    cl_wind = new ofxDatGuiButton("", real_wind);
+    cl_press = new ofxDatGuiButton("",real_press);
     
     
     en_over = new ofxDatGuiButton("Overview");
@@ -274,15 +293,20 @@ void ofApp::setup(){
     label4->setTheme(theme);
 
     
-    cl_over->setTheme(theme);
-    cl_real->setTheme(theme);
+    cl_over_temp->setTheme(themesmoke);
+    cl_over_press->setTheme(themesmoke);
+    cl_over_wind->setTheme(themesmoke);
+
+    cl_over->setTheme(themesmoke);
+    cl_real->setTheme(themesmoke);
     cl_main->setTheme(theme);
     cl_daily->setTheme(theme);
     cl_hourly->setTheme(theme);
     cl_pre->setTheme(theme);
-    cl_sea->setTheme(theme);
-    cl_wind->setTheme(theme);
-    cl_press->setTheme(theme);
+    
+    cl_sea->setTheme(themesmoke);
+    cl_wind->setTheme(themesmoke);
+    cl_press->setTheme(themesmoke);
     
     en_over->setTheme(theme);
     en_real->setTheme(theme);
@@ -296,6 +320,10 @@ void ofApp::setup(){
     en_hct->setTheme(themesmoke);
     en_pcb->setTheme(themesmoke);
     
+    
+    cl_over_temp->onButtonEvent(this, &ofApp::onButtonEvent);
+    cl_over_press->onButtonEvent(this, &ofApp::onButtonEvent);
+    cl_over_wind->onButtonEvent(this, &ofApp::onButtonEvent);
     cl_over->onButtonEvent(this, &ofApp::onButtonEvent);
     cl_real->onButtonEvent(this, &ofApp::onButtonEvent);
     cl_main->onButtonEvent(this, &ofApp::onButtonEvent);
@@ -356,19 +384,18 @@ void ofApp::update(){
     scroll.update();
 
 
-    weatherRealTime.updateTemp();
     demoelement.update();
     demoelement2.update();
-//    demoelement3.update();
-//    demoelement4.update();
-//    demoelement5.update();
-//    demoelement6.update();
-//    demoelement7.update();
-//    demoelement8.update();
-//    demoelement9.update();
-//    demoelement10.update();
-//    demoelement11.update();
-//    demoelement12.update();
+    demoelement3.update();
+    demoelement4.update();
+    demoelement5.update();
+    demoelement6.update();
+    demoelement7.update();
+    demoelement8.update();
+    demoelement9.update();
+    demoelement10.update();
+    demoelement11.update();
+    demoelement12.update();
 
 
     button->update();
@@ -382,8 +409,13 @@ void ofApp::update(){
     }
     if (frame ==2) {
     cl_over->update();
+        cl_over_temp->update();
+        cl_over_press->update();
+        cl_over_wind->update();
+
     cl_real->update();
-    
+        weatherRealTime.updateTemp();
+
     
     cl_main->update();
     cl_daily->update();
@@ -483,136 +515,83 @@ void ofApp::draw(){
     //Climate
      if (frame == 2) {
         
-//        ofClear(255,255,255);
         ofImage img;
         img.load("/Users/Neeraj/Desktop/assets/bg5.png");
-//         img.resize(100,1000);
 
         img.draw(0,0);
-         weatherRealTime.displayTemp();
-         weatherRealTime.display();
+        weatherRealTime.displayTemp();
+        weatherRealTime.displayTempText();
 
 
-         label2->draw();
+        label2->draw();
         home->draw(1, 200, 200);
-//        back->draw(1, 200, 200);
-        cl_over->draw();
-        cl_real->draw();
+        cl_over->draw(1,200,200);
+        cl_real->draw(1,200,200);
         
        
-        if (screenNumber == 21) {
-        ofPoint pos;
-        pos.x = 400;
-        pos.y = 10;
-//        avgTemp.draw("line", pos, test1);
-            
-            ofPoint pos1;
-            pos1.x = 400;
-            pos1.y = 200;
-//            avgPrec.draw("line", pos1, test);
-            
-            ofPoint pos2;
-            pos2.x = 400;
-            pos2.y = 400;
-           
+        if (screenNumber == 221) {
+      
+            cl_sea->draw(1,200,200);
+            cl_wind->draw(1,200,200);
+            cl_press->draw(1,200,200);
+            weatherRealTime.displayTemp();
+            weatherRealTime.displayTempText();
 //            avgSeaSurface.draw("line", pos2, test3);
         }
-        if (screenNumber == 22) {
-            cl_main->draw();
-            cl_daily->draw();
-            cl_hourly->draw();
-            cl_pre->draw();
-            cl_sea->draw();
-            cl_wind->draw();
-            cl_press->draw();
-            ofPoint pos2;
-            pos2.x = 400;
-            pos2.y = 100;
-            temp.draw("line", pos2, test);
+        if (screenNumber == 222) {
+           
+            cl_sea->draw(1,200,200);
+            cl_wind->draw(1,200,200);
+            cl_press->draw(1,200,200);
+            weatherRealTime.displayTemp();
+            weatherRealTime.displayTempText();
+        
 
         }
-        if (screenNumber == 222) {
-            
-            cl_main->draw();
-            cl_daily->draw();
-            cl_hourly->draw();
-            cl_pre->draw();
-            cl_sea->draw();
-            cl_wind->draw();
-            cl_press->draw();
-            ofPoint pos2;
-            pos2.x = 400;
-            pos2.y = 100;
-            seaReal.draw("line", pos2, test1);
-            
-        }
         if (screenNumber == 223) {
-            cl_main->draw();
-            cl_daily->draw();
-            cl_hourly->draw();
-            cl_pre->draw();
-            cl_sea->draw();
-            cl_wind->draw();
-            cl_press->draw();
             
-            ofPoint pos2;
-            pos2.x = 400;
-            pos2.y = 100;
-            pressReal.draw("line", pos2, test3);
+            
+            cl_sea->draw(1,200,200);
+            cl_wind->draw(1,200,200);
+            cl_press->draw(1,200,200);
+            weatherRealTime.displayTemp();
+            weatherRealTime.displayTempText();
             
         }
+        
         if (screenNumber == 224) {
             
-            cl_main->draw();
-            cl_daily->draw();
-            cl_hourly->draw();
-            cl_pre->draw();
-            cl_sea->draw();
-            cl_wind->draw();
-            cl_press->draw();
+            cl_over_temp->draw(1,200,200);
+            cl_over_press->draw(1,200,200);
+            cl_over_wind->draw(1,200,200);
+            weatherRealTime.displayTemp();
+            weatherRealTime.displayTempText();
             
-            ofPoint pos2;
-            pos2.x = 400;
-            pos2.y = 100;
-            windReal.draw("line", pos2, test4);
+          
             
         }
         if (screenNumber == 225) {
             
-            cl_main->draw();
-            cl_daily->draw();
-            cl_hourly->draw();
-            cl_pre->draw();
-            cl_sea->draw();
-            cl_wind->draw();
-            cl_press->draw();
+            cl_over_temp->draw(1,200,200);
+            cl_over_press->draw(1,200,200);
+            cl_over_wind->draw(1,200,200);
+            weatherRealTime.displayTemp();
+            weatherRealTime.displayTempText();
             
-            ofPoint pos2;
-            pos2.x = 400;
-            pos2.y = 100;
-            avgSeaSurface.draw("line", pos2, test1);
+ 
             
         }
+         if (screenNumber == 226) {
+             
+             cl_over_temp->draw(1,200,200);
+             cl_over_press->draw(1,200,200);
+             cl_over_wind->draw(1,200,200);
+             weatherRealTime.displayTemp();
+             weatherRealTime.displayTempText();
+             
+             
+         }
     }
-//            LineChart ;
-//            LineChart avgSeaSurface;
-//            LineChart temp;
-//            LineChart precReal;
-//            LineChart seaReal;
-//            LineChart windReal;
-//            LineChart pressReal;
-        
-//        pos.x = 400;
-//        pos.y = 200;
-//        drawChart(1, test1, pos);
-//        pos.x = 400;
-//        pos.y = 0;
-//        drawChart(1, test1, pos);
-//        pos.x = 400;
-//        pos.y = 200;
-//        drawChart(1, test1, pos);
-        
-        
 
     //Demographics
     
@@ -632,17 +611,17 @@ void ofApp::draw(){
         
         demoelement.display();
         demoelement2.display();
-//
-//        demoelement3.display();
-//        demoelement4.display();
-//        demoelement5.display();
-//        demoelement6.display();
-//        demoelement7.display();
-//        demoelement8.display();
-//        demoelement9.display();
-//        demoelement10.display();
-//        demoelement11.display();
-//        demoelement12.display();
+
+        demoelement3.display();
+        demoelement4.display();
+        demoelement5.display();
+        demoelement6.display();
+        demoelement7.display();
+        demoelement8.display();
+        demoelement9.display();
+        demoelement10.display();
+        demoelement11.display();
+        demoelement12.display();
 
        
     }
@@ -857,7 +836,8 @@ void ofApp::onButtonEvent(ofxDatGuiButtonEvent e)
         ofClear(ofColor::lightGray);
 
         frame =2;
-        screenNumber = 21;
+//        weatherRealTime.tempPolyline.clear();
+        screenNumber = 221;
 
     }
     
@@ -925,19 +905,35 @@ void ofApp::onButtonEvent(ofxDatGuiButtonEvent e)
     if (e.target == cl_real) {
         
         cout<<"button" << e.target;
-        screenNumber = 22;
+        screenNumber = 221;
         frame =2;
         cout<<"Frame"<<frame;
     }
     if (e.target == cl_over) {
         cout<<"button" << e.target;
         frame =2;
-        screenNumber = 21;
+        screenNumber = 224;
         cout<<"Frame"<<frame;
     }
-    if (e.target == cl_press) {
+    if (e.target == cl_over) {
         cout<<"button" << e.target;
-        screenNumber = 222;
+        frame =2;
+        screenNumber = 224;
+        cout<<"Frame"<<frame;
+    }if (e.target == cl_over_temp) {
+        cout<<"button" << e.target;
+        frame =2;
+        screenNumber = 224;
+        cout<<"Frame"<<frame;
+    }if (e.target == cl_over_press) {
+        cout<<"button" << e.target;
+        frame =2;
+        screenNumber = 225;
+        cout<<"Frame"<<frame;
+    }
+    if (e.target == cl_over_wind) {
+        cout<<"button" << e.target;
+        screenNumber = 226;
         frame =2;
 
         cout<<"Frame"<<frame;
@@ -945,7 +941,7 @@ void ofApp::onButtonEvent(ofxDatGuiButtonEvent e)
     
     if (e.target == cl_sea) {
         cout<<"button" << e.target;
-        screenNumber = 223;
+        screenNumber = 221;
         frame =2;
 
         cout<<"Frame"<<frame;
@@ -957,7 +953,7 @@ void ofApp::onButtonEvent(ofxDatGuiButtonEvent e)
         cout<<"Frame"<<frame;
     }if (e.target == cl_wind) {
         cout<<"button" << e.target;
-        screenNumber = 225;
+        screenNumber = 223;
         frame =2;
 
         cout<<"Frame"<<frame;
@@ -1003,11 +999,15 @@ void ofApp::positionButtons()
 
     cl_pre->setPosition(100, 450);
     
-    cl_press->setPosition(400,450);
+    cl_press->setPosition(400,550);
     
-    cl_sea->setPosition(1000, 450);
-    cl_wind->setPosition(700, 450);
+    cl_sea->setPosition(600, 550);
+    cl_wind->setPosition(800, 550);
     
+    cl_over_press->setPosition(400,550);
+    
+    cl_over_temp->setPosition(600, 550);
+    cl_over_wind->setPosition(800, 550);
     cl_hourly->setPosition(800, 150);
     cl_daily->setPosition(550, 150);
    // cout <<"ofGetHeight"<<ofGetHeight();

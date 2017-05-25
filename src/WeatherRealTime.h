@@ -57,14 +57,26 @@ public:
     ofPolyline tempPolyline;
 
     void loaddata();
+    
     void displayTemp();
     void updateTemp();
-
-    void display();
+    void displayTempText();
+    
     void displayPress();
-    void displayPrec();
     void updatePress();
+    void displayPressText();
+
+    void displayPrec();
     void updatePrec();
+    void displayText();
+
+    
+    void displayWind();
+    void updateWind();
+    void displayWindText();
+
+    
+    
     void displaydays();
     WeatherRealTime();
 

@@ -80,7 +80,7 @@ void EnergyElement::changeWidth() {
 bool EnergyElement::isInside() {
     float pointX= (float)ofGetMouseX();
     float pointY = (float)ofGetMouseY();
-    cout<<pointX<<" Mouse X" << " Mouse Y" << pointY << " low " <<low <<" high " <<high << "xpos" << xpos;
+//    cout<<pointX<<" Mouse X" << " Mouse Y" << pointY << " low " <<low <<" high " <<high << "xpos" << xpos;
     if(pointX <= 515 && pointX >= 505 && pointY <= high && pointY >=low) {
         return true;
     }

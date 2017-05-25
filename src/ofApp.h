@@ -146,6 +146,11 @@ public:
     ofxDatGuiButton* cl_over;
     ofxDatGuiButton* cl_real;
     
+    ofxDatGuiButton* cl_over_wind;
+    ofxDatGuiButton* cl_over_temp;
+    ofxDatGuiButton* cl_over_press;
+
+    
     ofxDatGuiButton* cl_main;
     ofxDatGuiButton* cl_daily;
     ofxDatGuiButton* cl_hourly;
