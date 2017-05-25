@@ -18,6 +18,8 @@ EnergyElement::EnergyElement(float x, float h, float l, float b) {
     xpos = x;
     width = 1;
     inc = 1;
+    
+    cout <<"xpos" <<xpos;
 
 
     ofAddListener(ofEvents().mousePressed, this, &EnergyElement::_mouseReleased);
@@ -27,11 +29,11 @@ EnergyElement::EnergyElement(float x, float h, float l, float b) {
 
 void EnergyElement::display() {
     int i =0;
-    base = 340;
     speed++;
     
 //    cout << "  high "<< high << "   Low  " << low <<"  base  " << base << "speed  " <<speed;
-    ofSetLineWidth(4);
+    ofPushStyle();
+    ofSetLineWidth(width);
 //  cout <<"width  "<<width;
     if (340 + 2*speed < high) {
 
@@ -65,38 +67,38 @@ void EnergyElement::display() {
 
     }
 
+    ofPopStyle();
 }
 void EnergyElement::update() {
-    
+    width = 4;
+}
+
+void EnergyElement::changeWidth() {
+    width = 1;
 }
 
 bool EnergyElement::isInside() {
     float pointX= (float)ofGetMouseX();
     float pointY = (float)ofGetMouseY();
     cout<<pointX<<" Mouse X" << " Mouse Y" << pointY << " low " <<low <<" high " <<high << "xpos" << xpos;
-    if(pointX <= xpos +1 && pointX >= xpos-1 && pointY <= low && pointY >=high) {
+    if(pointX <= 515 && pointX >= 505 && pointY <= high && pointY >=low) {
         return true;
     }
+    return false;
     
 }
 void EnergyElement::_mouseReleased(ofMouseEventArgs & args){
     if (isInside()) {
-        // if the mouse is pressed over the circle an event will be notified (broadcasted)
-        // the circleEvent object will contain the mouse position, so this values are accesible to any class that is listening.
-//        ofVec2f mousePos = ofVec2f(args.x, args.y);
-//        ofNotifyEvent(clickedInside, mousePos, this);
-//        ofSetLineWidth(4);
-//        ofSetColor(0, 0, 0);
-        this->width =4;
-//        ofSetLineWidth(this->width);
-        float pointX= (float)ofGetMouseX();
-        float pointY = (float)ofGetMouseY();
+//        this->width =4;
+////        ofSetLineWidth(this->width);
+//        float pointX= (float)ofGetMouseX();
+//        float pointY = (float)ofGetMouseY();
 //        cout<<pointX<<" Mouse X" << " Mouse Y" << pointY << " low " <<low <<" high " <<high << "xpos" << xpos;
-
-        cout<<"\nwidth\n"<< this->width;
-//        cout <<ofGetWidth();
-        cout<<"clicked inside";
-//        cout<<"Mouse  " <<args.x;
+//
+////        cout<<"\nwidth\n"<< this->width;
+////        cout <<ofGetWidth();
+////        cout<<"clicked inside";
+////        cout<<"Mouse  " <<args.x;
         
     }
 }

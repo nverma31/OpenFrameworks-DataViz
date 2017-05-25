@@ -26,12 +26,16 @@ public:
     void display();
     void add(float x,float y, float z);
     void setup(std::vector<float> &x, std::vector<float> &b ,std::vector<float> &h, std::vector<float> &l);
-    
-   
+    void _mouseReleased(ofMouseEventArgs &e);
+
+    ofTrueTypeFont	verdana32;
+
     
 private:
     
     float boidCount;
+    string text;
+
     std::vector<EnergyElement> boids;
     std::vector<float> xpos;
     std::vector<float> highs;

@@ -672,6 +672,10 @@ void ofApp::draw(){
 
           if (screenNumber == 41) {
         energyDisplay.display();
+              ofImage etext;
+              etext.load("/Users/Neeraj/Desktop/assets/etext.png");
+              etext.draw(120, 100);
+
 
           }
          if (screenNumber == 42) {

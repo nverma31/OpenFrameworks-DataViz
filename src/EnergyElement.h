@@ -11,6 +11,8 @@
 
 
 class EnergyElement {
+
+public:
     float base;
     float high;
     float speed;
@@ -26,9 +28,11 @@ class EnergyElement {
 
 
     
-public:
     void display();
     void update();
+    void changeWidth();
+
+    
     EnergyElement();
     void _mouseReleased(ofMouseEventArgs &e);
     bool isInside();

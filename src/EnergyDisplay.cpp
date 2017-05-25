@@ -12,14 +12,19 @@
 EnergyDisplay::EnergyDisplay(int initCount)
 {
     boidCount =  initCount;
+    verdana32.load("avenir-light.ttf", 28, true, true,true);
+
+    text = "";
     
     
 }
 
-void EnergyDisplay::setup(std::vector<float> &x, std::vector<float> &b ,std::vector<float> &h, std::vector<float> &l) {
+void EnergyDisplay::setup(std::vector<float> &x, std::vector<float> &h ,std::vector<float> &l, std::vector<float> &b) {
+    ofAddListener(ofEvents().mousePressed, this, &EnergyDisplay::_mouseReleased);
+
     for(int i = 0; i < boidCount; i++ ) {
         EnergyElement newBoid = EnergyElement(x[i], h[i], l[i], b[i]);
-        cout <<"x[i]" << x[i] << "base[]" << b[i];
+//        cout <<"x[i]" << x[i] << "base[]" << b[i];
         boids.push_back(newBoid);
     }
 }
@@ -29,7 +34,21 @@ void EnergyDisplay::display(){
     {
         (*it).display();
     }
+    verdana32.drawStringAsShapes(text, 100, 100);//category
+
 }
+
+void EnergyDisplay::_mouseReleased(ofMouseEventArgs & args){
+    for(int i = 0; i < boidCount; i++ ) {
+    if(args.x>=boids[i].xpos - 5 && args.x<=boids[i].xpos+5 && args.y < boids[i].high && args.y>boids[i].low){
+        boids[i].update();
+//        text = boids[i].+"31 % of Energy was produced by Thermal";
+        }
+    else {
+        boids[i].changeWidth();
+    }
+    }
+   }
 
 
 
