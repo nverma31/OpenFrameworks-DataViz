@@ -34,7 +34,7 @@ void LineChart::draw(string _chartType, ofPoint position, int test[]){
     chartPos =pos;
     ofPushStyle();
     ofNoFill();
-    ofSetLineWidth(2);
+//    ofSetLineWidth(2);
     
     //ofDrawBitmapStringHighlight(ofToString("Average Temperature"), ofGetWidth()/2, ofGetHeight()/2-200);
     
@@ -72,7 +72,7 @@ void LineChart::drawLineChart(){
     
     
     ofNoFill();
-    ofSetLineWidth(2);
+//    ofSetLineWidth(2);
     
     // HIGH
     ofBeginShape();

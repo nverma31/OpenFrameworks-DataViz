@@ -16,9 +16,14 @@ class EnergyElement {
     float speed;
     float low;
     float xpos;
+    float width;
     string text;
     DataPoint dataPointLow;
     DataPoint dataPointHigh;
+    ofEvent<ofVec2f> clickedInside;
+    int inc;
+    bool clicked;
+
 
     
 public:
@@ -26,7 +31,7 @@ public:
     void update();
     EnergyElement();
     void _mouseReleased(ofMouseEventArgs &e);
-
+    bool isInside();
 
     EnergyElement(float x, float y, float z, float k);
 

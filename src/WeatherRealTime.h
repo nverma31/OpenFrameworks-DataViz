@@ -10,16 +10,35 @@
 #include <vector>
 #include "ofxJSON.h"
 #include "DataPoint.h"
+#include <boost/date_time.hpp>
+#include "boost/date_time/gregorian/gregorian.hpp"
+#include <iostream>
+#include <string>
+#include <algorithm>
+
+
+
 
 class WeatherRealTime {
     
 public:
     
+    ofTrueTypeFont	verdana32;
+    ofTrueTypeFont	verdana14;
+    ofTrueTypeFont	verdana12;
+    ofTrueTypeFont	verdana18;
+    ofTrueTypeFont	verdana22;
+    ofTrueTypeFont	verdana26;
+    
+    ofTrueTypeFont testFont;
+    ofTrueTypeFont testFont2;
+    
     vector<float> temp;
     vector<float> prec;
     vector<float> wind;
     vector<float> press;
-    vector<float> days;
+    vector<string> days;
+    vector<string> dates;
     vector<DataPoint> points;
     vector<float> xaxis;
     
@@ -41,8 +60,11 @@ public:
     void displayTemp();
     void updateTemp();
 
+    void display();
     void displayPress();
     void displayPrec();
+    void updatePress();
+    void updatePrec();
     void displaydays();
     WeatherRealTime();
 

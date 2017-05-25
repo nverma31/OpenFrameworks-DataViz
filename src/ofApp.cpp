@@ -27,17 +27,45 @@ void ofApp::setup(){
    
     for (int i = 5; i < 20; ++i){
         xpos.push_back(i*30.0 +300);
-        highs.push_back(200.0);
-        lows.push_back(500.0);
-        bases.push_back(300.0);
+        highs.push_back(ofMap(60, 0, 100, 200, 480));
+        lows.push_back(ofMap(40, 0, 100, 200, 480));
+        bases.push_back(340);
         
     }
 
-   
 
     energyDisplay = EnergyDisplay(14);
     
-    energyDisplay.setup(bases, highs, lows, xpos);
+    energyDisplay.setup(xpos, highs, lows, bases);
+
+    
+    energyDisplay1 = EnergyDisplay(14);
+    highs.clear();
+    lows.clear();
+    for (int i = 5; i < 20; ++i){
+        xpos.push_back(i*30.0 +300);
+        highs.push_back(ofMap(80, 0, 100, 200, 480));
+        lows.push_back(ofMap(20, 0, 100, 200, 480));
+        bases.push_back(340);
+        
+    }
+
+    energyDisplay1.setup(xpos, highs, lows, bases);
+
+    energyDisplay2 = EnergyDisplay(14);
+    highs.clear();
+    lows.clear();
+    for (int i = 5; i < 20; ++i){
+        xpos.push_back(i*30.0 +300);
+        highs.push_back(ofMap(80, 0, 100, 200, 480));
+        lows.push_back(ofMap(20, 0, 100, 200, 480));
+        bases.push_back(340);
+        
+    }
+    
+    energyDisplay2.setup(xpos, highs, lows, bases);
+
+    
 //    baseImages = images;
     baseImages.resize(1);
     for (int i = 0; i < 1; i++){
@@ -59,6 +87,10 @@ void ofApp::setup(){
 
 //    scroll = Scroll();
     demoelement2 = DemoElement(pos, 30, 50, 280, 80, 100, 140);
+//    ofAddListener(ofEvents().mousePressed, demoelement2, &DemoElement::mouseReleased);
+
+    
+
     demoelement3 = DemoElement(pos, 60, 80, 200, 50, 120, 140);
     demoelement4 = DemoElement(pos, 90, 110, 300, 100, 115, 130);
    
@@ -70,6 +102,9 @@ void ofApp::setup(){
     demoelement10 = DemoElement(pos, 270, 290, 200, 50, 120, 140);
     demoelement11 = DemoElement(pos, 300, 320, 200, 80, 100, 140);
     demoelement12 = DemoElement(pos, 330, 350, 200, 80, 100, 140);
+    
+
+//    ofAddListener(ofEvents().mousePressed, demoelement3, &DemoElement::mouseReleased);
 
    ill =0;
     bg.load("/Users/Neeraj/Desktop/assets/bg5.png");
@@ -212,9 +247,18 @@ void ofApp::setup(){
     en_hyd = new ofxDatGuiButton("Hydro");
     en_wind = new ofxDatGuiButton("Wind");
     en_thermal = new ofxDatGuiButton("Thermal");
-    en_pcb = new ofxDatGuiButton("Primary vs Bought");
-    en_hct = new ofxDatGuiButton("Hydro VS Thermal");
-    en_hcc = new ofxDatGuiButton("House Vs Commercial");
+    
+    ofImage hvt;
+    hvt.load("/Users/Neeraj/Desktop/assets/hvt.png");
+
+    ofImage hvc;
+    hvc.load("/Users/Neeraj/Desktop/assets/hvc.png");
+    
+    ofImage pvb;
+    pvb.load("/Users/Neeraj/Desktop/assets/pvb.png");
+    en_pcb = new ofxDatGuiButton("",pvb);
+    en_hct = new ofxDatGuiButton("", hvt);
+    en_hcc = new ofxDatGuiButton("",hvc);
     
     label1 = new ofxDatGuiButton("Demographics");
 
@@ -248,9 +292,9 @@ void ofApp::setup(){
     en_hyd->setTheme(theme);
     en_wind->setTheme(theme);
     en_thermal->setTheme(theme);
-    en_hcc->setTheme(theme);
-    en_hct->setTheme(theme);
-    en_pcb->setTheme(theme);
+    en_hcc->setTheme(themesmoke);
+    en_hct->setTheme(themesmoke);
+    en_pcb->setTheme(themesmoke);
     
     cl_over->onButtonEvent(this, &ofApp::onButtonEvent);
     cl_real->onButtonEvent(this, &ofApp::onButtonEvent);
@@ -311,19 +355,20 @@ void ofApp::setup(){
 void ofApp::update(){
     scroll.update();
 
+
     weatherRealTime.updateTemp();
     demoelement.update();
     demoelement2.update();
-    demoelement3.update();
-    demoelement4.update();
-    demoelement5.update();
-    demoelement6.update();
-    demoelement7.update();
-    demoelement8.update();
-    demoelement9.update();
-    demoelement10.update();
-    demoelement11.update();
-    demoelement12.update();
+//    demoelement3.update();
+//    demoelement4.update();
+//    demoelement5.update();
+//    demoelement6.update();
+//    demoelement7.update();
+//    demoelement8.update();
+//    demoelement9.update();
+//    demoelement10.update();
+//    demoelement11.update();
+//    demoelement12.update();
 
 
     button->update();
@@ -352,6 +397,9 @@ void ofApp::update(){
     if (frame == 4) {
         en_over->update();
         en_real->update();
+        en_hct->update();
+        en_hcc->update();
+        en_pcb->update();
     }
     
 }
@@ -372,7 +420,6 @@ void ofApp::draw(){
         img.draw(0,0);
 //        dataPoint.display();
 
-        weatherRealTime.displayTemp();
         
         ofPoint pos1;
         pos1.x = 400;
@@ -442,6 +489,9 @@ void ofApp::draw(){
 //         img.resize(100,1000);
 
         img.draw(0,0);
+         weatherRealTime.displayTemp();
+         weatherRealTime.display();
+
 
          label2->draw();
         home->draw(1, 200, 200);
@@ -454,18 +504,18 @@ void ofApp::draw(){
         ofPoint pos;
         pos.x = 400;
         pos.y = 10;
-        avgTemp.draw("line", pos, test1);
+//        avgTemp.draw("line", pos, test1);
             
             ofPoint pos1;
             pos1.x = 400;
             pos1.y = 200;
-            avgPrec.draw("line", pos1, test);
+//            avgPrec.draw("line", pos1, test);
             
             ofPoint pos2;
             pos2.x = 400;
             pos2.y = 400;
            
-            avgSeaSurface.draw("line", pos2, test3);
+//            avgSeaSurface.draw("line", pos2, test3);
         }
         if (screenNumber == 22) {
             cl_main->draw();
@@ -567,6 +617,7 @@ void ofApp::draw(){
     //Demographics
     
      if (frame ==1) {
+
 //        ofClear(255,255,255);
         ofImage img;
         img.load("/Users/Neeraj/Desktop/assets/dbg.png");
@@ -581,17 +632,17 @@ void ofApp::draw(){
         
         demoelement.display();
         demoelement2.display();
-
-        demoelement3.display();
-        demoelement4.display();
-        demoelement5.display();
-        demoelement6.display();
-        demoelement7.display();
-        demoelement8.display();
-        demoelement9.display();
-        demoelement10.display();
-        demoelement11.display();
-        demoelement12.display();
+//
+//        demoelement3.display();
+//        demoelement4.display();
+//        demoelement5.display();
+//        demoelement6.display();
+//        demoelement7.display();
+//        demoelement8.display();
+//        demoelement9.display();
+//        demoelement10.display();
+//        demoelement11.display();
+//        demoelement12.display();
 
        
     }
@@ -605,16 +656,37 @@ void ofApp::draw(){
 //         bg.resize(100,1000);
 
         img.draw(0,0);
+         ofImage lowpercent;
 
-          if (screenNumber == 400) {
+         lowpercent.load("/Users/Neeraj/Desktop/assets/0.png");
+         lowpercent.draw(280, 480);
+         
+         ofImage highpercent;
+         
+         highpercent.load("/Users/Neeraj/Desktop/assets/100.png");
+         highpercent.draw(280, 200);
+
+         en_hct->draw(1, 200, 200);
+         en_pcb->draw(1, 200, 200);
+         en_hcc->draw(1, 200, 200);
+
+          if (screenNumber == 41) {
         energyDisplay.display();
 
           }
+         if (screenNumber == 42) {
+
+         energyDisplay1.display();
+         }
+         if (screenNumber == 43) {
+
+         energyDisplay2.display();
+         }
         label4->draw();
         home->draw(1, 200, 200);
 //        back->draw(1, 200, 200);
-        en_over->draw();
-        en_real->draw();
+//        en_over->draw();
+//        en_real->draw();
         if (screenNumber == 413) {
             
 //            cl_main->draw();
@@ -920,10 +992,10 @@ void ofApp::positionButtons()
     en_wind->setPosition(700, 450);
     
     
-    en_pcb->setPosition(400,450);
+    en_pcb->setPosition(750,550);
     
-    en_hcc->setPosition(1000, 450);
-    en_hct->setPosition(700, 450);
+    en_hcc->setPosition(600, 550);
+    en_hct->setPosition(450, 550);
 
     cl_pre->setPosition(100, 450);
     
@@ -953,7 +1025,7 @@ void ofApp::drawChart(int type, int test[], ofPoint pos) {
     ofPoint chartSize = ofPoint(ofGetWidth() * 0.4, ofGetHeight() * 0.4);
     ofPoint chartPos = pos;
     ofNoFill();
-    ofSetLineWidth(2);
+//    ofSetLineWidth(2);
     
     //ofDrawBitmapStringHighlight(ofToString("Average Temperature"), ofGetWidth()/2, ofGetHeight()/2-200);
     

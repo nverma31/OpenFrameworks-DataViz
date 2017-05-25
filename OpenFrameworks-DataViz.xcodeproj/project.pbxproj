@@ -582,6 +582,7 @@
 					../../Desktop/of_v0.9.8_osx_release/addons/ofxJSON/libs/jsoncpp/include/json,
 					../../Desktop/of_v0.9.8_osx_release/addons/ofxJSON/libs/jsoncpp/src,
 					../../Desktop/of_v0.9.8_osx_release/addons/ofxJSON/src,
+					/usr/local/Cellar/boost/1.64.0_1/include/,
 				);
 				ICON = "$(ICON_NAME_DEBUG)";
 				ICON_FILE = "$(ICON_FILE_PATH)$(ICON)";
@@ -621,6 +622,7 @@
 					../../Desktop/of_v0.9.8_osx_release/addons/ofxJSON/libs/jsoncpp/include/json,
 					../../Desktop/of_v0.9.8_osx_release/addons/ofxJSON/libs/jsoncpp/src,
 					../../Desktop/of_v0.9.8_osx_release/addons/ofxJSON/src,
+					/usr/local/Cellar/boost/1.64.0_1/include/,
 				);
 				ICON = "$(ICON_NAME_RELEASE)";
 				ICON_FILE = "$(ICON_FILE_PATH)$(ICON)";

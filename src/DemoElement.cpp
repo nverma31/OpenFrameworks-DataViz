@@ -10,10 +10,17 @@
 
 #include "DemoElement.h"
 DemoElement::DemoElement(){
+    ofAddListener(ofEvents().mousePressed, this, &DemoElement::mouseReleased);
+
     
 }
 DemoElement::DemoElement(ofPoint pt, float angBeg, float angEnd, float rad, float value1, float value2, float value3) {
     ofTrueTypeFont::setGlobalDpi(96);
+    rank = "1.Continent\n2.Madeira\n3.Azores";
+    entity = "Madiera";
+    category = "Health";
+    subcategory = "Life Expectancy";
+    percent = "81";
 
     verdana14.load("avenir-light.ttf", 14, true, true,true);
     verdana32.load("avenir-light.ttf", 32, true, true,true);
@@ -30,7 +37,7 @@ DemoElement::DemoElement(ofPoint pt, float angBeg, float angEnd, float rad, floa
     testFont2.load("cooperBlack.ttf", 12, true, true, false);
     
      entity = "Madeira";
-     category= "Education";
+//     category= "Education";
      text = "Madeira has 31% of students doing some shit in some other shit";
      rank = "3rd";
      percent = "61%";
@@ -93,8 +100,9 @@ DemoElement::DemoElement(ofPoint pt, float angBeg, float angEnd, float rad, floa
 void DemoElement::displayTextData() {
     ofPushStyle();
     ofSetColor(0, 0, 0);
+//    cout <<" \n in display category " <<category;
     ofNoFill();
-    ofSetLineWidth(0.5);
+//    ofSetLineWidth(0.5);
     ofPolyline closedShapePolyline;
     ofDrawRectangle(900, 175, 300, 400);
 
@@ -111,14 +119,18 @@ void DemoElement::displayTextData() {
     
     ofSetColor(255, 255, 255);
 
-    verdana26.drawStringAsShapes("Madeira", 980, 150);//entity
-    verdana26.drawStringAsShapes("Madeira", 980, 205);//category
+    verdana26.drawStringAsShapes(entity, 980, 150);//entity
+    verdana26.drawStringAsShapes(getCategory(), 980, 205);//category
 
-    verdana14.drawStringAsShapes("Life Expectancy", 980, 240);//category
+    verdana14.drawStringAsShapes(subcategory, 980, 240);//category
 
-    verdana14.drawStringAsShapes("81", 1040, 287);//percent
+    verdana14.drawStringAsShapes(percent, 1040, 287);//percent
 
-    verdana12.drawStringAsShapes("A bunch of random\n text about bullshit", 1040, 330);//text
+    verdana12.drawStringAsShapes("A bunch of random kjahkadsjhdskjkjdhjkdahdsjkhdaskjdash\nklsakjaslkjaslk text about bullshit", 940, 330);//text
+
+    verdana14.drawStringAsShapes("Comparision", 980, 450);//category
+
+    verdana12.drawStringAsShapes(rank, 980, 490);//text
 
 
     
@@ -127,6 +139,8 @@ void DemoElement::displayTextData() {
 }
 
 void DemoElement::display() {
+    
+
     
 //    
 //    //Drawing Text
@@ -200,29 +214,44 @@ float DemoElement::normalizeAngle(float angle)
     return angle;
 }
 
-float DemoElement::getAngle(float _x, float _y) {
-    if (_x == 0.0) {
-        if(_y < 0.0)
-            return 270;
-        else
-            return 90;
-    } else if (_y == 0) {
-        if(_x < 0)
-            return 180;
-        else
-            return 0;
+float DemoElement::getAngle() {
+    float centerX = pos.x;
+    float centerY = pos.y;
+    float diameter = 2*radius;
+    float angle1 = beginAngle;
+    float angle2 = endAngle;
+    float pointX= (float)ofGetMouseX();
+    float pointY = (float)ofGetMouseY();
+    //    cout<<"centerX"<<centerX<<endl;
+    //    cout<<"MouseX"<<pointX<<endl;
+    //
+    //
+    
+    // Find if the mouse is close enough of center
+    bool nearCenter = sqrtf(((pointX - centerX)*(pointX - centerX)) + ((pointY - centerY)*(pointY - centerY))) <= diameter/2;
+    //        if (!nearCenter)
+    //            return false; // Quick exit...
+    
+    // Normalize angles
+    float na1 = normalizeAngle(angle1);
+    float na2 = normalizeAngle(angle2);
+    //    cout <<"Mouse Angle  "<<getAngle(pointX, pointY)<<endl;
+    //    cout <<"na1  " <<na1<<endl;
+    //    cout <<"na2  "<<na2<<endl;
+    // Find the angle between the point and the x axis from the center of the circle
+    float a = atan2(pointY - centerY, pointX - centerX);
+    
+    float length = sqrtf(((pointX - centerX)*(pointX - centerX)) + ((pointY - centerY)*(pointY - centerY)));
+    
+    
+    float angle =a*(180/PI);
+    if (angle <0 ) {
+        angle = angle +360;
     }
     
-    if ( _y > 0.0)
-        if (_x > 0.0)
-            return atan(_y/_x) * PI;
-        else
-            return 180.0 - (atan(_y/-_x) * GRAD_PI);
-        else
-            if (_x > 0.0)
-                return 360.0 - (atan(-_y/_x) * GRAD_PI);  
-            else  
-                return 180.0 + (atan(-_y/-_x) * GRAD_PI);  
+//    cout <<"angle" <<angle;
+    
+    return angle;
 }  
 
 
@@ -241,7 +270,7 @@ bool DemoElement::isInside() {
 //    
 
         // Find if the mouse is close enough of center
-        bool nearCenter = sqrtf(((pointX - centerX)*(pointX - centerX)) + ((pointY - centerY)*(pointY - centerY))) <= diameter/2;
+//        bool nearCenter = sqrtf(((pointX - centerX)*(pointX - centerX)) + ((pointY - centerY)*(pointY - centerY))) <= diameter/2;
 //        if (!nearCenter)
 //            return false; // Quick exit...
     
@@ -265,6 +294,7 @@ bool DemoElement::isInside() {
         // First case: small arc, below half of circle
         if (angle >= na1 &&  angle <=na2 && length <=radius)
         {
+            
             // Just check we are between these two angles
             inside = true;
             return true;
@@ -375,6 +405,8 @@ bool DemoElement::isInsideArc2() {
     {
         // Just check we are between these two angles
         inside = true;
+       
+
         return true;
     }
     
@@ -441,29 +473,73 @@ bool DemoElement::isInsideArc3() {
 }
 
 
+string DemoElement::getCategory(){
+    float angle = getAngle();
+    if (inside) {
+    if(angle>= 0 && angle <=20) {
+        return "health";
+    }
+    if(angle>= 30 && angle <=50) {
+        return "Education";
+    }
+    if(angle>= 60 && angle <=80) {
+        return "health";
+    }
+    if(angle>= 90 && angle <=110) {
+        return "health";
+    }if(angle>= 120 && angle <=140) {
+        return "Education";
+    }
+    if(angle>= 150 && angle <=170) {
+        return "health";
+    }
+    if(angle>= 180 && angle <=200) {
+        return "Education";
+    }
+    if(angle>= 210 && angle <=230) {
+        return "health";
+    }
+    if(angle>= 240 && angle <=260) {
+        return "health";
+    }if(angle>= 270 && angle <=290) {
+        return "Education";
+    }
 
+    if(angle>= 300 && angle <=320) {
+        return "health";
+    }
+    if(angle>= 330 && angle <=350) {
+        return "Education";
+    }
+    }
+    return category;
+}
 
 void DemoElement::update() {
     
     if (isInside()) {
         color = ofColor(17, 203,189, 200);
         ofDrawRectangle(500, 500, 200, 200);
-    }
+//        cout <<"category" <<category;
+        inside = true;
+            }
     else {
         color = ofColor(17, 203,189);
-
+        inside = false;
     }
 }
 
 void DemoElement::mouseReleased(ofMouseEventArgs & args){
-    cout<<"clicked inside";
-    cout<<"Mouse  " <<args.x;
+   
     if (isInside()) {
         // if the mouse is pressed over the circle an event will be notified (broadcasted)
         // the circleEvent object will contain the mouse position, so this values are accesible to any class that is listening.
         ofVec2f mousePos = ofVec2f(args.x, args.y);
         ofNotifyEvent(clickedInside, mousePos, this);
-        color = ofColor(0,0,0);
+//        color = ofColor(0,0,0);
+        ofDrawRectangle(100, 100, 100, 100);
+//        cout<<"clicked inside";
+//        cout<<"Mouse  " <<args.x;
 
     }
 }

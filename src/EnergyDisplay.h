@@ -27,14 +27,17 @@ public:
     void add(float x,float y, float z);
     void setup(std::vector<float> &x, std::vector<float> &b ,std::vector<float> &h, std::vector<float> &l);
     
+   
+    
 private:
     
     float boidCount;
     std::vector<EnergyElement> boids;
     std::vector<float> xpos;
     std::vector<float> highs;
-    std::vector<float> lows;
-    
+    std::vector<float> lows ;
+//    void mouseReleased(ofMouseEventArgs & args);
+
     void drawButtons();
     void updateButtons();
 

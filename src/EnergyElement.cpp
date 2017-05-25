@@ -9,46 +9,58 @@
 EnergyElement::EnergyElement(){
     
 }
-EnergyElement::EnergyElement(float b, float h, float l, float x) {
+EnergyElement::EnergyElement(float x, float h, float l, float b) {
     
-    speed =0;
+    speed =3;
     base = b;
     high = h;
     low = l;
     xpos = x;
+    width = 1;
+    inc = 1;
 
 
-//    ofAddListener(ofEvents().mousePressed, this, &EnergyElement::mousePressed);
+    ofAddListener(ofEvents().mousePressed, this, &EnergyElement::_mouseReleased);
 
     
 }
 
 void EnergyElement::display() {
     int i =0;
+    base = 340;
     speed++;
-    base = (high + low)/2;
-    if (base - 10*speed > high) {
-    ofDrawLine(xpos, base,xpos, base -15*speed);
-        dataPointHigh =  DataPoint(xpos, base-15*speed, 4);
+    
+//    cout << "  high "<< high << "   Low  " << low <<"  base  " << base << "speed  " <<speed;
+    ofSetLineWidth(4);
+//  cout <<"width  "<<width;
+    if (340 + 2*speed < high) {
+
+    ofDrawLine(xpos, base,xpos, base +2*speed );
+        dataPointHigh.setup(xpos, base+2*speed, 4);
         dataPointHigh.display();
 //    ofDrawCircle(xpos, base-4*speed, 1);
+        isInside();
     }
     else {
+
         ofDrawLine(xpos, base,xpos, high);
-        dataPointHigh =  DataPoint(xpos, high, 4);
+        dataPointHigh.setup(xpos, high, 4);
         dataPointHigh.display();
+        isInside();
 
     
     }
     
-    if (base + 10*speed < low) {
-    ofDrawLine(xpos, base, xpos, base +15*speed);
-    dataPointLow =  DataPoint(xpos, base-15*speed, 4);
+    if (base - 2*speed > low) {
+
+    ofDrawLine(xpos, base, xpos, base -2*speed);
+    dataPointLow .setup(xpos, base-2*speed, 4);
         dataPointLow.display();
     }
     else {
+
         ofDrawLine(xpos, base,xpos, low);
-        dataPointLow =  DataPoint(xpos, low, 4);
+        dataPointLow.setup(xpos, low, 4);
         dataPointLow.display();
 
     }
@@ -57,3 +69,35 @@ void EnergyElement::display() {
 void EnergyElement::update() {
     
 }
+
+bool EnergyElement::isInside() {
+    float pointX= (float)ofGetMouseX();
+    float pointY = (float)ofGetMouseY();
+    cout<<pointX<<" Mouse X" << " Mouse Y" << pointY << " low " <<low <<" high " <<high << "xpos" << xpos;
+    if(pointX <= xpos +1 && pointX >= xpos-1 && pointY <= low && pointY >=high) {
+        return true;
+    }
+    
+}
+void EnergyElement::_mouseReleased(ofMouseEventArgs & args){
+    if (isInside()) {
+        // if the mouse is pressed over the circle an event will be notified (broadcasted)
+        // the circleEvent object will contain the mouse position, so this values are accesible to any class that is listening.
+//        ofVec2f mousePos = ofVec2f(args.x, args.y);
+//        ofNotifyEvent(clickedInside, mousePos, this);
+//        ofSetLineWidth(4);
+//        ofSetColor(0, 0, 0);
+        this->width =4;
+//        ofSetLineWidth(this->width);
+        float pointX= (float)ofGetMouseX();
+        float pointY = (float)ofGetMouseY();
+//        cout<<pointX<<" Mouse X" << " Mouse Y" << pointY << " low " <<low <<" high " <<high << "xpos" << xpos;
+
+        cout<<"\nwidth\n"<< this->width;
+//        cout <<ofGetWidth();
+        cout<<"clicked inside";
+//        cout<<"Mouse  " <<args.x;
+        
+    }
+}
+

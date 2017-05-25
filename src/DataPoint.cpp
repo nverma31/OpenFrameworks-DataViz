@@ -12,6 +12,7 @@ DataPoint::DataPoint(){
     
 }
 DataPoint::DataPoint(float xpos, float ypos, float rad){
+    
     x = xpos;
     y = ypos;
     radius = rad;
@@ -27,5 +28,12 @@ void DataPoint::display(){
 
 bool DataPoint::isinside(){
     return (ofVec2f(ofGetMouseX(), ofGetMouseY()).distance(ofVec2f(x, y)) < radius);
+}
+
+void DataPoint::setup(float xpos, float ypos, float rad){
+    
+    x = xpos;
+    y = ypos;
+    radius = rad;
 }
 

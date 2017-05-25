@@ -216,7 +216,10 @@ public:
 
 
     EnergyDisplay energyDisplay;
-    
+
+    EnergyDisplay energyDisplay1;
+    EnergyDisplay energyDisplay2;
+
     CustomButton butt1;
 
     CustomButton butt2;

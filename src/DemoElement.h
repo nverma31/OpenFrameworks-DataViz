@@ -35,6 +35,8 @@ class DemoElement {
     
     string entity;
     string category;
+    string subcategory;
+
     string text;
     string rank;
     string percent;
@@ -67,7 +69,8 @@ class DemoElement {
     ofEvent<ofVec2f> clickedInside;
 
     void mouseReleased(ofMouseEventArgs & args);
-    float getAngle(float _x, float _y);
+    float getAngle();
+    string getCategory();
     bool inside;
 
     float normalizeAngle(float angle);

@@ -26,6 +26,7 @@ public:
     DataPoint(float xpos,float ypos, float rad);
     bool isinside();
     void createText();
+    void setup(float xpos,float ypos, float rad);
     
     
     
