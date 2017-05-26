@@ -18,7 +18,7 @@ DemoElement::DemoElement(ofPoint pt, float angBeg, float angEnd, float rad, floa
     ofTrueTypeFont::setGlobalDpi(96);
     rank = "1.Continent\n2.Madeira\n3.Azores";
     entity = "Madiera";
-    category = "Health";
+//    category = "Health";
     subcategory = "Life Expectancy";
     percent = "81";
 
@@ -161,7 +161,7 @@ void DemoElement::display() {
 //
 //    verdana14.drawStringAsShapes("comparision", 920, 370);
     
-    displayTextData();
+//    displayTextData();
     curve.setFillColor(color);
     
     if (isInside()) {
@@ -475,42 +475,45 @@ bool DemoElement::isInsideArc3() {
 
 string DemoElement::getCategory(){
     float angle = getAngle();
+    cout <<"\nAngle "<<angle;
     if (inside) {
     if(angle>= 0 && angle <=20) {
-        return "health";
+        return "Safety";
     }
     if(angle>= 30 && angle <=50) {
-        return "Education";
+        cout << category;
+        return "Safety";
     }
     if(angle>= 60 && angle <=80) {
-        return "health";
+        return "Safety";
     }
     if(angle>= 90 && angle <=110) {
-        return "health";
+        return "Health";
     }if(angle>= 120 && angle <=140) {
-        return "Education";
+        return "Health";
     }
     if(angle>= 150 && angle <=170) {
-        return "health";
+        return "Health";
     }
-    if(angle>= 180 && angle <=200) {
-        return "Education";
-    }
+    
     if(angle>= 210 && angle <=230) {
-        return "health";
+        return "Education";
     }
     if(angle>= 240 && angle <=260) {
-        return "health";
-    }if(angle>= 270 && angle <=290) {
         return "Education";
+    }if(angle>= 270 && angle <=290) {
+        return "Democracy";
     }
 
     if(angle>= 300 && angle <=320) {
-        return "health";
+        return "Equality";
     }
     if(angle>= 330 && angle <=350) {
-        return "Education";
+        return "Equality";
     }
+        if(angle>= 180 && angle <=200) {
+            return "Education";
+        }
     }
     return category;
 }

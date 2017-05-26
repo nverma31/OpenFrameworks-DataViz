@@ -12,6 +12,7 @@
 #include "CustomButton.h"
 //#include "DataPoint.h"
 #include "WeatherRealTime.h"
+#include "DemoDisplay.h"
 class ofApp : public ofBaseApp{
     
 public:
@@ -203,6 +204,14 @@ public:
     vector<float> highs;
     vector<float> lows;
 
+    vector<float> lows1;
+    vector<float> lows2;
+
+    vector<float> highs1;
+
+    vector<float> highs2;
+
+
     Scroll scroll;
     LineChart avgTemp;
     LineChart avgPrec;
@@ -234,14 +243,24 @@ public:
  
 
     
-    void onMouseInCustomButton1(ofVec2f & e);
-    void onMouseInCustomButton2(ofVec2f & e);
-    void onMouseInCustomButton3(ofVec2f & e);
-    void onMouseInCustomButton4(ofVec2f & e);
 
     WeatherRealTime weatherRealTime;
-//    DataPoint dataPoint;
+    WeatherRealTime weatherRealTime1;
 
+    WeatherRealTime weatherRealTime2;
+
+    //    DataPoint dataPoint;
+    
+    ofxDatGuiButton* infob1;
+
+    ofxDatGuiButton* infob2;
+    ofxDatGuiButton* infob3;
+    ofxDatGuiButton* infob4;
+
+    ofxDatGuiButton* infob5;
+
+    
+    DemoDisplay demoDisplay;
 
 
 

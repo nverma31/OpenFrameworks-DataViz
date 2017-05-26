@@ -56,6 +56,12 @@ public:
     
     ofPolyline tempPolyline;
 
+    ofPolyline pressPolyline;
+    ofPolyline windPolyline;
+    ofPolyline tempOverPolyline;
+    ofPolyline pressOverPolyline;
+    ofPolyline windOverPolyline;
+
     void loaddata();
     
     void displayTemp();
@@ -68,12 +74,25 @@ public:
 
     void displayPrec();
     void updatePrec();
-    void displayText();
+    void displayPrecText();
+    
+    
+    void displayOverTemp();
+    void updateOverTemp();
+    void displayOverTempText();
+    
+    void displayOverPress();
+    void updateOverPress();
+    void displayOverPressText();
+    
+    void displayOverPrec();
+    void updateOverPrec();
+    void displayOverText();
 
     
-    void displayWind();
-    void updateWind();
-    void displayWindText();
+    void displayOverWind();
+    void updateOverWind();
+    void displayOverWindText();
 
     
     
