@@ -12,9 +12,10 @@
 EnergyDisplay::EnergyDisplay(int initCount)
 {
     boidCount =  initCount;
-    verdana32.load("avenir-light.ttf", 28, true, true,true);
+    verdana32.load("avenir-light.ttf", 16, true, true,true);
 
-    text = "";
+    text = "63";
+    text2 = "37";
     
     
 }
@@ -35,7 +36,13 @@ void EnergyDisplay::display(){
     {
         (*it).display();
     }
-    verdana32.drawStringAsShapes(text, 100, 100);//category
+    ofPushStyle();
+    ofSetColor(231, 128, 70);
+    ofFill();
+    verdana32.drawStringAsShapes(text, 490, 193);//category
+
+    verdana32.drawStringAsShapes(text2, 425, 166);//category
+    ofPopStyle();
 
 }
 
@@ -44,7 +51,12 @@ void EnergyDisplay::_mouseReleased(ofMouseEventArgs & args){
     if(args.x>=boids[i].xpos - 5 && args.x<=boids[i].xpos+5 && args.y < boids[i].high && args.y>boids[i].low){
         boids[i].update();
 //        text = boids[i].+"31 % of Energy was produced by Thermal";
-        }
+        float h =ofMap(boids[i].high, 200, 480, 0, 100);
+        float l =ofMap(boids[i].low, 200, 480, 0, 100);
+        text2 = std::to_string(ofMap(boids[i].high, 200, 480, 0, 100)).substr(0,2);
+        text = std::to_string(ofMap(boids[i].low, 200, 480, 0, 100)).substr(0,2);
+
+    }
     else {
         boids[i].changeWidth();
     }

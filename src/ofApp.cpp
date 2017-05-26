@@ -5,7 +5,11 @@ void ofApp::setup(){
     weatherRealTime.loaddata();
     weatherRealTime1.loaddata();
     weatherRealTime2.loaddata();
-
+    
+    weatherOverview.loaddata();
+    weatherOverview1.loaddata();
+    weatherOverview2.loaddata();
+    
     ofSetBackgroundAuto(true);
     
     frame = 0;
@@ -237,7 +241,7 @@ void ofApp::setup(){
     ofImage img;
     img.load("/Users/Neeraj/Desktop/assets/nav-hom.png");
     ofImage h;
-    h.load("/Users/Neeraj/Desktop/assets/nav-hom.png");
+    h.load("/Users/Neeraj/Desktop/assets/cancel.png");
     
     ofImage ic_demo;
     ic_demo.load("/Users/Neeraj/Desktop/assets/demo.png");
@@ -493,9 +497,6 @@ void ofApp::update(){
     }
     if (frame ==2) {
     cl_over->update();
-        cl_over_temp->update();
-        cl_over_press->update();
-        cl_over_wind->update();
 
     cl_real->update();
         if (screenNumber == 221) {
@@ -511,15 +512,54 @@ void ofApp::update(){
             
         }
 
+        if (screenNumber == 224) {
+            cl_over_wind->update();
+            cl_over_temp->update();
+            cl_over_press->update();
+            weatherOverview.updateTemp();
+            
+        }
+        if (screenNumber == 225) {
+            weatherOverview1.updatePrec();
+            cl_over_wind->update();
+            cl_over_temp->update();
+            cl_over_press->update();
 
+
+
+            
+        }
+        if (screenNumber == 226) {
+            weatherOverview2.updatePress();
+            cl_over_wind->update();
+            cl_over_temp->update();
+            cl_over_press->update();
+            
+        }
+
+        if (screenNumber == 221) {
+            cl_sea->update();
+            cl_press->update();
+            cl_wind->update();
+
+
+        }
+        if (screenNumber == 222) {
+            cl_sea->update();
+            cl_press->update();
+            cl_wind->update();
+
+        }
+        if (screenNumber == 223) {
+            cl_sea->update();
+            cl_press->update();
+            cl_wind->update();
+        }
     
     cl_main->update();
     cl_daily->update();
     cl_hourly->update();
     cl_pre->update();
-    cl_sea->update();
-    cl_wind->update();
-    cl_press->update();
         
     }
     if (frame == 4) {
@@ -560,7 +600,7 @@ void ofApp::draw(){
         pos1.x = 400;
         pos1.y = 100;
 
-        home->draw(1, 200, 200);
+//        home->draw(1, 200, 200);
 //        back->draw(1, 200, 200);
         
 
@@ -652,8 +692,8 @@ void ofApp::draw(){
             cl_over_temp->draw(1,200,200);
             cl_over_press->draw(1,200,200);
             cl_over_wind->draw(1,200,200);
-//            weatherRealTime.displayTemp();
-//            weatherRealTime.displayTempText();
+            weatherOverview.displayTemp();
+            weatherOverview.displayTempText();
             
           
             
@@ -663,8 +703,8 @@ void ofApp::draw(){
             cl_over_temp->draw(1,200,200);
             cl_over_press->draw(1,200,200);
             cl_over_wind->draw(1,200,200);
-//            weatherRealTime.displayTemp();
-//            weatherRealTime.displayTempText();
+            weatherOverview1.displayPrec();
+            weatherOverview1.displayPrecText();
             
  
             
@@ -674,8 +714,8 @@ void ofApp::draw(){
              cl_over_temp->draw(1,200,200);
              cl_over_press->draw(1,200,200);
              cl_over_wind->draw(1,200,200);
-//             weatherRealTime.displayTemp();
-//             weatherRealTime.displayTempText();
+             weatherOverview2.displayPress();
+             weatherOverview2.displayPressText();
              
              
          }
@@ -914,6 +954,14 @@ void ofApp::onButtonEvent(ofxDatGuiButtonEvent e)
         
         
     }
+    if (e.target == home){
+        ofClear(ofColor::lightGray);
+        
+        frame =0;
+        
+        
+    }
+
     
     if (e.target == hclimate){
         ofClear(ofColor::lightGray);
@@ -997,22 +1045,30 @@ void ofApp::onButtonEvent(ofxDatGuiButtonEvent e)
         frame =2;
         screenNumber = 224;
 //        cout<<"Frame"<<frame;
+        cout <<"\nscreenNumber" <<screenNumber;
+
     }
     if (e.target == cl_over_temp) {
         cout<<"button" << e.target;
         frame =2;
         screenNumber = 224;
 //        cout<<"Frame"<<frame;
+        cout <<"\nscreenNumber" <<screenNumber;
+
     }if (e.target == cl_over_press) {
         cout<<"button" << e.target;
         frame =2;
         screenNumber = 225;
 //        cout<<"Frame"<<frame;
+        cout <<"\nscreenNumber" <<screenNumber;
+
     }
     if (e.target == cl_over_wind) {
         cout<<"button" << e.target;
         screenNumber = 226;
         frame =2;
+        cout <<"\nscreenNumber" <<screenNumber;
+
 
 //        cout<<"Frame"<<frame;
     }
@@ -1056,7 +1112,7 @@ void ofApp::onButtonEvent(ofxDatGuiButtonEvent e)
 
 void ofApp::positionButtons()
 {
-    home->setPosition(0,0);
+    home->setPosition(1150,25);
     back->setPosition(0,50);
 
     hdemo->setPosition(150,350);

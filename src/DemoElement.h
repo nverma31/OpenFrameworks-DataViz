@@ -38,6 +38,7 @@ class DemoElement {
     string subcategory;
 
     string text;
+
     string rank;
     string percent;
     

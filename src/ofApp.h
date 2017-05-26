@@ -13,6 +13,7 @@
 //#include "DataPoint.h"
 #include "WeatherRealTime.h"
 #include "DemoDisplay.h"
+#include "WeatherOverview.h"
 class ofApp : public ofBaseApp{
     
 public:
@@ -249,6 +250,11 @@ public:
 
     WeatherRealTime weatherRealTime2;
 
+    WeatherOverview weatherOverview;
+    WeatherOverview weatherOverview1;
+    
+    WeatherOverview weatherOverview2;
+    
     //    DataPoint dataPoint;
     
     ofxDatGuiButton* infob1;

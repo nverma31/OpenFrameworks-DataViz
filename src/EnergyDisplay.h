@@ -36,6 +36,8 @@ private:
     float boidCount;
     string text;
 
+    string text2;
+
     std::vector<EnergyElement> boids;
     std::vector<float> xpos;
     std::vector<float> highs;

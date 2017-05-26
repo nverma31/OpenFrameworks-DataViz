@@ -145,7 +145,7 @@ void WeatherOverview::displayTemp() {
     tempPolyline.draw();
     if (i  == temp.size()) {
         for (int l =0; l < temp.size(); l++) {
-            DataPoint data = DataPoint(300+36*l, ofMap(temp[l], 16,25,150, 800), 5);
+            DataPoint data = DataPoint(300+50*l, ofMap(temp[l], 16,25,150, 800), 5);
             data.display();
             //            ofNoFill();
             //            ofDrawCircle(100 + 30*l, temp[l], 2);
@@ -153,14 +153,14 @@ void WeatherOverview::displayTemp() {
     }
     for (int k =0; k < days.size(); k++) {
         
-        verdana12.drawStringAsShapes(days[k], 300+36*k, 500);
+        verdana12.drawStringAsShapes(days[k], 300+50*k, 500);
         
     }
 }
 
 void WeatherOverview::updateTemp() {
     if (i <temp.size()) {
-        tempPolyline.lineTo(300 + 36*i, ofMap(temp[i], 16,25,150, 800));
+        tempPolyline.lineTo(300 + 50*i, ofMap(temp[i], 16,25,150, 800));
         ofPushStyle();
         ofSetColor(ofColor::red);
         ofPopStyle();
@@ -172,9 +172,9 @@ void WeatherOverview::updateTemp() {
 //Real Time Pressure
 void WeatherOverview::displayPressText() {
     
-    minTemp = *min_element(press.begin(), press.end());
+    minTemp = *min_element(prec.begin(), prec.end());
     minTemp = floor(minTemp * 100.0) / 100.0;
-    maxTemp = *max_element(press.begin(), press.end());
+    maxTemp = *max_element(prec.begin(), prec.end());
     maxTemp = floor(maxTemp * 100.0) / 100.0;
     
     cout <<"minTemp"<<minTemp ;
@@ -205,11 +205,15 @@ void WeatherOverview::displayPressText() {
     ofPopStyle();
 }
 void WeatherOverview::displayPress() {
+    minTemp = *min_element(prec.begin(), prec.end());
+    maxTemp = *max_element(prec.begin(), prec.end());
+
+
     pressPolyline.draw();
     if (i  == prec.size()) {
         for (int l =0; l < prec.size(); l++) {
             
-            DataPoint data = DataPoint(300+36*l, ofMap(prec[l], 5,110,150, 800), 5);
+            DataPoint data = DataPoint(300+50*l, ofMap(prec[l], minTemp-5,maxTemp+5,150, 800), 5);
 //            cout <<"\npress[l] "<<prec[l];
             
             data.display();
@@ -219,15 +223,17 @@ void WeatherOverview::displayPress() {
     }
     for (int k =0; k < days.size(); k++) {
         
-        verdana12.drawStringAsShapes(days[k], 300+36*k, 500);
+        verdana12.drawStringAsShapes(days[k], 300+50*k, 500);
         
     }
 }
 
 void WeatherOverview::updatePress() {
+    minTemp = *min_element(prec.begin(), prec.end());
+    maxTemp = *max_element(prec.begin(), prec.end());
     if (i <prec.size()) {
-        pressPolyline.lineTo(300 + 18*i, ofMap(prec[i], 5,110,150, 800));
-        cout <<"\npress[i] "<<press[i];
+        pressPolyline.lineTo(300 + 18*i, ofMap(prec[i], minTemp-5,maxTemp+5,150, 800));
+        cout <<"\npress[i] "<<prec[i];
         ofPushStyle();
         ofSetColor(ofColor::red);
         ofPopStyle();
@@ -277,7 +283,7 @@ void WeatherOverview::displayPrec() {
     if (i  == wind.size()) {
         for (int l =0; l < wind.size(); l++) {
             
-            DataPoint data = DataPoint(300+36*l, ofMap(wind[l], minTemp,maxTemp,200, 480), 5);
+            DataPoint data = DataPoint(300+50*l, ofMap(wind[l], minTemp,maxTemp,200, 480), 5);
             cout <<"\npress[l] "<<wind[l];
             
             data.display();
@@ -287,7 +293,7 @@ void WeatherOverview::displayPrec() {
     }
     for (int k =0; k < days.size(); k= k+4) {
         
-        verdana12.drawStringAsShapes(days[k], 300+36*k, 500);
+        verdana12.drawStringAsShapes(days[k], 300+50*k, 500);
         
     }
 }
@@ -297,8 +303,8 @@ void WeatherOverview::updatePrec() {
     maxTemp = *max_element(wind.begin(), wind.end());
     
     if (i <wind.size()) {
-        pressPolyline.lineTo(300 + 18*i, ofMap(wind[i], minTemp,maxTemp,200, 480));
-        cout <<"\npress[i] "<<press[i];
+        pressPolyline.lineTo(300 + 50*i, ofMap(wind[i], minTemp,maxTemp,200, 480));
+//        cout <<"\npress[i] "<<press[i];
         ofPushStyle();
         ofSetColor(ofColor::red);
         ofPopStyle();
