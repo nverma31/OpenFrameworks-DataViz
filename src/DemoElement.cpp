@@ -69,7 +69,7 @@ DemoElement::DemoElement(ofPoint pt, float angBeg, float angEnd, float rad, floa
     arc1.arcNegative(pt, value1, value1, angEnd-2, angBeg+2);
     arc1.close();
     arc1.setArcResolution(60);
-    arccolor = ofColor(113, 113,113);
+    arccolor = ofColor(41, 128, 185);
     arccolor.setHex(0xbdc3c7);
     arc1.setFillColor(arccolor);
     arc1.setFilled(true);
@@ -78,18 +78,22 @@ DemoElement::DemoElement(ofPoint pt, float angBeg, float angEnd, float rad, floa
     arc3.arcNegative(pt, value3, value3, angEnd-2, angBeg+2);
     arc3.close();
     arc3.setArcResolution(60);
+    arccolor3 = ofColor(22, 160, 133);
+
     color = ofColor(0, 0,0);
     color.setHex(0xbdc3c7);
-    arc3.setFillColor(arccolor);
+    arc3.setFillColor(arccolor3);
     arc3.setFilled(true);
     
     arc2.arc(pt, value2+5, value2+5, angBeg+2, angEnd-2);
     arc2.arcNegative(pt, value2, value2, angEnd-2, angBeg+2);
     arc2.close();
+    arccolor2 = ofColor(41, 128, 185);
+
     arc2.setArcResolution(60);
     color = ofColor(0, 0,0);
     color.setHex(0x2ecc71);
-    arc2.setFillColor(arccolor);
+    arc2.setFillColor(arccolor2);
     arc2.setFilled(true);
 
     
@@ -142,26 +146,6 @@ void DemoElement::display() {
     
 
     
-//    
-//    //Drawing Text
-//    ofFill();
-//    verdana32.drawStringAsShapes("Measure of Madeira", 50, 50);
-//    testFont.drawString("Comparing Madeira Across 12 key areas:\neducation, health, democracy, safety, \n equality", 50, 70);
-//    
-//    verdana22.drawStringAsShapes(entity, 900, 200);
-//    ofPushStyle();
-//    ofSetColor(0, 240, 0);
-//    ofDrawRectangle(900, 205, 250, 5);
-//    ofPopStyle();
-//    
-//    verdana26.drawStringAsShapes(category, 900, 250);
-//    verdana26.drawStringAsShapes(rank, 900, 300);
-//
-//    verdana12.drawStringAsShapes(text, 900, 330);
-//
-//    verdana14.drawStringAsShapes("comparision", 920, 370);
-    
-//    displayTextData();
     curve.setFillColor(color);
     
     if (isInside()) {
@@ -172,7 +156,6 @@ void DemoElement::display() {
     if (isInsideArc1()) {
         arc1.arc(pos, arcrad1+3, arcrad1+3, beginAngle+2, endAngle-2);
         arc1.arcNegative(pos, arcrad1, arcrad1, endAngle-2, beginAngle+2);
-        arccolor.set(0 ,0,0);
         cout <<"arc inside";
 
 //        ofDrawRectangle(200, 300, 500, 500);
@@ -181,14 +164,12 @@ void DemoElement::display() {
     if (isInsideArc2()) {
         arc2.arc(pos, arcrad2+3, arcrad2+3, beginAngle+2, endAngle-2);
         arc2.arcNegative(pos, arcrad2, arcrad2, endAngle-2, beginAngle+2);
-        arccolor = ofColor(113, 113,113,200);
         cout <<"arc inside";
         
         //        ofDrawRectangle(200, 300, 500, 500);
 //    }if (isInsideArc3()) {
 //        arc3.arc(pos, arcrad3+3, arcrad3+3, beginAngle+2, endAngle-2);
 //        arc3.arcNegative(pos, arcrad3, arcrad3, endAngle-2, beginAngle+2);
-        arccolor = ofColor(113, 113,113,200);
         cout <<"arc inside";
         
         //        ofDrawRectangle(200, 300, 500, 500);

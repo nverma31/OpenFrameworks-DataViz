@@ -38,7 +38,7 @@ void EnergyElement::display() {
     if (340 + 2*speed < high) {
 
     ofDrawLine(xpos, base,xpos, base +2*speed );
-        dataPointHigh.setup(xpos, base+2*speed, 4);
+        dataPointHigh.setup(xpos, base+2*speed, 4, 50, std::to_string(base+2*speed));
         dataPointHigh.display();
 //    ofDrawCircle(xpos, base-4*speed, 1);
         isInside();
@@ -46,7 +46,7 @@ void EnergyElement::display() {
     else {
 
         ofDrawLine(xpos, base,xpos, high);
-        dataPointHigh.setup(xpos, high, 4);
+        dataPointHigh.setup(xpos, high, 4,50, std::to_string(high));
         dataPointHigh.display();
         isInside();
 
@@ -56,13 +56,13 @@ void EnergyElement::display() {
     if (base - 2*speed > low) {
 
     ofDrawLine(xpos, base, xpos, base -2*speed);
-    dataPointLow .setup(xpos, base-2*speed, 4);
+    dataPointLow .setup(xpos, base-2*speed, 4, 50, std::to_string(base -2*speed));
         dataPointLow.display();
     }
     else {
 
         ofDrawLine(xpos, base,xpos, low);
-        dataPointLow.setup(xpos, low, 4);
+        dataPointLow.setup(xpos, low, 4,50, std::to_string(low));
         dataPointLow.display();
 
     }

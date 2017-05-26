@@ -18,15 +18,16 @@ class DataPoint {
     float x;
     float y;
     float radius;
-    float text;
+    string text;
+    float width;
     
 public:
     void display();
     DataPoint();
-    DataPoint(float xpos,float ypos, float rad);
+    DataPoint(float xpos,float ypos, float rad, float wid, string txt);
     bool isinside();
     void createText();
-    void setup(float xpos,float ypos, float rad);
+    void setup(float xpos,float ypos, float rad,  float wid, string txt);
     
     
     

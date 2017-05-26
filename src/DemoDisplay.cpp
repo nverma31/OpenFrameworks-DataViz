@@ -97,7 +97,7 @@ string DemoDisplay::getCategory(){
         if(angle>= 180 && angle <=200 && length <=200) {
             return "Education";
         }
-  return "Health";
+    return "Education";
 }
 
 string DemoDisplay::getSubCategory(){
@@ -113,7 +113,7 @@ string DemoDisplay::getSubCategory(){
         return "    Homicide";
     }
     if(angle>= 60 && angle <=80 && length <=200) {
-        return "  Gun Deaths";
+        return "  Peace Index";
     }
     if(angle>= 90 && angle <=110 && length <=200) {
         return "Health Expenditure";
@@ -142,7 +142,7 @@ string DemoDisplay::getSubCategory(){
     if(angle>= 180 && angle <=200 && length <=200) {
         return "Income Inequality";
     }
-    return "";
+    return "Income Inequality";
 }
 
 string DemoDisplay::getRank(){
@@ -151,14 +151,14 @@ string DemoDisplay::getRank(){
     float length = getLength();
     
     if(angle>= 0 && angle <=20 && length <=200) {
-        return rank;
+        return rank2;
     }
     if(angle>= 30 && angle <=50&& length <=200 ) {
         //            cout << category;
-        return rank;
+        return rank3;
     }
     if(angle>= 60 && angle <=80 && length <=200) {
-        return rank;
+        return rank2;
     }
     if(angle>= 90 && angle <=110 && length <=200) {
         return rank;
@@ -192,50 +192,103 @@ string DemoDisplay::getRank(){
 
 
 
+
+
 string DemoDisplay::getValue(){
     
     float angle = getAngle();
     float length = getLength();
     
     if(angle>= 0 && angle <=20 && length <=200) {
-        return "Safety";
+        return "123";
     }
     if(angle>= 30 && angle <=50&& length <=200 ) {
         //            cout << category;
-        return "Safety";
+        return "0.9";
     }
     if(angle>= 60 && angle <=80 && length <=200) {
-        return "Safety";
+        return "1.1";
     }
     if(angle>= 90 && angle <=110 && length <=200) {
-        return "Health";
+        return "2.1k";
     }if(angle>= 120 && angle <=140 && length <=200) {
-        return "Health";
+        return "3.1";
     }
     if(angle>= 150 && angle <=170 && length <=200) {
-        return "Health";
+        return "81";
+    }
+    if(angle>= 180 && angle <=200 && length <=200) {
+        return "27";
     }
     
     if(angle>= 210 && angle <=230 && length <=200) {
-        return "Education";
+        return "65";
     }
     if(angle>= 240 && angle <=260 && length <=200) {
-        return "Education";
+        return "12.2";
     }if(angle>= 270 && angle <=290 && length <=200) {
-        return "Democracy";
+        return "51";
     }
     
     if(angle>= 300 && angle <=320 && length <=200) {
-        return "Equality";
+        return "0.101";
     }
     if(angle>= 330 && angle <=350 && length <=200) {
-        return "Equality";
+        return "0.28";
+    }
+   
+    return "0.28";
+}
+
+
+
+string DemoDisplay::getRankValue(){
+    
+    float angle = getAngle();
+    float length = getLength();
+    
+    if(angle>= 0 && angle <=20 && length <=200) {
+        return "1.1\n.84\n.79";
+    }
+    if(angle>= 30 && angle <=50&& length <=200 ) {
+        //            cout << category;
+        return "12\n13\n16";
+    }
+    if(angle>= 60 && angle <=80 && length <=200) {
+        return "1.4\n1.2\n0.9";
+    }
+    if(angle>= 90 && angle <=110 && length <=200) {
+        return "2.6k\n2k\n1.8k";
+    }if(angle>= 120 && angle <=140 && length <=200) {
+        return "3.4\n3.1\n3.0";
+    }
+    if(angle>= 150 && angle <=170 && length <=200) {
+        return "84\n81\n79";
     }
     if(angle>= 180 && angle <=200 && length <=200) {
-        return "Education";
+        return "31%\n27%\n24%";
     }
-    return "Health";
+    
+    if(angle>= 210 && angle <=230 && length <=200) {
+        return "68%\n65%\n60%";
+    }
+    if(angle>= 240 && angle <=260 && length <=200) {
+        return "12.5\n12.2\n12.0";
+    }if(angle>= 270 && angle <=290 && length <=200) {
+        return "55.8\n51\n46";
+    }
+    
+    if(angle>= 300 && angle <=320 && length <=200) {
+        return ".111\n.101\n.091";
+    }
+    if(angle>= 330 && angle <=350 && length <=200) {
+        return "0.34\n0.28\n0.27";
+    }
+    
+    return "0.34\n0.28\n0.27";
 }
+
+
 
 
 string DemoDisplay::getText(){
@@ -244,43 +297,43 @@ string DemoDisplay::getText(){
     float length = getLength();
     
     if(angle>= 0 && angle <=20 && length <=200) {
-        return "Safety";
+        return "123 People per 100,000 are in jail";
     }
     if(angle>= 30 && angle <=50&& length <=200 ) {
         //            cout << category;
-        return "Safety";
+        return "1.1 people per 100,000 are murdered";
     }
     if(angle>= 60 && angle <=80 && length <=200) {
-        return "Safety";
+        return "Global Peace index is 1.1(lower is better)";
     }
     if(angle>= 90 && angle <=110 && length <=200) {
-        return "Health";
+        return "The annual spending on health care\n services per person is 2.6k";
     }if(angle>= 120 && angle <=140 && length <=200) {
-        return "Health";
+        return "Average Life Expectancy for both\n men and women is 82";
     }
     if(angle>= 150 && angle <=170 && length <=200) {
-        return "Health";
+        return "3.1 children out of 1,00 died \nbefore age one";
     }
     
     if(angle>= 210 && angle <=230 && length <=200) {
-        return "Education";
+        return "27% of people ages 25-34 hold a \nbachelor degree or higher";
     }
     if(angle>= 240 && angle <=260 && length <=200) {
-        return "Education";
+        return "65% of people ages 25-34 completed\n high school";
     }if(angle>= 270 && angle <=290 && length <=200) {
-        return "Democracy";
+        return "People ages 25-34 avergae 12.2 years\n of education";
     }
     
     if(angle>= 300 && angle <=320 && length <=200) {
-        return "Equality";
+        return "51% of of eligible voters cast a ballot\n in a parliamentary or congressional election";
     }
     if(angle>= 330 && angle <=350 && length <=200) {
-        return "Equality";
+        return "Women's reproductive health, empowerment, \nand labor force participation has\n value 0.154(lower is better)";
     }
     if(angle>= 180 && angle <=200 && length <=200) {
-        return "Education";
+        return "The Gini Index of income inequality \nis a value from 0.28 on a\n scale from 0 to 1.";
     }
-    return "Health";
+    return "123 People per 100,000 are in jail";
 }
 
 
@@ -303,7 +356,7 @@ void DemoDisplay::displayTextData() {
     ofDrawRectangle(900, 175, 300, 40);
     
     ofSetColor(231, 128, 70);
-    ofDrawCircle(1050, 280, 20);
+    ofDrawCircle(1055, 280, 30);
     
     ofSetColor(255, 255, 255);
     
@@ -312,13 +365,15 @@ void DemoDisplay::displayTextData() {
     
     verdana14.drawStringAsShapes(getSubCategory(), 980, 240);//category
 //
-//    verdana14.drawStringAsShapes(percent, 1040, 287);//percent
+   verdana14.drawStringAsShapes(getValue(), 1040, 287);//percent
     
-    verdana12.drawStringAsShapes("A bunch of random kjahkadsjhdskjkjdhjkdahdsjkhdaskjdash\nklsakjaslkjaslk text about bullshit", 940, 330);//text
+    verdana12.drawStringAsShapes(getText(), 940, 330);//text
     
-    verdana14.drawStringAsShapes("Comparision", 980, 450);//category
+    verdana14.drawStringAsShapes("Comparision", 980, 380);//category
     
-  verdana12.drawStringAsShapes(getRank(), 980, 490);//text
+  verdana12.drawStringAsShapes(getRank(), 950, 420);//text
+    verdana12.drawStringAsShapes(getRankValue(), 1150, 420);//text
+
     
     
     

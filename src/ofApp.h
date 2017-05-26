@@ -14,6 +14,7 @@
 #include "WeatherRealTime.h"
 #include "DemoDisplay.h"
 #include "WeatherOverview.h"
+#include "EnergyRealTime.h"
 class ofApp : public ofBaseApp{
     
 public:
@@ -267,6 +268,11 @@ public:
 
     
     DemoDisplay demoDisplay;
+    
+    EnergyRealTime energyRealTime;
+    EnergyRealTime energyRealTime2;
+    EnergyRealTime energyRealTime3;
+
 
 
 

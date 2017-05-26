@@ -22,6 +22,9 @@ class DemoElement {
 
     ofColor color;
     ofColor arccolor;
+    ofColor arccolor3;
+    ofColor arccolor2;
+
 
     float beginAngle;
     float endAngle;

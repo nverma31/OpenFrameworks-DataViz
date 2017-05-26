@@ -115,7 +115,7 @@ void WeatherRealTime::displayTemp() {
     tempPolyline.draw();
     if (i  == temp.size()) {
         for (int l =0; l < temp.size(); l++) {
-            DataPoint data = DataPoint(300+18*l, ofMap(temp[l], 18,25,150, 800), 5);
+            DataPoint data = DataPoint(300+18*l, ofMap(temp[l], 18,25,150, 800), 5, 50, std::to_string(temp[l]));
             data.display();
 //            ofNoFill();
 //            ofDrawCircle(100 + 30*l, temp[l], 2);
@@ -179,7 +179,7 @@ void WeatherRealTime::displayPress() {
     if (i  == press.size()) {
         for (int l =0; l < press.size(); l++) {
             
-            DataPoint data = DataPoint(300+18*l, ofMap(press[l], 1025,1035,150, 800), 5);
+            DataPoint data = DataPoint(300+18*l, ofMap(press[l], 1025,1035,150, 800), 5, 50, std::to_string(press[l]));
             cout <<"\npress[l] "<<press[l];
 
             data.display();
@@ -247,7 +247,7 @@ void WeatherRealTime::displayPrec() {
     if (i  == wind.size()) {
         for (int l =0; l < wind.size(); l++) {
             
-            DataPoint data = DataPoint(300+18*l, ofMap(wind[l], minTemp,maxTemp,200, 480), 5);
+            DataPoint data = DataPoint(300+18*l, ofMap(wind[l], minTemp,maxTemp,200, 480), 5, 50, std::to_string(wind[l]));
             cout <<"\npress[l] "<<wind[l];
             
             data.display();

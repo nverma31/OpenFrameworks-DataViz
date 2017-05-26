@@ -10,6 +10,11 @@ void ofApp::setup(){
     weatherOverview1.loaddata();
     weatherOverview2.loaddata();
     
+    
+    energyRealTime.loaddata();
+    energyRealTime2.loaddata();
+    energyRealTime3.loaddata();
+
     ofSetBackgroundAuto(true);
     
     frame = 0;
@@ -139,22 +144,22 @@ void ofApp::setup(){
     
 
 //    scroll = Scroll();
-    demoelement2 = DemoElement(pos, 30, 50, 280, 80, 100, 140);
+    demoelement2 = DemoElement(pos, 30, 50, 280, 170, 180, 190);
 //    ofAddListener(ofEvents().mousePressed, demoelement2, &DemoElement::mouseReleased);
 
     
 
-    demoelement3 = DemoElement(pos, 60, 80, 200, 50, 120, 140);
-    demoelement4 = DemoElement(pos, 90, 110, 300, 100, 115, 130);
+    demoelement3 = DemoElement(pos, 60, 80, 200, 165, 185, 195);
+    demoelement4 = DemoElement(pos, 90, 110, 300, 120, 140, 180);
    
-    demoelement5 = DemoElement(pos, 120, 140, 200, 70, 90, 100);
-    demoelement6 = DemoElement(pos, 150, 170, 200, 100, 80 , 120);
-    demoelement7 = DemoElement(pos, 180, 200, 340,50, 120, 140);
-    demoelement8 = DemoElement(pos, 210, 230, 200, 50, 120, 140);
-    demoelement9 = DemoElement(pos, 240, 260, 200, 50, 120, 140);
-    demoelement10 = DemoElement(pos, 270, 290, 200, 50, 120, 140);
-    demoelement11 = DemoElement(pos, 300, 320, 200, 80, 100, 140);
-    demoelement12 = DemoElement(pos, 330, 350, 200, 80, 100, 140);
+    demoelement5 = DemoElement(pos, 120, 140, 200, 130, 140, 170);
+    demoelement6 = DemoElement(pos, 150, 170, 200, 170, 180 , 190);
+    demoelement7 = DemoElement(pos, 180, 200, 340,170, 180, 190);
+    demoelement8 = DemoElement(pos, 210, 230, 200, 175, 185, 195);
+    demoelement9 = DemoElement(pos, 240, 260, 200, 170, 180, 190);
+    demoelement10 = DemoElement(pos, 270, 290, 200, 160, 170, 180);
+    demoelement11 = DemoElement(pos, 300, 320, 200, 160, 170, 180);
+    demoelement12 = DemoElement(pos, 330, 350, 200, 170, 180, 190);
     
 
 //    ofAddListener(ofEvents().mousePressed, demoelement3, &DemoElement::mouseReleased);
@@ -593,7 +598,29 @@ void ofApp::draw(){
 //        bg.resize(100,1000);
 
         img.draw(0,0);
-//        dataPoint.display();
+        ofImage tit;
+        tit.load("/Users/Neeraj/Desktop/assets/title.png");
+        
+        ofImage et;
+        et.load("/Users/Neeraj/Desktop/assets/et.png");
+        
+        
+        ofImage infot;
+        infot.load("/Users/Neeraj/Desktop/assets/infot.png");
+        
+        ofImage clt;
+        clt.load("/Users/Neeraj/Desktop/assets/clt.png");
+        ofImage dt;
+        dt.load("/Users/Neeraj/Desktop/assets/dt.png");
+        //        bg.resize(100,1000);
+        
+        tit.draw(460,150);
+        dt.draw(150,450);
+        clt.draw(450,450);
+        et.draw(700,450);
+        infot.draw(900,450);
+
+        //        dataPoint.display();
 
         
         ofPoint pos1;
@@ -628,7 +655,11 @@ void ofApp::draw(){
         ofImage img;
         img.load("/Users/Neeraj/Desktop/assets/bg5.png");
         img.draw(0,0);
-      
+        
+        ofImage infot;
+        infot.load("/Users/Neeraj/Desktop/assets/infotitle.png");
+        infot.draw(100,35);
+        home->draw(1,200,200);
         infob1->draw(1, 200,100);
         infob2->draw(1, 200,100);
         infob3->draw(1, 200,100);
@@ -651,8 +682,10 @@ void ofApp::draw(){
 //        weatherRealTime.displayTempText();
 
 
-        label2->draw();
-        home->draw(1, 200, 200);
+         ofImage infot;
+         infot.load("/Users/Neeraj/Desktop/assets/cltitle.png");
+         infot.draw(100,35);
+         home->draw(1, 200, 200);
         cl_over->draw(1,200,200);
         cl_real->draw(1,200,200);
         
@@ -733,8 +766,10 @@ void ofApp::draw(){
         img.draw(0,0);
 
         home->draw(1, 200, 200);
-        label1->draw();
-
+         
+         ofImage infot;
+         infot.load("/Users/Neeraj/Desktop/assets/demotitle.png");
+         infot.draw(100,35);
 
          demoDisplay.displayTextData();
         demoelement.display();
@@ -757,7 +792,10 @@ void ofApp::draw(){
     //Energy
      if (frame ==4) {
 
-        
+         
+         ofImage infot;
+         infot.load("/Users/Neeraj/Desktop/assets/etitle.png");
+         infot.draw(100,35);
         ofImage img;
         img.load("/Users/Neeraj/Desktop/assets/bg5.png");
 //         bg.resize(100,1000);
@@ -1097,15 +1135,45 @@ void ofApp::onButtonEvent(ofxDatGuiButtonEvent e)
     }
     
     if (e.target == infob1) {
+        ofImage img;
+        //    cout<<"cliecked";
+        
+        img.load("/Users/Neeraj/Desktop/assets/text.png");
+        //    baseImages.push_back(img);
+        scroll.updateContent(img);
         
     }
     if (e.target == infob2) {
+        ofImage img;
+        //    cout<<"cliecked";
+        
+        img.load("/Users/Neeraj/Desktop/assets/text2.png");
+        //    baseImages.push_back(img);
+        scroll.updateContent(img);
         
     }if (e.target == infob3) {
+        ofImage img;
+        //    cout<<"cliecked";
+        
+        img.load("/Users/Neeraj/Desktop/assets/text3.png");
+        //    baseImages.push_back(img);
+        scroll.updateContent(img);
         
     }if (e.target == infob4) {
+        ofImage img;
+        //    cout<<"cliecked";
+        
+        img.load("/Users/Neeraj/Desktop/assets/text4.png");
+        //    baseImages.push_back(img);
+        scroll.updateContent(img);
         
     }if (e.target == infob5) {
+        ofImage img;
+        //    cout<<"cliecked";
+        
+        img.load("/Users/Neeraj/Desktop/assets/text5.png");
+        //    baseImages.push_back(img);
+        scroll.updateContent(img);
         
     }
 }
@@ -1116,9 +1184,9 @@ void ofApp::positionButtons()
     back->setPosition(0,50);
 
     hdemo->setPosition(150,350);
-    hclimate->setPosition(400,350);
-    hinfo->setPosition(650,350);
-    henergy->setPosition(900,350);
+    hclimate->setPosition(450,350);
+    hinfo->setPosition(900,350);
+    henergy->setPosition(700,350);
     cl_over->setPosition(400, 50);
     cl_real->setPosition(650, 50);
 

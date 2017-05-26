@@ -29,10 +29,14 @@ public:
     float getAngle();
     float getLength();
     string rank = "1.Continent\n2.Madeira\n3.Azores";
+    string rank2 = "1.Azores\n2.Madeira\n3.Continent";
+    string rank3 = "1.Madeira\n2.Continent\n3.Azores";
 
     string getCategory();
     string getSubCategory();
     string getRank();
+    string getRankValue();
+
     string getValue();
     string getText();
 
