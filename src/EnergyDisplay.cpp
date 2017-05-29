@@ -26,7 +26,7 @@ void EnergyDisplay::setup(std::vector<float> &x, std::vector<float> &h ,std::vec
     for(int i = 0; i < boidCount; i++ ) {
         
         EnergyElement newBoid = EnergyElement(x[i],ofMap(h[i], 0, 100, 200, 480), ofMap(l[i], 0, 100, 200, 480), b[i]);
-        cout <<"\n highs " << h[i] << "\nlows " << l[i];
+//        cout <<"\n highs " << h[i] << "\nlows " << l[i];
         boids.push_back(newBoid);
     }
 }

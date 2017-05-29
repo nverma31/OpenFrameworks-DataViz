@@ -5,21 +5,25 @@
 //  Created by Neeraj Verma on 23/05/17.
 //
 //
+#include <ctime>
+#include <iostream>
+#include <string>     // std::string, std::stof
 
+using namespace std;
 #include "EnergyRealTime.h"
 EnergyRealTime::EnergyRealTime() {
-    url = "http://api.openweathermap.org/data/2.5/forecast?id=2267827&units=metric&appid=f8f91a5f5f0db2e682cc8af3dc51a655";
+     url = "http://aveiro.m-iti.org/sinais_energy_production/services/daily_production_request.php?date=";
     //
     //    tempPolyline.clear();
     //    pressPolyline.clear();
     verdana14.load("avenir-light.ttf", 14, true, true,true);
     verdana32.load("avenir-light.ttf", 32, true, true,true);
     verdana12.load("avenir-light.ttf", 10, true, true,true);
-    verdana18.load("avenir-light.ttf", 18, true, true,true);
+//    verdana50.load("avenir-light.ttf", 50, true, true,true);
     verdana22.load("avenir-light.ttf", 22, true, true,true);
     verdana26.load("avenir-light.ttf", 24, true, true,true);
     
-    //    verdana14.setLineHeight(18.0f);
+    //    verdana14.setLineHeight(50.0f);
     //    verdana14.setLetterSpacing(1.037);
     //    ofFill();
     
@@ -30,60 +34,100 @@ EnergyRealTime::EnergyRealTime() {
 
 void EnergyRealTime::loaddata(){
     
+        time_t t = time(0);   // get time now
+        struct tm * now = localtime( & t );
+//        cout << "calculating date" <<(now->tm_year + 1900) << '-'
+//        << (now->tm_mon + 1) << '-'
+//        <<  now->tm_mday
+//        << endl;
+    
+ 
+    string date = std::to_string(now->tm_year + 1900) + "-" + std::to_string(now->tm_mon + 1)+  "-" ;
+    
+//    cout << " date " <<date;
+    
+    vector<string> dates;
+    
+    dates.push_back(std::to_string(now->tm_mday - 7));
+    dates.push_back(std::to_string(now->tm_mday - 6));
+    dates.push_back(std::to_string(now->tm_mday - 5));
+
+    dates.push_back(std::to_string(now->tm_mday - 4));
+    dates.push_back(std::to_string(now->tm_mday - 3));
+    dates.push_back(std::to_string(now->tm_mday - 2));
+    dates.push_back(std::to_string(now->tm_mday - 1));
+    dates.push_back(std::to_string(now->tm_mday));
     
     
-    ofxJSONElement response;
+
+
+
+
+
+    vector <ofxJSONElement> responses;
+    
+    for (int i = 0; i<8; i++) {
+        url ="http://aveiro.m-iti.org/sinais_energy_production/services/daily_production_request.php?date="+date +dates[i];
+        ofxJSONElement response;
+        if (!response.open(url)){
+            cout << "Failed to parse JSON" << endl;
+            
+        }
+        else {
+            responses.push_back(response);
+        }
+
+    }
+    
     
     /*--------------------------------------------------------------------------*/
     // Loading and displaying confirmation message
     /*--------------------------------------------------------------------------*/
-    if (!response.open(url)){
-        cout << "Failed to parse JSON" << endl;
-        
-    }else{
-        cout << "JSON loaded successfully" << endl;
-        cout << "************************" << endl;
+   
+//        cout << "JSON loaded successfully" << endl;
+//        cout << "************************" << endl;
         
         // ofxJSON is doing all the heavy lifting of parsing the JSON
         // and allowing us to navigate through it:
         
         // City name is under response > current_observation > display_location > city
-        cout << response["list"] << endl;
-        for (Json::ArrayIndex i = 0; i < response["list"].size(); ++i)
+     
+    float total, thermal, hydro;
+    
+//        cout << responses[0]["prod_data"] << endl;
+    for (int k = 0 ; k < responses.size(); k++)
+    {
+        total =0;
+        thermal = 0;
+        hydro = 0;
+        for (Json::ArrayIndex i = 0; i < responses[k]["prod_data"].size(); ++i)
+            
         {
-            //            ofMap(temp[l], 18,22,200, 800)
-            float t =strtof((response["list"][i]["main"]["temp"].asString()).c_str(),0);
-            //            temp.push_back(ofMap(t, 18,25,150, 600));
-            float p = strtof((response["list"][i]["clouds"]["all"].asString()).c_str(),0);
-            temp.push_back(strtof((response["list"][i]["main"]["temp"].asString()).c_str(),0));
-            //            prec.push_back(ofMap(p, 0,100,150, 600));
-            
-            float pr =strtof((response["list"][i]["main"]["pressure"].asString()).c_str(),0);
-            //            press.push_back(ofMap(pr, 1021,1031,150, 600));
-            
-            prec.push_back(strtof((response["list"][i]["clouds"]["all"].asString()).c_str(),0));
-            press.push_back(strtof((response["list"][i]["main"]["pressure"].asString()).c_str(),0));
-            float w =strtof((response["list"][i]["wind"]["speed"].asString()).c_str(),0);
-            //            wind.push_back(ofMap(w, 0,10,150, 600));
-            wind.push_back(strtof((response["list"][i]["wind"]["speed"].asString()).c_str(),0));
-            
-            
-            string date =response["list"][i]["dt_txt"].asString();
-            dates.push_back(date);
-            cout<<" date"<<" "<<date[8]<<" "<<date[9];
-            string d = date.substr (8,2);
-            days.push_back(d);
-            cout << "  d  "<< d;
-            
+            //            ofMap(temp[l], 50,22,200, 480)
+                 total =total + strtof((responses[k]["prod_data"][i]["total"].asString()).c_str(),0);
+            thermal =thermal + strtof((responses[k]["prod_data"][i]["termica"].asString()).c_str(),0);
+            hydro = hydro +strtof((responses[k]["prod_data"][i]["hidrica"].asString()).c_str(),0);
         }
+        totals.push_back(total);
+        thermals.push_back(thermal);
+        hydros.push_back(hydro);
+    }
+    
+    
+    for (int k = 0 ; k < responses.size(); k++) {
+        cout <<"totals: "<<totals[k]<<endl;
+        cout <<"totals: "<<thermals[k]<<endl;
+        cout <<"totals: "<<hydros[k]<<endl;
+        cout <<"totals: "<<dates[k]<<endl;
+
     }
 }
 void EnergyRealTime::displayTempText() {
     
-    minTemp = *min_element(temp.begin(), temp.end());
-    minTemp = floor(minTemp * 100.0) / 100.0;
-    maxTemp = *max_element(temp.begin(), temp.end());
-    maxTemp = floor(maxTemp * 100.0) / 100.0;
+    minTemp = *min_element(totals.begin(), totals.end());
+//    minTemp = floor(minTemp * 100.0) / 100.0;
+    maxTemp = *max_element(totals.begin(), totals.end());
+//    maxTemp = floor(maxTemp * 100.0) / 100.0;
     
     
     float n = ((maxTemp-minTemp)/4);
@@ -109,46 +153,74 @@ void EnergyRealTime::displayTempText() {
     
     //entity
     
+//    ofImage img;
+//    img.load("/Users/Neeraj/Desktop/assets/years.png");
+//    img.draw(500, 550);
+//    
+//    ofImage img2;
+//    img2.load("/Users/Neeraj/Desktop/assets/Energy-Label.png");
+//    img2.draw(100, 340);
     ofPopStyle();
 }
 void EnergyRealTime::displayTemp() {
+    minTemp = *min_element(totals.begin(), totals.end());
+    maxTemp = *max_element(totals.begin(), totals.end());
+    ofPushStyle();
+    cout <<"In update"<<endl;
+    cout <<"totals[i] "<<totals[i]<<endl;
+    cout <<" i  " <<i;
+    ofSetColor(ofColor::white);
     tempPolyline.draw();
-    if (i  == temp.size()) {
-        for (int l =0; l < temp.size(); l++) {
-            DataPoint data = DataPoint(300+18*l, ofMap(temp[l], 18,25,150, 800), 5, 50, std::to_string(temp[l]));
+
+    ofPopStyle();
+    
+//    cout <<"In Display";
+//    if (count  == totals.size()) {
+        for (int l =0; l < 7; l++) {
+            DataPoint data = DataPoint(300+50*l, ofMap(totals[l], minTemp,maxTemp,150, 480), 5, 50, std::to_string(totals[l]));
             data.display();
+            cout <<"totals[l] "<<totals[l]<<endl<<ofMap(totals[l], minTemp,maxTemp,150, 480)<<endl;
+            cout << "   " <<300+50*l;
             //            ofNoFill();
             //            ofDrawCircle(100 + 30*l, temp[l], 2);
         }
-    }
-    for (int k =0; k < days.size(); k= k+4) {
+//    }
+    for (int k =0; k < dates.size(); k++) {
         
-        verdana12.drawStringAsShapes(days[k], 300+18*k, 500);
+        verdana12.drawStringAsShapes(dates[k], 300+50*k, 500);
         
+//    }}
     }
 }
 
 void EnergyRealTime::updateTemp() {
-    if (i <temp.size()) {
-        tempPolyline.lineTo(300 + 18*i, ofMap(temp[i], 18,25,150, 800));
+    minTemp = *min_element(totals.begin(), totals.end());
+    maxTemp = *max_element(totals.begin(), totals.end());
+
+    if (count <7) {
+        tempPolyline.lineTo(300 + 50*count, ofMap(totals[i], minTemp,maxTemp,150, 480));
         ofPushStyle();
+        cout <<"In update"<<endl;
+        cout <<"totals[i] "<<totals[i]<<endl;
+cout <<" count  " <<count;
         ofSetColor(ofColor::red);
         ofPopStyle();
         
-        i++;}
+        count++;
+    }
     
 }
 
 //Real Time Pressure
 void EnergyRealTime::displayPressText() {
     
-    minTemp = *min_element(press.begin(), press.end());
-    minTemp = floor(minTemp * 100.0) / 100.0;
-    maxTemp = *max_element(press.begin(), press.end());
-    maxTemp = floor(maxTemp * 100.0) / 100.0;
-    
-    cout <<"minTemp"<<minTemp ;
-    cout<<"\nmaxTemp " <<maxTemp;
+    minTemp = *min_element(thermals.begin(), thermals.end());
+//    minTemp = floor(minTemp * 100.0) / 100.0;
+    maxTemp = *max_element(thermals.begin(), thermals.end());
+//    maxTemp = floor(maxTemp * 100.0) / 100.0;
+//
+//    cout <<"minTemp"<<minTemp ;
+//    cout<<"\nmaxTemp " <<maxTemp;
     float n = ((maxTemp-minTemp)/4);
     n = floor(n * 100.0) / 100.0;
     
@@ -169,34 +241,53 @@ void EnergyRealTime::displayPressText() {
     ofDrawLine(300, 410, 1000, 410);
     
     ofDrawLine(300, 480, 1000, 480);
-    
+//    
+//    ofImage img;
+//    img.load("/Users/Neeraj/Desktop/assets/years.png");
+//    img.draw(500, 550);
+//    
+//    ofImage img2;
+//    img2.load("/Users/Neeraj/Desktop/assets/Energy-Label.png");
+//    img2.draw(100, 340);
     //entity
     
     ofPopStyle();
 }
 void EnergyRealTime::displayPress() {
+    minTemp = *min_element(thermals.begin(), thermals.end());
+    maxTemp = *max_element(thermals.begin(), thermals.end());
     pressPolyline.draw();
-    if (i  == press.size()) {
-        for (int l =0; l < press.size(); l++) {
+    if (i  == thermals.size()) {
+        for (int l =0; l < thermals.size(); l++) {
             
-            DataPoint data = DataPoint(300+18*l, ofMap(press[l], 1025,1035,150, 800), 5, 50, std::to_string(press[l]));
-            cout <<"\npress[l] "<<press[l];
+            DataPoint data = DataPoint(300+50*l, ofMap(thermals[l], minTemp,maxTemp,150, 480), 5, 50, std::to_string(thermals[l]));
+//            cout <<"\npress[l] "<<press[l];
             
             data.display();
             //            ofNoFill();
             //            ofDrawCircle(100 + 30*l, temp[l], 2);
         }
     }
-    for (int k =0; k < days.size(); k= k+4) {
+    for (int k =0; k < dates.size(); k++) {
         
-        verdana12.drawStringAsShapes(days[k], 300+18*k, 500);
+        verdana12.drawStringAsShapes(dates[k], 300+50*k, 500);
         
+//        ofImage img;
+//        img.load("/Users/Neeraj/Desktop/assets/label.png");
+//        img.draw(500, 550);
+//        
+//        ofImage img2;
+//        img2.load("/Users/Neeraj/Desktop/assets/labeltemp.png");
+//        img2.draw(100, 340);
     }
 }
 
 void EnergyRealTime::updatePress() {
+    minTemp = *min_element(thermals.begin(), thermals.end());
+    maxTemp = *max_element(thermals.begin(), thermals.end());
+
     if (i <press.size()) {
-        pressPolyline.lineTo(300 + 18*i, ofMap(press[i], 1025,1035,150, 800));
+        pressPolyline.lineTo(300 + 50*i, ofMap(thermals[i], minTemp,maxTemp,150, 480));
         cout <<"\npress[i] "<<press[i];
         ofPushStyle();
         ofSetColor(ofColor::red);
@@ -209,12 +300,12 @@ void EnergyRealTime::updatePress() {
 
 void EnergyRealTime::displayPrecText() {
     
-    minTemp = *min_element(wind.begin(), wind.end());
-    minTemp = floor(minTemp * 100.0) / 100.0;
-    maxTemp = *max_element(wind.begin(), wind.end());
+    minTemp = *min_element(hydros.begin(), hydros.end());
+//    minTemp = floor(minTemp * 100.0) / 100.0;
+    maxTemp = *max_element(hydros.begin(), hydros.end());
     
-    cout <<"minTemp"<<minTemp ;
-    cout<<"\nmaxTemp " <<maxTemp;
+//    cout <<"minTemp"<<minTemp ;
+//    cout<<"\nmaxTemp " <<maxTemp;
     float n = ((maxTemp-minTemp)/4);
     n = floor(n * 100.0) / 100.0;
     
@@ -238,37 +329,44 @@ void EnergyRealTime::displayPrecText() {
     
     //entity
     
+//    ofImage img;
+//    img.load("/Users/Neeraj/Desktop/assets/years.png");
+//    img.draw(500, 550);
+//    
+//    ofImage img2;
+//    img2.load("/Users/Neeraj/Desktop/assets/Energy-Label.png");
+//    img2.draw(100, 340);
     ofPopStyle();
 }
 void EnergyRealTime::displayPrec() {
-    minTemp = *min_element(wind.begin(), wind.end());
-    maxTemp = *max_element(wind.begin(), wind.end());
+    minTemp = *min_element(hydros.begin(), hydros.end());
+    maxTemp = *max_element(hydros.begin(), hydros.end());
     pressPolyline.draw();
     if (i  == wind.size()) {
         for (int l =0; l < wind.size(); l++) {
             
-            DataPoint data = DataPoint(300+18*l, ofMap(wind[l], minTemp,maxTemp,200, 480), 5, 50, std::to_string(wind[l]));
-            cout <<"\npress[l] "<<wind[l];
+            DataPoint data = DataPoint(300+50*l, ofMap(hydros[l], minTemp,maxTemp,200, 480), 5, 50, std::to_string(hydros[l]));
+            cout <<"\npress[l] "<<hydros[l];
             
             data.display();
             //            ofNoFill();
             //            ofDrawCircle(100 + 30*l, temp[l], 2);
         }
     }
-    for (int k =0; k < days.size(); k= k+4) {
+    for (int k =0; k < dates.size(); k++) {
         
-        verdana12.drawStringAsShapes(days[k], 300+18*k, 500);
+        verdana12.drawStringAsShapes(dates[k], 300+50*k, 500);
         
     }
 }
 
 void EnergyRealTime::updatePrec() {
-    minTemp = *min_element(wind.begin(), wind.end());
-    maxTemp = *max_element(wind.begin(), wind.end());
+    minTemp = *min_element(hydros.begin(), hydros.end());
+    maxTemp = *max_element(hydros.begin(), hydros.end());
     
     if (i <wind.size()) {
-        pressPolyline.lineTo(300 + 18*i, ofMap(wind[i], minTemp,maxTemp,200, 480));
-        cout <<"\npress[i] "<<press[i];
+        pressPolyline.lineTo(300 + 50*i, ofMap(hydros[i], minTemp,maxTemp,200, 480));
+        cout <<"\npress[i] "<<hydros[i];
         ofPushStyle();
         ofSetColor(ofColor::red);
         ofPopStyle();

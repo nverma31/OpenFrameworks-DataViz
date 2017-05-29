@@ -16,7 +16,8 @@ DataPoint::DataPoint(float xpos, float ypos, float rad, float wid, string txt){
     x = xpos;
     y = ypos;
     radius = rad;
-    
+    width =wid;
+    text = txt;
 }
 
 void DataPoint::display(){
@@ -24,6 +25,7 @@ void DataPoint::display(){
     ofDrawCircle(x, y, 2);
     if (isinside()) {
 //        ofDrawRectangle(x -20, y+20, width, 25);
+        text = text.substr(0,4);
         ofDrawBitmapString(text, x-10, y+25);
     }
 }

@@ -19,7 +19,7 @@ EnergyElement::EnergyElement(float x, float h, float l, float b) {
     width = 1;
     inc = 1;
     
-    cout <<"xpos" <<xpos;
+//    cout <<"xpos" <<xpos;
 
 
     ofAddListener(ofEvents().mousePressed, this, &EnergyElement::_mouseReleased);
@@ -30,6 +30,10 @@ EnergyElement::EnergyElement(float x, float h, float l, float b) {
 void EnergyElement::display() {
     int i =0;
     speed++;
+    
+    ofImage img;
+    img.load("/Users/Neeraj/Desktop/assets/leg1.png");
+    img.draw(430, 510);
     
 //    cout << "  high "<< high << "   Low  " << low <<"  base  " << base << "speed  " <<speed;
     ofPushStyle();

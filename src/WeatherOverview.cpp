@@ -142,10 +142,12 @@ void WeatherOverview::displayTempText() {
     ofPopStyle();
 }
 void WeatherOverview::displayTemp() {
+    minTemp = *min_element(temp.begin(), temp.end());
+    maxTemp = *max_element(temp.begin(), temp.end());
     tempPolyline.draw();
     if (i  == temp.size()) {
         for (int l =0; l < temp.size(); l++) {
-            DataPoint data = DataPoint(300+50*l, ofMap(temp[l], 16,25,150, 800), 5, 50, std::to_string(temp[l]));
+            DataPoint data = DataPoint(300+50*l, ofMap(temp[l], minTemp -1,maxTemp + 1,150, 480), 5, 50, std::to_string(temp[l]));
             data.display();
             //            ofNoFill();
             //            ofDrawCircle(100 + 30*l, temp[l], 2);
@@ -156,11 +158,22 @@ void WeatherOverview::displayTemp() {
         verdana12.drawStringAsShapes(days[k], 300+50*k, 500);
         
     }
+//    ofImage img;
+//    img.load("/Users/Neeraj/Desktop/assets/years.png");
+//    img.draw(500, 550);
+//    
+//    ofImage img2;
+//    img2.load("/Users/Neeraj/Desktop/assets/labeltemp.png");
+//    img2.draw(100, 340);
+    ofPopStyle();
 }
 
 void WeatherOverview::updateTemp() {
+    minTemp = *min_element(temp.begin(), temp.end());
+    maxTemp = *max_element(temp.begin(), temp.end());
+
     if (i <temp.size()) {
-        tempPolyline.lineTo(300 + 50*i, ofMap(temp[i], 16,25,150, 800));
+        tempPolyline.lineTo(300 + 50*i, ofMap(temp[i], minTemp -1,maxTemp + 1,150, 480));
         ofPushStyle();
         ofSetColor(ofColor::red);
         ofPopStyle();
@@ -173,9 +186,7 @@ void WeatherOverview::updateTemp() {
 void WeatherOverview::displayPressText() {
     
     minTemp = *min_element(prec.begin(), prec.end());
-    minTemp = floor(minTemp * 100.0) / 100.0;
     maxTemp = *max_element(prec.begin(), prec.end());
-    maxTemp = floor(maxTemp * 100.0) / 100.0;
     
     cout <<"minTemp"<<minTemp ;
     cout<<"\nmaxTemp " <<maxTemp;
@@ -201,6 +212,14 @@ void WeatherOverview::displayPressText() {
     ofDrawLine(300, 480, 1000, 480);
     
     //entity
+//    ofImage img;
+//    img.load("/Users/Neeraj/Desktop/assets/years.png");
+//    img.draw(500, 550);
+//    
+//    ofImage img2;
+//    img2.load("/Users/Neeraj/Desktop/assets/pressurelabel.png");
+//    img2.draw(100, 340);
+
     
     ofPopStyle();
 }
@@ -213,7 +232,7 @@ void WeatherOverview::displayPress() {
     if (i  == prec.size()) {
         for (int l =0; l < prec.size(); l++) {
             
-            DataPoint data = DataPoint(300+50*l, ofMap(prec[l], minTemp-5,maxTemp+5,150, 800), 5, 50, std::to_string(prec[l]));
+            DataPoint data = DataPoint(300+50*l, ofMap(prec[l], minTemp-5,maxTemp+5,150, 480), 5, 50, std::to_string(prec[l]));
 //            cout <<"\npress[l] "<<prec[l];
             
             data.display();
@@ -232,7 +251,7 @@ void WeatherOverview::updatePress() {
     minTemp = *min_element(prec.begin(), prec.end());
     maxTemp = *max_element(prec.begin(), prec.end());
     if (i <prec.size()) {
-        pressPolyline.lineTo(300 + 18*i, ofMap(prec[i], minTemp-5,maxTemp+5,150, 800));
+        pressPolyline.lineTo(300 + 50*i, ofMap(prec[i], minTemp-5,maxTemp+5,150, 480));
         cout <<"\npress[i] "<<prec[i];
         ofPushStyle();
         ofSetColor(ofColor::red);
@@ -272,6 +291,15 @@ void WeatherOverview::displayPrecText() {
     
     ofDrawLine(300, 480, 1000, 480);
     
+    ofImage img;
+//    img.load("/Users/Neeraj/Desktop/assets/years.png");
+//    img.draw(500, 550);
+//    
+//    ofImage img2;
+//    img2.load("/Users/Neeraj/Desktop/assets/windlabel.png");
+//    img2.draw(100, 340);
+
+    
     //entity
     
     ofPopStyle();
@@ -279,19 +307,21 @@ void WeatherOverview::displayPrecText() {
 void WeatherOverview::displayPrec() {
     minTemp = *min_element(wind.begin(), wind.end());
     maxTemp = *max_element(wind.begin(), wind.end());
-    pressPolyline.draw();
+    windPolyline.draw();
     if (i  == wind.size()) {
         for (int l =0; l < wind.size(); l++) {
             
-            DataPoint data = DataPoint(300+50*l, ofMap(wind[l], minTemp,maxTemp,200, 480), 5,50, std::to_string(wind[l]));
+            DataPoint data = DataPoint(300+50*l, ofMap(wind[l], minTemp ,maxTemp,300, 480), 5,50, std::to_string(wind[l]));
             cout <<"\npress[l] "<<wind[l];
+            cout << "in Update" <<300 + 50*i << "   " << ofMap(wind[l], minTemp ,maxTemp ,300, 480);
+
             
             data.display();
             //            ofNoFill();
             //            ofDrawCircle(100 + 30*l, temp[l], 2);
         }
     }
-    for (int k =0; k < days.size(); k= k+4) {
+    for (int k =0; k < days.size(); k++) {
         
         verdana12.drawStringAsShapes(days[k], 300+50*k, 500);
         
@@ -303,7 +333,8 @@ void WeatherOverview::updatePrec() {
     maxTemp = *max_element(wind.begin(), wind.end());
     
     if (i <wind.size()) {
-        pressPolyline.lineTo(300 + 50*i, ofMap(wind[i], minTemp,maxTemp,200, 480));
+        windPolyline.lineTo(300 + 50*i, ofMap(wind[i], minTemp ,maxTemp ,300, 480));
+        cout << "in Update" <<300 + 50*i << "   " << ofMap(wind[i], minTemp ,maxTemp ,300, 480);
 //        cout <<"\npress[i] "<<press[i];
         ofPushStyle();
         ofSetColor(ofColor::red);

@@ -6,6 +6,10 @@ void ofApp::setup(){
     weatherRealTime1.loaddata();
     weatherRealTime2.loaddata();
     
+    weatherRealTime3.loaddata();
+    weatherRealTime4.loaddata();
+    weatherRealTime5.loaddata();
+    
     weatherOverview.loaddata();
     weatherOverview1.loaddata();
     weatherOverview2.loaddata();
@@ -28,7 +32,7 @@ void ofApp::setup(){
     butt3.setup(200, 400, 500, ofColor::grey);
     butt4.setup(200, 400, 700, ofColor::grey);
 
-    demoelement = DemoElement(pos, 0, 20, 200, 60, 90, 110);
+    demoelement = DemoElement(pos, 0, 20, 150, 60, 90, 110);
     
     
    
@@ -144,22 +148,22 @@ void ofApp::setup(){
     
 
 //    scroll = Scroll();
-    demoelement2 = DemoElement(pos, 30, 50, 280, 170, 180, 190);
+    demoelement2 = DemoElement(pos, 30, 50, 320, 170, 180, 190);
 //    ofAddListener(ofEvents().mousePressed, demoelement2, &DemoElement::mouseReleased);
 
     
 
-    demoelement3 = DemoElement(pos, 60, 80, 200, 165, 185, 195);
-    demoelement4 = DemoElement(pos, 90, 110, 300, 120, 140, 180);
+    demoelement3 = DemoElement(pos, 60, 80, 320, 165, 185, 195);
+    demoelement4 = DemoElement(pos, 90, 110, 230, 120, 140, 180);
    
-    demoelement5 = DemoElement(pos, 120, 140, 200, 130, 140, 170);
-    demoelement6 = DemoElement(pos, 150, 170, 200, 170, 180 , 190);
-    demoelement7 = DemoElement(pos, 180, 200, 340,170, 180, 190);
-    demoelement8 = DemoElement(pos, 210, 230, 200, 175, 185, 195);
-    demoelement9 = DemoElement(pos, 240, 260, 200, 170, 180, 190);
-    demoelement10 = DemoElement(pos, 270, 290, 200, 160, 170, 180);
-    demoelement11 = DemoElement(pos, 300, 320, 200, 160, 170, 180);
-    demoelement12 = DemoElement(pos, 330, 350, 200, 170, 180, 190);
+    demoelement5 = DemoElement(pos, 120, 140, 280, 130, 140, 170);
+    demoelement6 = DemoElement(pos, 150, 170, 310, 170, 180 , 190);
+    demoelement7 = DemoElement(pos, 180, 200, 310,170, 180, 190);
+    demoelement8 = DemoElement(pos, 210, 230, 300, 175, 185, 195);
+    demoelement9 = DemoElement(pos, 240, 260, 290, 170, 180, 190);
+    demoelement10 = DemoElement(pos, 270, 290, 280, 160, 170, 180);
+    demoelement11 = DemoElement(pos, 300, 320, 280, 160, 170, 180);
+    demoelement12 = DemoElement(pos, 330, 350, 300, 170, 180, 190);
     
 
 //    ofAddListener(ofEvents().mousePressed, demoelement3, &DemoElement::mouseReleased);
@@ -267,6 +271,8 @@ void ofApp::setup(){
     theme =  new ofxDatGuiThemeWireframe();
     themesmoke =  new ofxDatGuiThemeIcons();
 
+    themeiconsSmall =  new ofxDatGuiThemeIconsSmall();
+
     // instantiate a basic button and a toggle button
     
     home = new ofxDatGuiButton("",h);
@@ -322,6 +328,12 @@ void ofApp::setup(){
     infob4 = new ofxDatGuiButton("",inb4);
     infob5 = new ofxDatGuiButton("",inb5);
 
+    ofImage eb1;
+    eb1.load("/Users/Neeraj/Desktop/assets/etbutt.png");
+    ofImage eb2;
+    eb2.load("/Users/Neeraj/Desktop/assets/hydrobutt.png");
+    ofImage eb3;
+    eb3.load("/Users/Neeraj/Desktop/assets/thermalbutt.png");
 
     
     cl_over_temp = new ofxDatGuiButton("",real_temp);
@@ -345,9 +357,9 @@ void ofApp::setup(){
     en_main = new ofxDatGuiButton("Main");
     en_daily = new ofxDatGuiButton("daily");
     en_bio = new ofxDatGuiButton("Biomass");
-    en_hyd = new ofxDatGuiButton("Hydro");
-    en_wind = new ofxDatGuiButton("Wind");
-    en_thermal = new ofxDatGuiButton("Thermal");
+    en_hyd = new ofxDatGuiButton("",eb2);
+    en_wind = new ofxDatGuiButton("",eb1);
+    en_thermal = new ofxDatGuiButton("",eb3);
     
     ofImage hvt;
     hvt.load("/Users/Neeraj/Desktop/assets/hvt.png");
@@ -380,9 +392,9 @@ void ofApp::setup(){
     infob4->setTheme(themesmoke);
     infob5->setTheme(themesmoke);
 
-    cl_over_temp->setTheme(themesmoke);
-    cl_over_press->setTheme(themesmoke);
-    cl_over_wind->setTheme(themesmoke);
+    cl_over_temp->setTheme(themeiconsSmall);
+    cl_over_press->setTheme(themeiconsSmall);
+    cl_over_wind->setTheme(themeiconsSmall);
 
     cl_over->setTheme(themesmoke);
     cl_real->setTheme(themesmoke);
@@ -391,18 +403,18 @@ void ofApp::setup(){
     cl_hourly->setTheme(theme);
     cl_pre->setTheme(theme);
     
-    cl_sea->setTheme(themesmoke);
-    cl_wind->setTheme(themesmoke);
-    cl_press->setTheme(themesmoke);
+    cl_sea->setTheme(themeiconsSmall);
+    cl_wind->setTheme(themeiconsSmall);
+    cl_press->setTheme(themeiconsSmall);
     
     en_over->setTheme(themesmoke);
     en_real->setTheme(themesmoke);
     en_main->setTheme(theme);
     en_daily->setTheme(theme);
     en_bio->setTheme(theme);
-    en_hyd->setTheme(theme);
-    en_wind->setTheme(theme);
-    en_thermal->setTheme(theme);
+    en_hyd->setTheme(themesmoke);
+    en_wind->setTheme(themesmoke);
+    en_thermal->setTheme(themesmoke);
     en_hcc->setTheme(themesmoke);
     en_hct->setTheme(themesmoke);
     en_pcb->setTheme(themesmoke);
@@ -560,7 +572,7 @@ void ofApp::update(){
             cl_press->update();
             cl_wind->update();
         }
-    
+        
     cl_main->update();
     cl_daily->update();
     cl_hourly->update();
@@ -570,9 +582,50 @@ void ofApp::update(){
     if (frame == 4) {
         en_over->update();
         en_real->update();
+        if (screenNumber ==41) {
         en_hct->update();
         en_hcc->update();
         en_pcb->update();
+        }
+        if (screenNumber ==42) {
+            en_hct->update();
+            en_hcc->update();
+            en_pcb->update();
+        }
+        
+        if (screenNumber ==43) {
+            en_hct->update();
+            en_hcc->update();
+            en_pcb->update();
+        }
+        if (screenNumber == 411){
+            en_wind->update();
+            en_hyd->update();
+            en_thermal->update();
+//            energyRealTime3.updatePrec();
+            weatherRealTime5.updatePress();
+
+        }
+        if (screenNumber == 412){
+            en_thermal->update();
+            en_hyd->update();
+            en_wind->update();
+//            energyRealTime2.updatePress();
+            weatherRealTime4.updatePress();
+
+
+            
+        }
+        if (screenNumber == 413){
+            en_thermal->update();
+            en_hyd->update();
+            en_wind->update();
+//            energyRealTime.updateTemp();
+            weatherRealTime3.updatePress();
+
+
+            
+        }
     }
     if (frame == 3) {
         infob1->update();
@@ -804,16 +857,11 @@ void ofApp::draw(){
          ofImage lowpercent;
 
          lowpercent.load("/Users/Neeraj/Desktop/assets/0.png");
-         lowpercent.draw(400, 480);
          
          ofImage highpercent;
          
          highpercent.load("/Users/Neeraj/Desktop/assets/100.png");
-         highpercent.draw(400, 220);
 
-         en_hct->draw(1, 200, 200);
-         en_pcb->draw(1, 200, 200);
-         en_hcc->draw(1, 200, 200);
          
          en_over->draw(1,200,200);
          en_real->draw(1,200,200);
@@ -823,6 +871,14 @@ void ofApp::draw(){
               ofImage etext1;
               etext1.load("/Users/Neeraj/Desktop/assets/etext2.png");
               etext1.draw(450, 150);
+              en_hct->draw(1, 200, 200);
+              en_pcb->draw(1, 200, 200);
+              en_hcc->draw(1, 200, 200);
+              lowpercent.draw(400, 480);
+              highpercent.draw(400, 220);
+
+
+              
 
           }
          if (screenNumber == 42) {
@@ -830,59 +886,64 @@ void ofApp::draw(){
              etext.load("/Users/Neeraj/Desktop/assets/etext.png");
              etext.draw(450, 150);
          energyDisplay1.display();
+             en_hct->draw(1, 200, 200);
+             en_pcb->draw(1, 200, 200);
+             en_hcc->draw(1, 200, 200);
+             lowpercent.draw(400, 480);
+             highpercent.draw(400, 220);
+             
          }
          if (screenNumber == 43) {
              ofImage etext2;
              etext2.load("/Users/Neeraj/Desktop/assets/etext3.png");
              etext2.draw(450, 150);
+             en_hct->draw(1, 200, 200);
+             en_pcb->draw(1, 200, 200);
+             en_hcc->draw(1, 200, 200);
+             lowpercent.draw(400, 480);
+             highpercent.draw(400, 220);
 
          energyDisplay2.display();
          }
-        label4->draw();
+//        label4->draw();
         home->draw(1, 200, 200);
 //        back->draw(1, 200, 200);
         
         if (screenNumber == 413) {
 
-            en_hyd->draw();
-            en_thermal->draw();
-            en_wind->draw();
-            en_bio ->draw();
+            en_wind->draw(1,200,200);
+            en_hyd->draw(1,200,200);
+            en_thermal->draw(1,200,200);
+            weatherRealTime5.displayPress();
+            weatherRealTime5.displayPressText();
             
             
         }
         if (screenNumber == 411) {
             
-            en_hyd->draw();
-            en_thermal->draw();
-            en_wind->draw();
-            en_bio ->draw();
-          
+            
+            en_wind->draw(1,200,200);
+            en_hyd->draw(1,200,200);
+            en_thermal->draw(1,200,200);
+            weatherRealTime4.displayPress();
+            weatherRealTime4.displayPressText();
+            
+           
+
             
         }
         if (screenNumber == 412) {
             
-            en_hyd->draw();
-            en_thermal->draw();
-            en_wind->draw();
-            en_bio ->draw();
+            en_wind->draw(1,200,200);
+            en_hyd->draw(1,200,200);
+            en_thermal->draw(1,200,200);
+            weatherRealTime3.displayPress();
+            weatherRealTime3.displayPressText();
             
-            ofPoint pos2;
-            pos2.x = 400;
-            pos2.y = 0;
-            avgSeaSurface.draw("line", pos2, test);
             
         }
         if (screenNumber == 415) {
-            en_hyd->draw();
-            en_thermal->draw();
-            en_wind->draw();
-            en_bio ->draw();
-            
-            ofPoint pos2;
-            pos2.x = 400;
-            pos2.y = 0;
-            avgSeaSurface.draw("line", pos2, test1);
+          
             
         }
        
@@ -1043,18 +1104,25 @@ void ofApp::onButtonEvent(ofxDatGuiButtonEvent e)
 
     }
     
+    if (e.target == en_over){
+        frame =4;
+        screenNumber = 41;
+        
+    }
+    
     if (e.target == en_real){
         frame =4;
         screenNumber = 411;
-
+        
     }
+ 
     if (e.target == en_hyd){
         frame =4;
         screenNumber = 412;
 
     } if (e.target == en_wind){
         frame =4;
-        screenNumber = 413;
+        screenNumber = 411;
 
     } if (e.target == en_bio){
         frame =4;
@@ -1062,7 +1130,7 @@ void ofApp::onButtonEvent(ofxDatGuiButtonEvent e)
 
     } if (e.target == en_thermal){
         frame =4;
-        screenNumber = 415;
+        screenNumber = 413;
 
     }
     
@@ -1096,14 +1164,14 @@ void ofApp::onButtonEvent(ofxDatGuiButtonEvent e)
     }if (e.target == cl_over_press) {
         cout<<"button" << e.target;
         frame =2;
-        screenNumber = 225;
+        screenNumber = 226;
 //        cout<<"Frame"<<frame;
         cout <<"\nscreenNumber" <<screenNumber;
 
     }
     if (e.target == cl_over_wind) {
         cout<<"button" << e.target;
-        screenNumber = 226;
+        screenNumber = 225;
         frame =2;
         cout <<"\nscreenNumber" <<screenNumber;
 
@@ -1204,10 +1272,10 @@ void ofApp::positionButtons()
     
     en_bio->setPosition(100, 450);
     
-    en_hyd->setPosition(400,450);
+    en_hyd->setPosition(750,550);
     
-    en_thermal->setPosition(1000, 450);
-    en_wind->setPosition(700, 450);
+    en_thermal->setPosition(600, 550);
+    en_wind->setPosition(450, 550);
     
     
     en_pcb->setPosition(750,550);

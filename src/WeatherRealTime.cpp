@@ -41,17 +41,17 @@ void WeatherRealTime::loaddata(){
         cout << "Failed to parse JSON" << endl;
         
     }else{
-        cout << "JSON loaded successfully" << endl;
-        cout << "************************" << endl;
+//        cout << "JSON loaded successfully" << endl;
+//        cout << "************************" << endl;
         
         // ofxJSON is doing all the heavy lifting of parsing the JSON
         // and allowing us to navigate through it:
         
         // City name is under response > current_observation > display_location > city
-        cout << response["list"] << endl;
+//        cout << response["list"] << endl;
         for (Json::ArrayIndex i = 0; i < response["list"].size(); ++i)
         {
-//            ofMap(temp[l], 18,22,200, 800)
+//            ofMap(temp[l], 18,22,200, 480)
             float t =strtof((response["list"][i]["main"]["temp"].asString()).c_str(),0);
 //            temp.push_back(ofMap(t, 18,25,150, 600));
             float p = strtof((response["list"][i]["clouds"]["all"].asString()).c_str(),0);
@@ -70,10 +70,10 @@ void WeatherRealTime::loaddata(){
             
             string date =response["list"][i]["dt_txt"].asString();
             dates.push_back(date);
-            cout<<" date"<<" "<<date[8]<<" "<<date[9];
+//            cout<<" date"<<" "<<date[8]<<" "<<date[9];
             string d = date.substr (8,2);
             days.push_back(d);
-            cout << "  d  "<< d;
+//            cout << "  d  "<< d;
 
         }
     }
@@ -88,6 +88,7 @@ void WeatherRealTime::displayTempText() {
   
     float n = ((maxTemp-minTemp)/4);
     n = floor(n * 100.0) / 100.0;
+    
 
     
 //    int min = static_cast<int>(minTemp);
@@ -112,12 +113,18 @@ void WeatherRealTime::displayTempText() {
     ofPopStyle();
 }
 void WeatherRealTime::displayTemp() {
+    
+    minTemp = *min_element(temp.begin(), temp.end());
+    maxTemp = *max_element(temp.begin(), temp.end());
+    
     tempPolyline.draw();
     if (i  == temp.size()) {
         for (int l =0; l < temp.size(); l++) {
-            DataPoint data = DataPoint(300+18*l, ofMap(temp[l], 18,25,150, 800), 5, 50, std::to_string(temp[l]));
+            DataPoint data = DataPoint(300+18*l, ofMap(temp[l], minTemp ,maxTemp,150, 480), 5, 50, std::to_string(temp[l]));
             data.display();
 //            ofNoFill();
+            cout <<"temp[] l  " <<temp[l]<<endl;
+
 //            ofDrawCircle(100 + 30*l, temp[l], 2);
         }
     }
@@ -126,11 +133,25 @@ void WeatherRealTime::displayTemp() {
         verdana12.drawStringAsShapes(days[k], 300+18*k, 500);
         
     }
+//    ofImage img;
+//    
+//    img.load("/Users/Neeraj/Desktop/assets/label.png");
+//    img.draw(500, 550);
+//    
+//    ofImage img2;
+//    img2.load("/Users/Neeraj/Desktop/assets/labeltemp.png");
+//    img.resize(100,100);
+//    img2.draw(100, 340);
+
 }
 
+
 void WeatherRealTime::updateTemp() {
+    
+    minTemp = *min_element(temp.begin(), temp.end());
+    maxTemp = *max_element(temp.begin(), temp.end());
     if (i <temp.size()) {
-    tempPolyline.lineTo(300 + 18*i, ofMap(temp[i], 18,25,150, 800));
+    tempPolyline.lineTo(300 + 18*i, ofMap(temp[i], minTemp ,maxTemp,150, 480));
         ofPushStyle();
         ofSetColor(ofColor::red);
         ofPopStyle();
@@ -143,12 +164,10 @@ void WeatherRealTime::updateTemp() {
 void WeatherRealTime::displayPressText() {
     
     minTemp = *min_element(press.begin(), press.end());
-    minTemp = floor(minTemp * 100.0) / 100.0;
     maxTemp = *max_element(press.begin(), press.end());
-    maxTemp = floor(maxTemp * 100.0) / 100.0;
     
-    cout <<"minTemp"<<minTemp ;
-    cout<<"\nmaxTemp " <<maxTemp;
+//    cout <<"minTemp"<<minTemp ;
+//    cout<<"\nmaxTemp " <<maxTemp;
     float n = ((maxTemp-minTemp)/4);
     n = floor(n * 100.0) / 100.0;
     
@@ -169,18 +188,32 @@ void WeatherRealTime::displayPressText() {
     ofDrawLine(300, 410, 1000, 410);
     
     ofDrawLine(300, 480, 1000, 480);
+    ofImage img;
+//
+//    img.load("/Users/Neeraj/Desktop/assets/label.png");
+//    img.draw(500, 550);
+//    
+//    ofImage img2;
+//    img2.load("/Users/Neeraj/Desktop/assets/pressurelabel.png");
+//    img.resize(100,100);
+//
+//    img2.draw(100, 340);
     
     //entity
     
     ofPopStyle();
 }
 void WeatherRealTime::displayPress() {
+    
+    minTemp = *min_element(press.begin(), press.end());
+    maxTemp = *max_element(press.begin(), press.end());
     pressPolyline.draw();
+    
     if (i  == press.size()) {
         for (int l =0; l < press.size(); l++) {
             
-            DataPoint data = DataPoint(300+18*l, ofMap(press[l], 1025,1035,150, 800), 5, 50, std::to_string(press[l]));
-            cout <<"\npress[l] "<<press[l];
+            DataPoint data = DataPoint(300+18*l, ofMap(press[l], minTemp ,maxTemp ,150, 480), 5, 50, std::to_string(press[l]));
+//            cout <<"\npress[l] "<<press[l];
 
             data.display();
             //            ofNoFill();
@@ -195,9 +228,12 @@ void WeatherRealTime::displayPress() {
 }
 
 void WeatherRealTime::updatePress() {
+    
+    minTemp = *min_element(press.begin(), press.end());
+    maxTemp = *max_element(press.begin(), press.end());
     if (i <press.size()) {
-        pressPolyline.lineTo(300 + 18*i, ofMap(press[i], 1025,1035,150, 800));
-        cout <<"\npress[i] "<<press[i];
+        pressPolyline.lineTo(300 + 18*i, ofMap(press[i], minTemp,maxTemp,150, 480));
+//        cout <<"\npress[i] "<<press[i];
         ofPushStyle();
         ofSetColor(ofColor::red);
         ofPopStyle();
@@ -213,8 +249,8 @@ void WeatherRealTime::displayPrecText() {
     minTemp = floor(minTemp * 100.0) / 100.0;
     maxTemp = *max_element(wind.begin(), wind.end());
     
-    cout <<"minTemp"<<minTemp ;
-    cout<<"\nmaxTemp " <<maxTemp;
+//    cout <<"minTemp"<<minTemp ;
+//    cout<<"\nmaxTemp " <<maxTemp;
     float n = ((maxTemp-minTemp)/4);
     n = floor(n * 100.0) / 100.0;
     
@@ -235,8 +271,17 @@ void WeatherRealTime::displayPrecText() {
     ofDrawLine(300, 410, 1000, 410);
     
     ofDrawLine(300, 480, 1000, 480);
-    
-    //entity
+    ofImage img;
+//
+//    img.load("/Users/Neeraj/Desktop/assets/label.png");
+//    img.draw(500, 550);
+//    
+//    ofImage img2;
+//    img2.load("/Users/Neeraj/Desktop/assets/windlabel.png");
+//    img.resize(100,100);
+//
+//    img2.draw(100, 340);
+//    //entity
     
     ofPopStyle();
 }
@@ -248,7 +293,7 @@ void WeatherRealTime::displayPrec() {
         for (int l =0; l < wind.size(); l++) {
             
             DataPoint data = DataPoint(300+18*l, ofMap(wind[l], minTemp,maxTemp,200, 480), 5, 50, std::to_string(wind[l]));
-            cout <<"\npress[l] "<<wind[l];
+//            cout <<"\npress[l] "<<wind[l];
             
             data.display();
             //            ofNoFill();
@@ -268,7 +313,7 @@ void WeatherRealTime::updatePrec() {
 
     if (i <wind.size()) {
         pressPolyline.lineTo(300 + 18*i, ofMap(wind[i], minTemp,maxTemp,200, 480));
-        cout <<"\npress[i] "<<press[i];
+//        cout <<"\npress[i] "<<press[i];
         ofPushStyle();
         ofSetColor(ofColor::red);
         ofPopStyle();

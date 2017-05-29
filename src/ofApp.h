@@ -80,6 +80,8 @@ public:
 
     ofxDatGuiTheme* themesmoke;
 
+    ofxDatGuiTheme* themeiconsSmall;
+
     
     
     float interpolate ;
@@ -250,6 +252,11 @@ public:
     WeatherRealTime weatherRealTime1;
 
     WeatherRealTime weatherRealTime2;
+    
+    WeatherRealTime weatherRealTime3;
+    WeatherRealTime weatherRealTime4;
+    
+    WeatherRealTime weatherRealTime5;
 
     WeatherOverview weatherOverview;
     WeatherOverview weatherOverview1;

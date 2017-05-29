@@ -63,7 +63,7 @@ public:
     
     void setHeight(int height) {
         
-        cout <<"in Button Height" <<height;
+//        cout <<"in Button Height" <<height;
        
 //        ofxDatGuiComponent::setHeight(height);
     }

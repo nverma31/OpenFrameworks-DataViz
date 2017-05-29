@@ -52,6 +52,7 @@ public:
     float mindWind;
     float minPress;
     int i = 0;
+    int count = 0;
     int increment;
     
     ofPolyline tempPolyline;
@@ -94,7 +95,9 @@ public:
     void updateOverWind();
     void displayOverWindText();
     
-    
+    vector<float> totals;
+    vector<float> thermals;
+    vector<float> hydros;
     
     void displaydays();
     EnergyRealTime();
