@@ -157,6 +157,17 @@ void EnergyRealTime::displayTotalText() {
     
     ofDrawLine(300, 480, 1000, 480);
     
+    ofImage img;
+    
+    img.load("assets/dayslabel.png");
+    img.draw(930, 500);
+    
+    ofImage img2;
+    img2.load("assets/EnergyRealLabel.png");
+    //        img.resize(150,100);
+    
+    img2.draw(170, 300);
+
     //entity
     
     ofPopStyle();
@@ -277,15 +288,15 @@ void EnergyRealTime::displayThermalText() {
     
     ofDrawLine(300, 480, 1000, 480);
     ofImage img;
-    //
-    //    img.load("assets/label.png");
-    //    img.draw(500, 550);
-    //
-    //    ofImage img2;
-    //    img2.load("assets/pressurelabel.png");
-    //    img.resize(100,100);
-    //
-    //    img2.draw(100, 340);
+    
+        img.load("assets/dayslabel.png");
+        img.draw(930, 500);
+    
+        ofImage img2;
+        img2.load("assets/EnergyRealLabel.png");
+//        img.resize(150,100);
+    
+        img2.draw(170, 300);
     
     //entity
     
@@ -392,6 +403,15 @@ void EnergyRealTime::displayHydroText() {
     ofDrawLine(300, 390, 1000, 390);
     ofDrawLine(300, 480, 1000, 480);
     ofImage img;
+    
+    img.load("assets/dayslabel.png");
+    img.draw(930, 500);
+    
+    ofImage img2;
+    img2.load("assets/EnergyRealLabel.png");
+    //        img.resize(150,100);
+    
+    img2.draw(170, 300);
     //
     //    img.load("assets/label.png");
     //    img.draw(500, 550);
