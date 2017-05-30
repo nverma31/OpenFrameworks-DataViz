@@ -135,11 +135,11 @@ void WeatherRealTime::displayTemp() {
     }
 //    ofImage img;
 //    
-//    img.load("/Users/Neeraj/Desktop/assets/label.png");
+//    img.load("assets/label.png");
 //    img.draw(500, 550);
 //    
 //    ofImage img2;
-//    img2.load("/Users/Neeraj/Desktop/assets/labeltemp.png");
+//    img2.load("assets/labeltemp.png");
 //    img.resize(100,100);
 //    img2.draw(100, 340);
 
@@ -190,11 +190,11 @@ void WeatherRealTime::displayPressText() {
     ofDrawLine(300, 480, 1000, 480);
     ofImage img;
 //
-//    img.load("/Users/Neeraj/Desktop/assets/label.png");
+//    img.load("assets/label.png");
 //    img.draw(500, 550);
 //    
 //    ofImage img2;
-//    img2.load("/Users/Neeraj/Desktop/assets/pressurelabel.png");
+//    img2.load("assets/pressurelabel.png");
 //    img.resize(100,100);
 //
 //    img2.draw(100, 340);
@@ -273,11 +273,11 @@ void WeatherRealTime::displayPrecText() {
     ofDrawLine(300, 480, 1000, 480);
     ofImage img;
 //
-//    img.load("/Users/Neeraj/Desktop/assets/label.png");
+//    img.load("assets/label.png");
 //    img.draw(500, 550);
 //    
 //    ofImage img2;
-//    img2.load("/Users/Neeraj/Desktop/assets/windlabel.png");
+//    img2.load("assets/windlabel.png");
 //    img.resize(100,100);
 //
 //    img2.draw(100, 340);

@@ -277,8 +277,8 @@ public:
     DemoDisplay demoDisplay;
     
     EnergyRealTime energyRealTime;
+    EnergyRealTime energyRealTime1;
     EnergyRealTime energyRealTime2;
-    EnergyRealTime energyRealTime3;
 
 
 

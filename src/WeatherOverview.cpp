@@ -159,11 +159,11 @@ void WeatherOverview::displayTemp() {
         
     }
 //    ofImage img;
-//    img.load("/Users/Neeraj/Desktop/assets/years.png");
+//    img.load("assets/years.png");
 //    img.draw(500, 550);
 //    
 //    ofImage img2;
-//    img2.load("/Users/Neeraj/Desktop/assets/labeltemp.png");
+//    img2.load("assets/labeltemp.png");
 //    img2.draw(100, 340);
     ofPopStyle();
 }
@@ -213,11 +213,11 @@ void WeatherOverview::displayPressText() {
     
     //entity
 //    ofImage img;
-//    img.load("/Users/Neeraj/Desktop/assets/years.png");
+//    img.load("assets/years.png");
 //    img.draw(500, 550);
 //    
 //    ofImage img2;
-//    img2.load("/Users/Neeraj/Desktop/assets/pressurelabel.png");
+//    img2.load("assets/pressurelabel.png");
 //    img2.draw(100, 340);
 
     
@@ -292,11 +292,11 @@ void WeatherOverview::displayPrecText() {
     ofDrawLine(300, 480, 1000, 480);
     
     ofImage img;
-//    img.load("/Users/Neeraj/Desktop/assets/years.png");
+//    img.load("assets/years.png");
 //    img.draw(500, 550);
 //    
 //    ofImage img2;
-//    img2.load("/Users/Neeraj/Desktop/assets/windlabel.png");
+//    img2.load("assets/windlabel.png");
 //    img2.draw(100, 340);
 
     

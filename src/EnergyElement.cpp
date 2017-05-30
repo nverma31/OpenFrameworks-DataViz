@@ -32,7 +32,7 @@ void EnergyElement::display() {
     speed++;
     
     ofImage img;
-    img.load("/Users/Neeraj/Desktop/assets/leg1.png");
+    img.load("assets/leg1.png");
     img.draw(430, 510);
     
 //    cout << "  high "<< high << "   Low  " << low <<"  base  " << base << "speed  " <<speed;

@@ -390,7 +390,7 @@ void DemoDisplay::displayTextData() {
     verdana12.drawStringAsShapes(getRankValue(), 1150, 420);//text
 
     ofImage img;
-    img.load("/Users/Neeraj/Desktop/assets/legend.png");
+    img.load("assets/legend.png");
     img.draw(960, 470);
     
     
