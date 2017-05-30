@@ -18,6 +18,9 @@ void ofApp::setup(){
     energyRealTime.loaddata();
     energyRealTime1.loaddata();
     energyRealTime2.loaddata();
+    
+    buttonstate.load("assets/state.png");
+    
 
     ofSetBackgroundAuto(true);
     
@@ -740,11 +743,14 @@ void ofApp::draw(){
          infot.draw(100,35);
          home->draw(1, 200, 200);
         cl_over->draw(1,200,200);
+         
         cl_real->draw(1,200,200);
         
        
         if (screenNumber == 221) {
-      
+            buttonstate.draw(660,70);
+            buttonstate.draw(615,562);
+
             cl_sea->draw(1,200,200);
             cl_wind->draw(1,200,200);
             cl_press->draw(1,200,200);
@@ -753,6 +759,8 @@ void ofApp::draw(){
 ////            avgSeaSurface.draw("line", pos2, test3);
         }
         if (screenNumber == 222) {
+            buttonstate.draw(660,70);
+            buttonstate.draw(375,562);
            
             cl_sea->draw(1,200,200);
             cl_wind->draw(1,200,200);
@@ -763,7 +771,8 @@ void ofApp::draw(){
 
         }
         if (screenNumber == 223) {
-            
+            buttonstate.draw(660,70);
+            buttonstate.draw(865,562);
             
             cl_sea->draw(1,200,200);
             cl_wind->draw(1,200,200);
@@ -774,7 +783,8 @@ void ofApp::draw(){
         }
         
         if (screenNumber == 224) {
-            
+            buttonstate.draw(410,70);
+            buttonstate.draw(375,562);
             cl_over_temp->draw(1,200,200);
             cl_over_press->draw(1,200,200);
             cl_over_wind->draw(1,200,200);
@@ -785,7 +795,8 @@ void ofApp::draw(){
             
         }
         if (screenNumber == 225) {
-            
+            buttonstate.draw(410,70);
+            buttonstate.draw(615,562);
             cl_over_temp->draw(1,200,200);
             cl_over_press->draw(1,200,200);
             cl_over_wind->draw(1,200,200);
@@ -796,7 +807,8 @@ void ofApp::draw(){
             
         }
          if (screenNumber == 226) {
-             
+             buttonstate.draw(410,70);
+             buttonstate.draw(865,562);
              cl_over_temp->draw(1,200,200);
              cl_over_press->draw(1,200,200);
              cl_over_wind->draw(1,200,200);
@@ -868,8 +880,12 @@ void ofApp::draw(){
 
           if (screenNumber == 41) {
         energyDisplay.display();
+              buttonstate.draw(460,70);
+
               ofImage etext1;
               etext1.load("assets/etext2.png");
+              buttonstate.draw(610,562);
+
               etext1.draw(450, 150);
               en_hct->draw(1, 200, 200);
               en_pcb->draw(1, 200, 200);
@@ -882,6 +898,9 @@ void ofApp::draw(){
 
           }
          if (screenNumber == 42) {
+             buttonstate.draw(460,70);
+             buttonstate.draw(460,562);
+
              ofImage etext;
              etext.load("assets/etext.png");
              etext.draw(450, 150);
@@ -894,6 +913,9 @@ void ofApp::draw(){
              
          }
          if (screenNumber == 43) {
+             buttonstate.draw(710,70);
+             buttonstate.draw(760,562);
+
              ofImage etext2;
              etext2.load("assets/etext3.png");
              etext2.draw(450, 150);
@@ -911,6 +933,8 @@ void ofApp::draw(){
         
         if (screenNumber == 413) {
 
+            buttonstate.draw(710,70);
+            buttonstate.draw(615,562);
             en_wind->draw(1,200,200);
             en_hyd->draw(1,200,200);
             en_thermal->draw(1,200,200);
@@ -919,7 +943,8 @@ void ofApp::draw(){
         }
         if (screenNumber == 411) {
             
-            
+            buttonstate.draw(710,70);
+            buttonstate.draw(460,562);
             en_wind->draw(1,200,200);
             en_hyd->draw(1,200,200);
             en_thermal->draw(1,200,200);
@@ -931,6 +956,9 @@ void ofApp::draw(){
             
         }
         if (screenNumber == 412) {
+            
+            buttonstate.draw(710,70);
+            buttonstate.draw(765,562);
             
             en_wind->draw(1,200,200);
             en_hyd->draw(1,200,200);
@@ -1261,13 +1289,7 @@ void ofApp::positionButtons()
     en_over->setPosition(450, 50);
     en_real->setPosition(700, 50);
     
-//    en_bio = new ofxDatGuiButton("Biomass");
-//    en_bio = new ofxDatGuiButton("Hydro");
-//    en_bio = new ofxDatGuiButton("Wind");
-//    en_bio = new ofxDatGuiButton("Thermal");
-//    en_pcb = new ofxDatGuiButton("Primary vs Bought");
-//    en_hct = new ofxDatGuiButton("Hydro VS Thermal");
-//    en_hcc = new ofxDatGuiButton("House Vs Commercial");
+
     
     en_bio->setPosition(100, 450);
     
@@ -1284,15 +1306,15 @@ void ofApp::positionButtons()
 
     cl_pre->setPosition(100, 450);
     
-    cl_press->setPosition(400,550);
+    cl_press->setPosition(370,550);
     
-    cl_sea->setPosition(600, 550);
-    cl_wind->setPosition(800, 550);
+    cl_sea->setPosition(610, 550);
+    cl_wind->setPosition(860, 550);
     
-    cl_over_press->setPosition(400,550);
+    cl_over_press->setPosition(370,550);
     
-    cl_over_temp->setPosition(600, 550);
-    cl_over_wind->setPosition(800, 550);
+    cl_over_temp->setPosition(610, 550);
+    cl_over_wind->setPosition(860, 550);
     cl_hourly->setPosition(800, 150);
     cl_daily->setPosition(550, 150);
    // cout <<"ofGetHeight"<<ofGetHeight();

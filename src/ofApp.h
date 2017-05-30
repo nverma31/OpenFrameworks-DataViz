@@ -280,6 +280,7 @@ public:
     EnergyRealTime energyRealTime1;
     EnergyRealTime energyRealTime2;
 
+    ofImage buttonstate;
 
 
 
