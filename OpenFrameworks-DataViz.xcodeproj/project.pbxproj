@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		0705977D1ED7829600C63F20 /* PressRealTime.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0705977B1ED7829600C63F20 /* PressRealTime.cpp */; };
 		0721EF9C1ED4C35C0051DE6D /* WeatherRealTime.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 0721EF9A1ED4C35C0051DE6D /* WeatherRealTime.cpp */; };
 		073C3C371ED7ABFA00897C10 /* EnergyRealTime.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 073C3C351ED7ABFA00897C10 /* EnergyRealTime.cpp */; };
 		073C3C3A1ED7B17F00897C10 /* WeatherOverview.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 073C3C381ED7B17F00897C10 /* WeatherOverview.cpp */; };
@@ -61,8 +60,6 @@
 
 /* Begin PBXFileReference section */
 		041018DAEA54F2753BB6F6E9 /* EnergyDisplay.cpp */ = {isa = PBXFileReference; explicitFileType = sourcecode.cpp.cpp; fileEncoding = 30; name = EnergyDisplay.cpp; path = src/EnergyDisplay.cpp; sourceTree = SOURCE_ROOT; };
-		0705977B1ED7829600C63F20 /* PressRealTime.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = PressRealTime.cpp; sourceTree = "<group>"; };
-		0705977C1ED7829600C63F20 /* PressRealTime.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = PressRealTime.hpp; sourceTree = "<group>"; };
 		0721EF9A1ED4C35C0051DE6D /* WeatherRealTime.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = WeatherRealTime.cpp; sourceTree = "<group>"; };
 		0721EF9B1ED4C35C0051DE6D /* WeatherRealTime.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = WeatherRealTime.h; sourceTree = "<group>"; };
 		073C3C351ED7ABFA00897C10 /* EnergyRealTime.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = EnergyRealTime.cpp; sourceTree = "<group>"; };
@@ -320,8 +317,6 @@
 				0721EF9B1ED4C35C0051DE6D /* WeatherRealTime.h */,
 				0748EC251ED567E000632815 /* DataPoint.cpp */,
 				0748EC261ED567E000632815 /* DataPoint.h */,
-				0705977B1ED7829600C63F20 /* PressRealTime.cpp */,
-				0705977C1ED7829600C63F20 /* PressRealTime.hpp */,
 				073C3C351ED7ABFA00897C10 /* EnergyRealTime.cpp */,
 				073C3C361ED7ABFA00897C10 /* EnergyRealTime.h */,
 				073C3C381ED7B17F00897C10 /* WeatherOverview.cpp */,
@@ -463,7 +458,6 @@
 				1981A5C6A9907849A11593F1 /* ofxSmartFont.cpp in Sources */,
 				073C3C371ED7ABFA00897C10 /* EnergyRealTime.cpp in Sources */,
 				1DDCCF38AB3EA880E1D3E577 /* ofxDatGui.cpp in Sources */,
-				0705977D1ED7829600C63F20 /* PressRealTime.cpp in Sources */,
 				A17A1433DA92069FF0763B10 /* ofxJSONElement.cpp in Sources */,
 				52A1E2A1017A23178A3ECC33 /* jsoncpp.cpp in Sources */,
 				0721EF9C1ED4C35C0051DE6D /* WeatherRealTime.cpp in Sources */,
