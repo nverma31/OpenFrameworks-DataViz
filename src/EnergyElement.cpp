@@ -50,7 +50,7 @@ void EnergyElement::display() {
     else {
 
         ofDrawLine(xpos, base,xpos, high);
-        dataPointHigh.setup(xpos, high, 4,50, std::to_string(high));
+        dataPointHigh.setup(xpos, high, 4,50, std::to_string(ofMap(low, 200, 480, 0, 100)));
         dataPointHigh.display();
         isInside();
 
@@ -66,7 +66,7 @@ void EnergyElement::display() {
     else {
 
         ofDrawLine(xpos, base,xpos, low);
-        dataPointLow.setup(xpos, low, 4,50, std::to_string(low));
+        dataPointLow.setup(xpos, low, 4,50, std::to_string(ofMap(high, 200, 480, 0, 100)));
         dataPointLow.display();
 
     }

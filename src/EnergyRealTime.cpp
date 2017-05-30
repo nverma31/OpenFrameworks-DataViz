@@ -111,10 +111,10 @@ void EnergyRealTime::loaddata(){
     
     
     for (int k = 0 ; k < responses.size(); k++) {
-        cout <<"totals: "<<totals[k]<<endl;
-        cout <<"totals: "<<thermals[k]<<endl;
-        cout <<"totals: "<<hydros[k]<<endl;
-        cout <<"totals: "<<dates[k]<<endl;
+//        cout <<"totals: "<<totals[k]<<endl;
+//        cout <<"totals: "<<thermals[k]<<endl;
+//        cout <<"totals: "<<hydros[k]<<endl;
+//        cout <<"totals: "<<dates[k]<<endl;
         
         
         
@@ -269,10 +269,11 @@ void EnergyRealTime::displayThermalText() {
     verdana12.drawStringAsShapes(std::to_string(minTemp+3*n).substr(0,4), 260, 270);
     verdana12.drawStringAsShapes(std::to_string(minTemp+4*n).substr(0,4), 260, 200);
     
-    ofDrawLine(300, 200, 1000, 200);
-    ofDrawLine(300, 270, 1000, 270);
-    ofDrawLine(300, 340, 1000, 340);
-    ofDrawLine(300, 410, 1000, 410);
+    
+    ofDrawLine(300, 150, 1000, 150);
+    ofDrawLine(300, 230, 1000, 230);
+    ofDrawLine(300, 310, 1000, 310);
+    ofDrawLine(300, 390, 1000, 390);
     
     ofDrawLine(300, 480, 1000, 480);
     ofImage img;
@@ -306,7 +307,7 @@ void EnergyRealTime::displayThermal() {
             if (y <= middle){
                 float diff = middle - y;
                 
-                DataPoint data = DataPoint(300+75*l, middle+diff, 5, 50, std::to_string(temp[l]));
+                DataPoint data = DataPoint(300+75*l, middle+diff, 5, 50, std::to_string(press[l]));
                 data.display();
                 
             }
@@ -314,7 +315,7 @@ void EnergyRealTime::displayThermal() {
             if (y > middle){
                 float diff =  y - middle;
                 
-                DataPoint data = DataPoint(300+75*l, middle-diff, 5, 50, std::to_string(temp[l]));
+                DataPoint data = DataPoint(300+75*l, middle-diff, 5, 50, std::to_string(press[l]));
                 data.display();
                 
             }
@@ -385,11 +386,10 @@ void EnergyRealTime::displayHydroText() {
     verdana12.drawStringAsShapes(std::to_string(minTemp+3*n).substr(0,4), 260, 270);
     verdana12.drawStringAsShapes(std::to_string(minTemp+4*n).substr(0,4), 260, 200);
     
-    ofDrawLine(300, 200, 1000, 200);
-    ofDrawLine(300, 270, 1000, 270);
-    ofDrawLine(300, 340, 1000, 340);
-    ofDrawLine(300, 410, 1000, 410);
-    
+    ofDrawLine(300, 150, 1000, 150);
+    ofDrawLine(300, 230, 1000, 230);
+    ofDrawLine(300, 310, 1000, 310);
+    ofDrawLine(300, 390, 1000, 390);
     ofDrawLine(300, 480, 1000, 480);
     ofImage img;
     //
@@ -419,7 +419,7 @@ void EnergyRealTime::displayHydro() {
             if (y <= middle){
                 float diff = middle - y;
                 
-                DataPoint data = DataPoint(300+75*l, middle+diff, 5, 50, std::to_string(temp[l]));
+                DataPoint data = DataPoint(300+75*l, middle+diff, 5, 50, std::to_string(wind[l]));
                 data.display();
                 
             }
@@ -427,10 +427,11 @@ void EnergyRealTime::displayHydro() {
             if (y > middle){
                 float diff =  y - middle;
                 
-                DataPoint data = DataPoint(300+75*l, middle-diff, 5, 50, std::to_string(temp[l]));
+                DataPoint data = DataPoint(300+75*l, middle-diff, 5, 50, std::to_string(wind[l]));
                 data.display();
                 
-            }        }
+            }
+        }
     }
     for (int k =0; k < days.size(); k++) {
         

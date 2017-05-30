@@ -100,11 +100,11 @@ void WeatherRealTime::displayTempText() {
     verdana12.drawStringAsShapes(std::to_string(minTemp+2*n).substr(0,4), 260, 340);
     verdana12.drawStringAsShapes(std::to_string(minTemp+3*n).substr(0,4), 260, 270);
     verdana12.drawStringAsShapes(std::to_string(minTemp+4*n).substr(0,4), 260, 200);
+    ofDrawLine(300, 150, 1000, 150);
+    ofDrawLine(300, 230, 1000, 230);
+    ofDrawLine(300, 310, 1000, 310);
+    ofDrawLine(300, 390, 1000, 390);
 
-    ofDrawLine(300, 200, 1000, 200);
-    ofDrawLine(300, 270, 1000, 270);
-    ofDrawLine(300, 340, 1000, 340);
-    ofDrawLine(300, 410, 1000, 410);
 
     ofDrawLine(300, 480, 1000, 480);
 
@@ -120,8 +120,25 @@ void WeatherRealTime::displayTemp() {
     tempPolyline.draw();
     if (i  == temp.size()) {
         for (int l =0; l < temp.size(); l++) {
-            DataPoint data = DataPoint(300+18*l, ofMap(temp[l], minTemp ,maxTemp,150, 480), 5, 50, std::to_string(temp[l]));
-            data.display();
+            float y =ofMap(temp[l], minTemp ,maxTemp,150, 480);
+            float middle = (480+150)/2;
+            
+            
+            if (y <= middle){
+                float diff = middle - y;
+                
+                DataPoint data = DataPoint(300+18*l, middle+diff, 5, 50, std::to_string(temp[l]));
+                data.display();
+                
+            }
+            
+            if (y > middle){
+                float diff =  y - middle;
+                
+                DataPoint data = DataPoint(300+18*l, middle-diff, 5, 50, std::to_string(temp[l]));
+                data.display();
+                
+            }
 //            ofNoFill();
             cout <<"temp[] l  " <<temp[l]<<endl;
 
@@ -151,7 +168,24 @@ void WeatherRealTime::updateTemp() {
     minTemp = *min_element(temp.begin(), temp.end());
     maxTemp = *max_element(temp.begin(), temp.end());
     if (i <temp.size()) {
-    tempPolyline.lineTo(300 + 18*i, ofMap(temp[i], minTemp ,maxTemp,150, 480));
+        float y =ofMap(temp[i], minTemp ,maxTemp,150, 480);
+        float middle = (480+150)/2;
+        
+        
+        if (y <= middle){
+            float diff = middle - y;
+            
+            tempPolyline.lineTo(300 + 18*i, middle+diff);
+            
+        }
+        
+        if (y > middle){
+            float diff =  y - middle;
+            
+            tempPolyline.lineTo(300 + 18*i, middle-diff);
+            
+            
+        }
         ofPushStyle();
         ofSetColor(ofColor::red);
         ofPopStyle();
@@ -182,10 +216,11 @@ void WeatherRealTime::displayPressText() {
     verdana12.drawStringAsShapes(std::to_string(minTemp+3*n).substr(0,4), 260, 270);
     verdana12.drawStringAsShapes(std::to_string(minTemp+4*n).substr(0,4), 260, 200);
     
-    ofDrawLine(300, 200, 1000, 200);
-    ofDrawLine(300, 270, 1000, 270);
-    ofDrawLine(300, 340, 1000, 340);
-    ofDrawLine(300, 410, 1000, 410);
+    ofDrawLine(300, 150, 1000, 150);
+    ofDrawLine(300, 230, 1000, 230);
+    ofDrawLine(300, 310, 1000, 310);
+    ofDrawLine(300, 390, 1000, 390);
+
     
     ofDrawLine(300, 480, 1000, 480);
     ofImage img;
@@ -212,10 +247,25 @@ void WeatherRealTime::displayPress() {
     if (i  == press.size()) {
         for (int l =0; l < press.size(); l++) {
             
-            DataPoint data = DataPoint(300+18*l, ofMap(press[l], minTemp ,maxTemp ,150, 480), 5, 50, std::to_string(press[l]));
-//            cout <<"\npress[l] "<<press[l];
-
-            data.display();
+            float y =ofMap(prec[l], minTemp ,maxTemp,150, 480);
+            float middle = (480+150)/2;
+            
+            
+            if (y <= middle){
+                float diff = middle - y;
+                
+                DataPoint data = DataPoint(300+18*l, middle+diff, 5, 50, std::to_string(press[l]));
+                data.display();
+                
+            }
+            
+            if (y > middle){
+                float diff =  y - middle;
+                
+                DataPoint data = DataPoint(300+18*l, middle-diff, 5, 50, std::to_string(press[l]));
+                data.display();
+                
+            }
             //            ofNoFill();
             //            ofDrawCircle(100 + 30*l, temp[l], 2);
         }
@@ -232,8 +282,24 @@ void WeatherRealTime::updatePress() {
     minTemp = *min_element(press.begin(), press.end());
     maxTemp = *max_element(press.begin(), press.end());
     if (i <press.size()) {
-        pressPolyline.lineTo(300 + 18*i, ofMap(press[i], minTemp,maxTemp,150, 480));
-//        cout <<"\npress[i] "<<press[i];
+        float y =ofMap(press[i], minTemp ,maxTemp,150, 480);
+        float middle = (480+150)/2;
+        
+        
+        if (y <= middle){
+            float diff = middle - y;
+            
+            pressPolyline.lineTo(300 + 18*i, middle+diff);
+            
+        }
+        
+        if (y > middle){
+            float diff =  y - middle;
+            
+            pressPolyline.lineTo(300 + 18*i, middle-diff);
+            
+            
+        }//        cout <<"\npress[i] "<<press[i];
         ofPushStyle();
         ofSetColor(ofColor::red);
         ofPopStyle();
@@ -265,10 +331,11 @@ void WeatherRealTime::displayPrecText() {
     verdana12.drawStringAsShapes(std::to_string(minTemp+3*n).substr(0,4), 260, 270);
     verdana12.drawStringAsShapes(std::to_string(minTemp+4*n).substr(0,4), 260, 200);
     
-    ofDrawLine(300, 200, 1000, 200);
-    ofDrawLine(300, 270, 1000, 270);
-    ofDrawLine(300, 340, 1000, 340);
-    ofDrawLine(300, 410, 1000, 410);
+    ofDrawLine(300, 150, 1000, 150);
+    ofDrawLine(300, 230, 1000, 230);
+    ofDrawLine(300, 310, 1000, 310);
+    ofDrawLine(300, 390, 1000, 390);
+
     
     ofDrawLine(300, 480, 1000, 480);
     ofImage img;
@@ -288,15 +355,29 @@ void WeatherRealTime::displayPrecText() {
 void WeatherRealTime::displayPrec() {
     minTemp = *min_element(wind.begin(), wind.end());
     maxTemp = *max_element(wind.begin(), wind.end());
-    pressPolyline.draw();
+    windPolyline.draw();
     if (i  == wind.size()) {
         for (int l =0; l < wind.size(); l++) {
             
-            DataPoint data = DataPoint(300+18*l, ofMap(wind[l], minTemp,maxTemp,200, 480), 5, 50, std::to_string(wind[l]));
-//            cout <<"\npress[l] "<<wind[l];
+            float y =ofMap(wind[l], minTemp ,maxTemp,150, 480);
+            float middle = (480+150)/2;
             
-            data.display();
-            //            ofNoFill();
+            
+            if (y <= middle){
+                float diff = middle - y;
+                
+                DataPoint data = DataPoint(300+18*l, middle+diff, 5, 50, std::to_string(wind[l]));
+                data.display();
+                
+            }
+            
+            if (y > middle){
+                float diff =  y - middle;
+                
+                DataPoint data = DataPoint(300+18*l, middle-diff, 5, 50, std::to_string(wind[l]));
+                data.display();
+                
+            }            //            ofNoFill();
             //            ofDrawCircle(100 + 30*l, temp[l], 2);
         }
     }
@@ -312,8 +393,24 @@ void WeatherRealTime::updatePrec() {
     maxTemp = *max_element(wind.begin(), wind.end());
 
     if (i <wind.size()) {
-        pressPolyline.lineTo(300 + 18*i, ofMap(wind[i], minTemp,maxTemp,200, 480));
-//        cout <<"\npress[i] "<<press[i];
+        float y =ofMap(wind[i], minTemp ,maxTemp,150, 480);
+        float middle = (480+150)/2;
+        
+        
+        if (y <= middle){
+            float diff = middle - y;
+            
+            windPolyline.lineTo(300 + 18*i, middle+diff);
+            
+        }
+        
+        if (y > middle){
+            float diff =  y - middle;
+            
+            windPolyline.lineTo(300 + 18*i, middle-diff);
+            
+            
+        }//        cout <<"\npress[i] "<<press[i];
         ofPushStyle();
         ofSetColor(ofColor::red);
         ofPopStyle();
