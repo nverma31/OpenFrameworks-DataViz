@@ -107,6 +107,17 @@ void WeatherRealTime::displayTempText() {
 
 
     ofDrawLine(300, 480, 1000, 480);
+    
+    ofImage img;
+    
+    img.load("assets/dayslabel.png");
+    img.draw(930, 520);
+    
+    ofImage img2;
+    img2.load("assets/templabel.png");
+    //        img.resize(150,100);
+    
+    img2.draw(170, 300);
 
     //entity
 
@@ -224,6 +235,15 @@ void WeatherRealTime::displayPressText() {
     
     ofDrawLine(300, 480, 1000, 480);
     ofImage img;
+    
+    img.load("assets/dayslabel.png");
+    img.draw(930, 520);
+    
+    ofImage img2;
+    img2.load("assets/presslabel.png");
+    //        img.resize(150,100);
+    
+    img2.draw(170, 300);
 //
 //    img.load("assets/label.png");
 //    img.draw(500, 550);
@@ -338,7 +358,18 @@ void WeatherRealTime::displayPrecText() {
 
     
     ofDrawLine(300, 480, 1000, 480);
+    
     ofImage img;
+    
+    img.load("assets/dayslabel.png");
+    img.draw(930, 520);
+    
+    ofImage img2;
+    img2.load("assets/windlabel.png");
+    //        img.resize(150,100);
+    
+    img2.draw(170, 300);
+
 //
 //    img.load("assets/label.png");
 //    img.draw(500, 550);

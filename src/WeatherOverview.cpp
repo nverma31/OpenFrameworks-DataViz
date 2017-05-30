@@ -138,6 +138,19 @@ void WeatherOverview::displayTempText() {
     
     ofDrawLine(300, 480, 1000, 480);
     
+    ofImage img;
+    
+    img.load("assets/dayslabel.png");
+    img.draw(930, 520);
+    
+    ofImage img2;
+    img2.load("assets/templabel.png");
+    img2.draw(170, 300);
+
+    //        img.resize(150,100);
+    
+
+    
     //entity
     
     ofPopStyle();
@@ -251,6 +264,18 @@ void WeatherOverview::displayPressText() {
     
     ofDrawLine(300, 480, 1000, 480);
     
+    ofImage img;
+    
+    img.load("assets/dayslabel.png");
+    img.draw(930, 520);
+    
+    ofImage img2;
+    img2.load("assets/presslabel.png");
+    img2.draw(170, 300);
+
+    //        img.resize(150,100);
+    
+
     //entity
 //    ofImage img;
 //    img.load("assets/years.png");
@@ -364,7 +389,19 @@ void WeatherOverview::displayPrecText() {
     
     ofDrawLine(300, 480, 1000, 480);
     
+    
+    
     ofImage img;
+    
+    img.load("assets/dayslabel.png");
+    img.draw(930, 520);
+    
+    ofImage img2;
+    img2.load("assets/windlabel.png");
+    img2.draw(170, 300);
+
+    //        img.resize(150,100);
+    
 //    img.load("assets/years.png");
 //    img.draw(500, 550);
 //    
