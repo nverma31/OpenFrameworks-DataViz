@@ -59,9 +59,7 @@ public:
     
     ofPolyline pressPolyline;
     ofPolyline windPolyline;
-    ofPolyline tempOverPolyline;
-    ofPolyline pressOverPolyline;
-    ofPolyline windOverPolyline;
+ 
     
     void loaddata();
     
