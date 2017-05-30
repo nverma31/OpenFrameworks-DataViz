@@ -65,36 +65,20 @@ public:
     
     void loaddata();
     
-    void displayTemp();
-    void updateTemp();
-    void displayTempText();
+    void displayTotal();
+    void updateTotal();
+    void displayTotalText();
     
-    void displayPress();
-    void updatePress();
-    void displayPressText();
+    void displayThermal();
+    void updateThermal();
+    void displayThermalText();
     
-    void displayPrec();
-    void updatePrec();
-    void displayPrecText();
-    
-    
-    void displayOverTemp();
-    void updateOverTemp();
-    void displayOverTempText();
-    
-    void displayOverPress();
-    void updateOverPress();
-    void displayOverPressText();
-    
-    void displayOverPrec();
-    void updateOverPrec();
-    void displayOverText();
+    void displayHydro();
+    void updateHydro();
+    void displayHydroText();
     
     
-    void displayOverWind();
-    void updateOverWind();
-    void displayOverWindText();
-    
+       
     vector<float> totals;
     vector<float> thermals;
     vector<float> hydros;

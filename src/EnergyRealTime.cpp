@@ -126,7 +126,7 @@ void EnergyRealTime::loaddata(){
 }
 
 
-void EnergyRealTime::displayTempText() {
+void EnergyRealTime::displayTotalText() {
     
     minTemp = *min_element(temp.begin(), temp.end());
     minTemp = floor(minTemp * 100.0) / 100.0;
@@ -160,7 +160,7 @@ void EnergyRealTime::displayTempText() {
     
     ofPopStyle();
 }
-void EnergyRealTime::displayTemp() {
+void EnergyRealTime::displayTotal() {
     
     minTemp = *min_element(temp.begin(), temp.end());
     maxTemp = *max_element(temp.begin(), temp.end());
@@ -194,7 +194,7 @@ void EnergyRealTime::displayTemp() {
 }
 
 
-void EnergyRealTime::updateTemp() {
+void EnergyRealTime::updateTotal() {
     
     minTemp = *min_element(temp.begin(), temp.end());
     maxTemp = *max_element(temp.begin(), temp.end());
@@ -209,7 +209,7 @@ void EnergyRealTime::updateTemp() {
 }
 
 //Real Time Pressure
-void EnergyRealTime::displayPressText() {
+void EnergyRealTime::displayThermalText() {
     
     minTemp = *min_element(press.begin(), press.end());
     maxTemp = *max_element(press.begin(), press.end());
@@ -251,7 +251,7 @@ void EnergyRealTime::displayPressText() {
     
     ofPopStyle();
 }
-void EnergyRealTime::displayPress() {
+void EnergyRealTime::displayThermal() {
     
     minTemp = *min_element(press.begin(), press.end());
     maxTemp = *max_element(press.begin(), press.end());
@@ -275,7 +275,7 @@ void EnergyRealTime::displayPress() {
     }
 }
 
-void EnergyRealTime::updatePress() {
+void EnergyRealTime::updateThermal() {
     
     minTemp = *min_element(press.begin(), press.end());
     maxTemp = *max_element(press.begin(), press.end());
@@ -291,7 +291,7 @@ void EnergyRealTime::updatePress() {
 }
 
 
-void EnergyRealTime::displayPrecText() {
+void EnergyRealTime::displayHydroText() {
     
     minTemp = *min_element(wind.begin(), wind.end());
     minTemp = floor(minTemp * 100.0) / 100.0;
@@ -333,7 +333,7 @@ void EnergyRealTime::displayPrecText() {
     
     ofPopStyle();
 }
-void EnergyRealTime::displayPrec() {
+void EnergyRealTime::displayHydro() {
     minTemp = *min_element(wind.begin(), wind.end());
     maxTemp = *max_element(wind.begin(), wind.end());
     pressPolyline.draw();
@@ -355,7 +355,7 @@ void EnergyRealTime::displayPrec() {
     }
 }
 
-void EnergyRealTime::updatePrec() {
+void EnergyRealTime::updateHydro() {
     minTemp = *min_element(wind.begin(), wind.end());
     maxTemp = *max_element(wind.begin(), wind.end());
     

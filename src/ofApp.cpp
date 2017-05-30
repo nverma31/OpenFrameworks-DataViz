@@ -603,7 +603,7 @@ void ofApp::update(){
             en_hyd->update();
             en_thermal->update();
 //            energyRealTime3.updatePrec();
-          energyRealTime.updateTemp();
+          energyRealTime.updateTotal();
 
         }
         if (screenNumber == 412){
@@ -611,7 +611,7 @@ void ofApp::update(){
             en_hyd->update();
             en_wind->update();
 //            energyRealTime2.updatePress();
-            energyRealTime1.updatePrec();
+            energyRealTime1.updateHydro();
 
 
             
@@ -621,7 +621,7 @@ void ofApp::update(){
             en_hyd->update();
             en_wind->update();
 //            energyRealTime.updateTemp();
-            energyRealTime2.updatePress();
+            energyRealTime2.updateThermal();
 
 
             
@@ -914,8 +914,8 @@ void ofApp::draw(){
             en_wind->draw(1,200,200);
             en_hyd->draw(1,200,200);
             en_thermal->draw(1,200,200);
-            energyRealTime2.displayPress();
-            energyRealTime2.displayPressText();
+            energyRealTime2.displayThermal();
+            energyRealTime2.displayThermalText();
         }
         if (screenNumber == 411) {
             
@@ -923,8 +923,8 @@ void ofApp::draw(){
             en_wind->draw(1,200,200);
             en_hyd->draw(1,200,200);
             en_thermal->draw(1,200,200);
-            energyRealTime.displayTempText();
-            energyRealTime.displayTemp();
+            energyRealTime.displayTotalText();
+            energyRealTime.displayTotal();
             
            
 
@@ -936,8 +936,8 @@ void ofApp::draw(){
             en_hyd->draw(1,200,200);
             en_thermal->draw(1,200,200);
            
-            energyRealTime1.displayPrec();
-            energyRealTime1.displayPrecText();
+            energyRealTime1.displayHydro();
+            energyRealTime1.displayHydroText();
 
             
         }
